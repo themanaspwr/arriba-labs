@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -46,10 +46,7 @@
     <div class="cursor-tag" id="cursor-tag"></div>
   </div>
 
-  <!-- Direct Entrance (No artificial loader) -->
-      <div class="loader-num" id="loader-num">00%</div>
-    </div>
-  </div>
+
 
   <!-- ==================== HEADER NAVIGATION ==================== -->
   <header class="site-header" id="site-header">
@@ -134,6 +131,7 @@
           <div class="chevron-wordmark-wrap" id="chev-wordmark">
             <img src="arriba-wordmark.png" alt="ARRIBA" class="arriba-wordmark-img" width="1361" height="334">
           </div>
+
         </div>
 
         <!-- Small Scroll Down Pill Animation -->
@@ -150,15 +148,23 @@
     <section class="hero-editorial-section" id="hero">
       <div class="container-editorial">
         
-        <div class="hero-top-kicker" data-reveal>
+        <div class="hero-stage-split">
+          
+          <!-- Character Figure (Left Column) -->
+          <div class="hero-figure-column" data-reveal>
+            <img src="hero-character.png" alt="Arriba Labs Character" class="hero-character-img" width="240" height="535">
+          </div>
+
+          <!-- Hero Content Block (Right Column) -->
+          <div class="hero-content-block">
+          <div class="hero-top-kicker" data-reveal>
           <span class="kicker-tag">PERFORMANCE MARKETING STUDIO</span>
           <span class="kicker-sep">/</span>
           <span class="kicker-sub">EST. 2018</span>
         </div>
 
         <h1 class="hero-clean-title" data-reveal>
-          We scale consumer brands with<br>
-          <span class="gradient-text">creative performance</span> and disciplined capital.
+          We scale consumer brands with <span class="gradient-text">creative performance</span> and disciplined capital.
         </h1>
 
         <p class="hero-editorial-copy" data-reveal>
@@ -180,7 +186,20 @@
           </a>
         </div>
 
-          <!-- Architectural Stat Band -->
+        <div class="hero-platform-trust" data-reveal>
+          <span class="trust-badge">Meta Business Partner</span>
+          <span class="trust-dot">&#8226;</span>
+          <span class="trust-badge">Google Premier Partner</span>
+          <span class="trust-dot">&#8226;</span>
+          <span class="trust-badge">Amazon Ads Partner</span>
+          <span class="trust-dot">&#8226;</span>
+          <span class="trust-badge">Quick Commerce Media</span>
+        </div>
+
+          </div>
+        </div>
+
+        <!-- Architectural Stat Band -->
           <div class="hero-stat-band" data-reveal>
             <div class="band-cell">
               <span class="band-num">₹120Cr+</span>
@@ -208,65 +227,321 @@
       <div class="clients-header-bar">
         <div class="container-editorial flex-between">
           <span class="editorial-sublabel">SELECTED CLIENT PARTNERSHIPS</span>
-          <span class="editorial-sublabel count-badge">12 VERIFIED BRANDS</span>
+          <span class="editorial-sublabel count-badge">18 VERIFIED BRANDS</span>
         </div>
       </div>
 
-      <!-- Kinetic Typographic Marquee with Hover Pause and Verified Direct Links -->
-      <div class="editorial-marquee-wrap">
-        <div class="editorial-marquee-track" id="client-marquee">
-          <div class="editorial-marquee-group">
-            <a href="https://www.tibertaber.com/" target="_blank" rel="noopener" class="client-link">Tiber Taber</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.anthrilo.com/" target="_blank" rel="noopener" class="client-link">Anthrilo</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.fizzygoblet.com/" target="_blank" rel="noopener" class="client-link">Fizzy Goblet</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.srstore.in/" target="_blank" rel="noopener" class="client-link">SR Store</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://avstore.in/" target="_blank" rel="noopener" class="client-link">AV Store</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.beautygarage.com/" target="_blank" rel="noopener" class="client-link">Beauty Garage</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://viyadesign.com/" target="_blank" rel="noopener" class="client-link">VIYA</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.ragr.in/" target="_blank" rel="noopener" class="client-link">RAGR</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.theindiacrafthouse.com/" target="_blank" rel="noopener" class="client-link">The India Craft House</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.thelivinginfluence.com/" target="_blank" rel="noopener" class="client-link">The Living Influence</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.pronatureorganic.com/" target="_blank" rel="noopener" class="client-link">Pro Nature Organic</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://tea1888.in/" target="_blank" rel="noopener" class="client-link">TEA1888</a>
-            <span class="marquee-divider">/</span>
+      <!-- Dual Opposite-Direction Brand Logo Marquees with Hover Pause -->
+      <div class="editorial-marquee-stack">
+        <!-- Row 1: Top Marquee (Moves Left) - Brands 1 to 9 -->
+        <div class="editorial-marquee-wrap">
+          <div class="editorial-marquee-track marquee-track-left" id="client-marquee-top">
+            <div class="editorial-marquee-group">
+              <a href="https://pronatureorganic.com/" target="_blank" rel="noopener" class="client-logo-link" title="Pro Nature Organic">
+                <img src="logos/pro-nature-organic.png" alt="Pro Nature Organic" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.tibertaber.com/" target="_blank" rel="noopener" class="client-logo-link" title="Tiber Taber">
+                <img src="logos/tiber-taber.png" alt="Tiber Taber" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://viyadesign.com/" target="_blank" rel="noopener" class="client-logo-link" title="VIYA">
+                <img src="logos/viya.svg" alt="VIYA" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://meko-studio.com/" target="_blank" rel="noopener" class="client-logo-link" title="Meko Studio">
+                <img src="logos/meko-studio.png" alt="Meko Studio" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://srstore.in/" target="_blank" rel="noopener" class="client-logo-link" title="SR Store">
+                <img src="logos/sr-store.png" alt="SR Store" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://avstore.in/" target="_blank" rel="noopener" class="client-logo-link" title="AV Store">
+                <img src="logos/av-store.png" alt="AV Store" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.toddslife.com/" target="_blank" rel="noopener" class="client-logo-link" title="TODDS Life">
+                <img src="logos/todds-life.png" alt="TODDS Life" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.anthrilo.com/" target="_blank" rel="noopener" class="client-logo-link" title="Anthrilo">
+                <img src="logos/anthrilo.png" alt="Anthrilo" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://beautygarage.com/" target="_blank" rel="noopener" class="client-logo-link" title="Beauty Garage">
+                <img src="logos/beauty-garage.svg" alt="Beauty Garage" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <!-- Second cycle inside group for ultrawide screens -->
+              <a href="https://pronatureorganic.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Pro Nature Organic">
+                <img src="logos/pro-nature-organic.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.tibertaber.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Tiber Taber">
+                <img src="logos/tiber-taber.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://viyadesign.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="VIYA">
+                <img src="logos/viya.svg" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://meko-studio.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Meko Studio">
+                <img src="logos/meko-studio.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://srstore.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="SR Store">
+                <img src="logos/sr-store.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://avstore.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="AV Store">
+                <img src="logos/av-store.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.toddslife.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="TODDS Life">
+                <img src="logos/todds-life.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.anthrilo.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Anthrilo">
+                <img src="logos/anthrilo.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://beautygarage.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Beauty Garage">
+                <img src="logos/beauty-garage.svg" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+            </div>
+            <!-- Seamless Duplicate Group -->
+            <div class="editorial-marquee-group" aria-hidden="true">
+              <a href="https://pronatureorganic.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Pro Nature Organic">
+                <img src="logos/pro-nature-organic.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.tibertaber.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Tiber Taber">
+                <img src="logos/tiber-taber.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://viyadesign.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="VIYA">
+                <img src="logos/viya.svg" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://meko-studio.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Meko Studio">
+                <img src="logos/meko-studio.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://srstore.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="SR Store">
+                <img src="logos/sr-store.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://avstore.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="AV Store">
+                <img src="logos/av-store.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.toddslife.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="TODDS Life">
+                <img src="logos/todds-life.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.anthrilo.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Anthrilo">
+                <img src="logos/anthrilo.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://beautygarage.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Beauty Garage">
+                <img src="logos/beauty-garage.svg" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://pronatureorganic.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Pro Nature Organic">
+                <img src="logos/pro-nature-organic.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.tibertaber.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Tiber Taber">
+                <img src="logos/tiber-taber.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://viyadesign.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="VIYA">
+                <img src="logos/viya.svg" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://meko-studio.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Meko Studio">
+                <img src="logos/meko-studio.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://srstore.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="SR Store">
+                <img src="logos/sr-store.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://avstore.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="AV Store">
+                <img src="logos/av-store.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.toddslife.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="TODDS Life">
+                <img src="logos/todds-life.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.anthrilo.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Anthrilo">
+                <img src="logos/anthrilo.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://beautygarage.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Beauty Garage">
+                <img src="logos/beauty-garage.svg" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+            </div>
           </div>
-          <!-- Seamless Duplicate -->
-          <div class="editorial-marquee-group" aria-hidden="true">
-            <a href="https://www.tibertaber.com/" target="_blank" rel="noopener" tabindex="-1" class="client-link">Tiber Taber</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.anthrilo.com/" target="_blank" rel="noopener" tabindex="-1" class="client-link">Anthrilo</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.fizzygoblet.com/" target="_blank" rel="noopener" tabindex="-1" class="client-link">Fizzy Goblet</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.srstore.in/" target="_blank" rel="noopener" tabindex="-1" class="client-link">SR Store</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://avstore.in/" target="_blank" rel="noopener" tabindex="-1" class="client-link">AV Store</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.beautygarage.com/" target="_blank" rel="noopener" tabindex="-1" class="client-link">Beauty Garage</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://viyadesign.com/" target="_blank" rel="noopener" tabindex="-1" class="client-link">VIYA</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.ragr.in/" target="_blank" rel="noopener" tabindex="-1" class="client-link">RAGR</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.theindiacrafthouse.com/" target="_blank" rel="noopener" tabindex="-1" class="client-link">The India Craft House</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.thelivinginfluence.com/" target="_blank" rel="noopener" tabindex="-1" class="client-link">The Living Influence</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://www.pronatureorganic.com/" target="_blank" rel="noopener" tabindex="-1" class="client-link">Pro Nature Organic</a>
-            <span class="marquee-divider">/</span>
-            <a href="https://tea1888.in/" target="_blank" rel="noopener" tabindex="-1" class="client-link">TEA1888</a>
-            <span class="marquee-divider">/</span>
+        </div>
+
+        <!-- Row 2: Bottom Marquee (Moves Right / Opposite Direction) - Brands 10 to 18 -->
+        <div class="editorial-marquee-wrap">
+          <div class="editorial-marquee-track marquee-track-right" id="client-marquee-bottom">
+            <div class="editorial-marquee-group">
+              <a href="https://www.fizzygoblet.com/" target="_blank" rel="noopener" class="client-logo-link" title="Fizzy Goblet">
+                <img src="logos/fizzy-goblet.png" alt="Fizzy Goblet" class="client-logo-img logo--tall logo--fizzy" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.theindiacrafthouse.com/" target="_blank" rel="noopener" class="client-logo-link" title="The India Craft House">
+                <img src="logos/the-india-craft-house.png" alt="The India Craft House" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.ragr.in/" target="_blank" rel="noopener" class="client-logo-link" title="RAGR">
+                <img src="logos/ragr.svg" alt="RAGR" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://tea1888.in/" target="_blank" rel="noopener" class="client-logo-link" title="Tea1888">
+                <img src="logos/tea1888.png" alt="Tea1888" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.nykaafashion.com/" target="_blank" rel="noopener" class="client-logo-link" title="Nykaa Fashion">
+                <img src="logos/nykaa-fashion.svg" alt="Nykaa Fashion" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.soulfull.co.in/" target="_blank" rel="noopener" class="client-logo-link" title="Tata Soulfull">
+                <img src="logos/tata-soulfull.png" alt="Tata Soulfull" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://morataara.com/" target="_blank" rel="noopener" class="client-logo-link" title="Mora Taara">
+                <img src="logos/mora-taara.png" alt="Mora Taara" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.lashika.in/" target="_blank" rel="noopener" class="client-logo-link" title="Lashika">
+                <img src="logos/lashika.png" alt="Lashika" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.bombayrealty.in/" target="_blank" rel="noopener" class="client-logo-link" title="Bombay Realty">
+                <img src="logos/bombay-realty.png" alt="Bombay Realty" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <!-- Second cycle inside group for ultrawide screens -->
+              <a href="https://www.fizzygoblet.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Fizzy Goblet">
+                <img src="logos/fizzy-goblet.png" alt="" class="client-logo-img logo--tall logo--fizzy" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.theindiacrafthouse.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="The India Craft House">
+                <img src="logos/the-india-craft-house.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.ragr.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="RAGR">
+                <img src="logos/ragr.svg" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://tea1888.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Tea1888">
+                <img src="logos/tea1888.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.nykaafashion.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Nykaa Fashion">
+                <img src="logos/nykaa-fashion.svg" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.soulfull.co.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Tata Soulfull">
+                <img src="logos/tata-soulfull.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://morataara.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Mora Taara">
+                <img src="logos/mora-taara.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.lashika.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Lashika">
+                <img src="logos/lashika.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.bombayrealty.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Bombay Realty">
+                <img src="logos/bombay-realty.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+            </div>
+            <!-- Seamless Duplicate Group -->
+            <div class="editorial-marquee-group" aria-hidden="true">
+              <a href="https://www.fizzygoblet.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Fizzy Goblet">
+                <img src="logos/fizzy-goblet.png" alt="" class="client-logo-img logo--tall logo--fizzy" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.theindiacrafthouse.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="The India Craft House">
+                <img src="logos/the-india-craft-house.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.ragr.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="RAGR">
+                <img src="logos/ragr.svg" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://tea1888.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Tea1888">
+                <img src="logos/tea1888.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.nykaafashion.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Nykaa Fashion">
+                <img src="logos/nykaa-fashion.svg" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.soulfull.co.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Tata Soulfull">
+                <img src="logos/tata-soulfull.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://morataara.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Mora Taara">
+                <img src="logos/mora-taara.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.lashika.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Lashika">
+                <img src="logos/lashika.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.bombayrealty.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Bombay Realty">
+                <img src="logos/bombay-realty.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.fizzygoblet.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Fizzy Goblet">
+                <img src="logos/fizzy-goblet.png" alt="" class="client-logo-img logo--tall logo--fizzy" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.theindiacrafthouse.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="The India Craft House">
+                <img src="logos/the-india-craft-house.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.ragr.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="RAGR">
+                <img src="logos/ragr.svg" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://tea1888.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Tea1888">
+                <img src="logos/tea1888.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.nykaafashion.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Nykaa Fashion">
+                <img src="logos/nykaa-fashion.svg" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.soulfull.co.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Tata Soulfull">
+                <img src="logos/tata-soulfull.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://morataara.com/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Mora Taara">
+                <img src="logos/mora-taara.png" alt="" class="client-logo-img" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.lashika.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Lashika">
+                <img src="logos/lashika.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+              <a href="https://www.bombayrealty.in/" target="_blank" rel="noopener" tabindex="-1" class="client-logo-link" title="Bombay Realty">
+                <img src="logos/bombay-realty.png" alt="" class="client-logo-img logo--tall" loading="lazy">
+              </a>
+              <span class="marquee-divider">/</span>
+            </div>
           </div>
         </div>
       </div>
@@ -279,168 +554,186 @@
         <div class="section-title-row">
           <div class="title-col-left">
             <span class="editorial-sublabel">CORE CAPABILITIES</span>
-            <h2 class="editorial-heading">The 9 Growth Engines</h2>
+            <h2 class="editorial-heading">What We Offer</h2>
           </div>
           <p class="title-col-right">
             We don't sell disconnected services. Every capability is synchronized into a unified capital allocation system designed to maximize your bottom-line profit.
           </p>
         </div>
 
-        <div class="services-index">
-          
-          <!-- Item 01 -->
-          <div class="service-row" data-reveal>
-            <div class="row-num">01</div>
-            <div class="row-title-wrap">
-              <h3 class="row-title">Strategy & Planning</h3>
-              <span class="row-tagline">Data-backed roadmaps aligned to unit economics</span>
+        <!-- 2 Glassmorphed Cards -->
+        <div class="capability-cards-grid">
+
+          <!-- Card 1: Arriba Performance (Clickable to reveal all services below) -->
+          <div class="cap-card cap-card-performance" id="card-performance" data-reveal>
+            <div class="cap-card-header" id="performance-toggle" role="button" tabindex="0" aria-expanded="false" aria-controls="performance-strategies">
+              <div class="cap-card-topbar">
+                <span class="cap-badge">01 / MEDIA &amp; SCALE</span>
+                <div class="cap-trigger-pill">
+                  <span class="trigger-label">View All Services</span>
+                  <svg class="trigger-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+              <h3 class="cap-title">Arriba Performance</h3>
+              <p class="cap-desc">
+                Disciplined capital deployment, full-funnel media buying, algorithmic bidding, and unit-economic growth engineering across all major acquisition channels.
+              </p>
             </div>
-            <div class="row-desc">
-              Comprehensive account and customer cohort audits. We build the financial model and liquidity allocation before a single rupee of ad budget is deployed.
-            </div>
-            <div class="row-deliverables">
-              <span>Unit Economics Audit</span>
-              <span>Channel Allocation</span>
-              <span>P&L Modeling</span>
+
+            <!-- All Services list out below Arriba Performance card when clicked -->
+            <div class="cap-drawer" id="performance-strategies" aria-hidden="true">
+              <div class="drawer-divider"></div>
+              <div class="strategies-list">
+                
+                <div class="strategy-item">
+                  <span class="strategy-num">01</span>
+                  <div class="strategy-main">
+                    <h4 class="strategy-name">Strategy &amp; Planning</h4>
+                    <span class="strategy-tagline">Data-backed roadmaps aligned to unit economics</span>
+                    <p class="strategy-desc">Comprehensive account and customer cohort audits. We build the financial model and liquidity allocation before a single rupee of ad budget is deployed.</p>
+                    <div class="strategy-tags">
+                      <span>Unit Economics Audit</span>
+                      <span>Channel Allocation</span>
+                      <span>P&amp;L Modeling</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="strategy-item">
+                  <span class="strategy-num">02</span>
+                  <div class="strategy-main">
+                    <h4 class="strategy-name">Search Engine Marketing</h4>
+                    <span class="strategy-tagline">High-intent Google Search, Shopping &amp; Performance Max</span>
+                    <p class="strategy-desc">Capturing buyers at the micro-second of high purchase intent. Optimized strictly for gross margin and incremental new customer acquisition.</p>
+                    <div class="strategy-tags">
+                      <span>Google Ads</span>
+                      <span>Shopping Campaigns</span>
+                      <span>Performance Max</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="strategy-item">
+                  <span class="strategy-num">03</span>
+                  <div class="strategy-main">
+                    <h4 class="strategy-name">Search Engine Optimization</h4>
+                    <span class="strategy-tagline">Compounding organic revenue that reduces paid dependency</span>
+                    <p class="strategy-desc">Technical architecture audits, high-intent product schema, content optimization, and digital authority building that compounds month over month.</p>
+                    <div class="strategy-tags">
+                      <span>Technical SEO</span>
+                      <span>On-Page Architecture</span>
+                      <span>Rank Domination</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="strategy-item">
+                  <span class="strategy-num">04</span>
+                  <div class="strategy-main">
+                    <h4 class="strategy-name">Pay Per Click</h4>
+                    <span class="strategy-tagline">Conversion-focused PPC across search and social</span>
+                    <p class="strategy-desc">Relentless negative keyword hygiene, auction insights conquest, automated bidding rules, and disciplined quality score engineering.</p>
+                    <div class="strategy-tags">
+                      <span>Bid Management</span>
+                      <span>Quality Score Hygiene</span>
+                      <span>Competitor Conquest</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="strategy-item">
+                  <span class="strategy-num">05</span>
+                  <div class="strategy-main">
+                    <h4 class="strategy-name">Lead Generation</h4>
+                    <span class="strategy-tagline">High-intent multi-channel acquisition funnels</span>
+                    <p class="strategy-desc">Sub-second headless landing pages, multi-step qualification forms, and automated CRM routing that filters tire-kickers and delivers verified buyers.</p>
+                    <div class="strategy-tags">
+                      <span>Custom Landers</span>
+                      <span>Automated Qualification</span>
+                      <span>Lead Scoring</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="strategy-item">
+                  <span class="strategy-num">06</span>
+                  <div class="strategy-main">
+                    <h4 class="strategy-name">Remarketing</h4>
+                    <span class="strategy-tagline">Dynamic retargeting that closes warm pipeline</span>
+                    <p class="strategy-desc">Sequential cross-platform messaging across Meta, Google Display, and WhatsApp to recover abandoned carts and maximize repeat purchases.</p>
+                    <div class="strategy-tags">
+                      <span>Dynamic Catalog Retargeting</span>
+                      <span>Sequential Funnels</span>
+                      <span>LTV Maximization</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="strategy-item">
+                  <span class="strategy-num">07</span>
+                  <div class="strategy-main">
+                    <h4 class="strategy-name">Amazon Ads</h4>
+                    <span class="strategy-tagline">Sponsored Products, Brands &amp; Buy Box acceleration</span>
+                    <p class="strategy-desc">Complete marketplace flywheel execution. We coordinate Sponsored Display and Video ads to capture Buy Box dominance and elevate organic rank.</p>
+                    <div class="strategy-tags">
+                      <span>Sponsored Products</span>
+                      <span>ACOS / TACoS Control</span>
+                      <span>Buy Box Dominance</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="strategy-item">
+                  <span class="strategy-num">08</span>
+                  <div class="strategy-main">
+                    <h4 class="strategy-name">Programmatic Advertising</h4>
+                    <span class="strategy-tagline">Automated real-time bidding across premium digital networks</span>
+                    <p class="strategy-desc">Expanding your brand reach beyond walled gardens with targeted programmatic display, audio, and connected TV placements.</p>
+                    <div class="strategy-tags">
+                      <span>Real-Time Bidding</span>
+                      <span>Audience Segmentation</span>
+                      <span>Premium Inventory</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="strategy-item">
+                  <span class="strategy-num">09</span>
+                  <div class="strategy-main">
+                    <h4 class="strategy-name">Quick Commerce Retail Media</h4>
+                    <span class="strategy-tagline">Blinkit, Zepto &amp; Instamart dark store dominance</span>
+                    <p class="strategy-desc">Win the 10-minute delivery era. We optimize in-app search placement, brand stores, and category banners coordinated with hyperlocal dark store inventory.</p>
+                    <div class="strategy-tags">
+                      <span>Blinkit &amp; Zepto Ads</span>
+                      <span>Instamart Visibility</span>
+                      <span>Dark Store Share</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
 
-          <!-- Item 02 -->
-          <div class="service-row" data-reveal>
-            <div class="row-num">02</div>
-            <div class="row-title-wrap">
-              <h3 class="row-title">Search Engine Marketing</h3>
-              <span class="row-tagline">High-intent Google Search, Shopping & Performance Max</span>
+          <!-- Card 2: Arriba Creatives -->
+          <div class="cap-card cap-card-creatives" id="card-creatives" data-reveal>
+            <div class="cap-card-topbar">
+              <span class="cap-badge">02 / CONTENT &amp; HOOKS</span>
+              <span class="cap-status-pill">Active Studio</span>
             </div>
-            <div class="row-desc">
-              Capturing buyers at the micro-second of high purchase intent. Optimized strictly for gross margin and incremental new customer acquisition.
-            </div>
-            <div class="row-deliverables">
-              <span>Google Ads</span>
-              <span>Shopping Campaigns</span>
-              <span>Performance Max</span>
-            </div>
+            <h3 class="cap-title">Arriba Creatives</h3>
+            <p class="cap-desc">
+              High-velocity creative testing engine. Direct-response UGC, motion design, founder-led storytelling, and conversion rate architecture built to stop the scroll and lower acquisition costs.
+            </p>
           </div>
 
-          <!-- Item 03 -->
-          <div class="service-row" data-reveal>
-            <div class="row-num">03</div>
-            <div class="row-title-wrap">
-              <h3 class="row-title">Search Engine Optimization</h3>
-              <span class="row-tagline">Compounding organic revenue that reduces paid dependency</span>
-            </div>
-            <div class="row-desc">
-              Technical architecture audits, high-intent product schema, content optimization, and digital authority building that compounds month over month.
-            </div>
-            <div class="row-deliverables">
-              <span>Technical SEO</span>
-              <span>On-Page Architecture</span>
-              <span>Rank Domination</span>
-            </div>
-          </div>
+        </div>
 
-          <!-- Item 04 -->
-          <div class="service-row" data-reveal>
-            <div class="row-num">04</div>
-            <div class="row-title-wrap">
-              <h3 class="row-title">Pay Per Click</h3>
-              <span class="row-tagline">Conversion-focused PPC across search and social</span>
-            </div>
-            <div class="row-desc">
-              Relentless negative keyword hygiene, auction insights conquest, automated bidding rules, and disciplined quality score engineering.
-            </div>
-            <div class="row-deliverables">
-              <span>Bid Management</span>
-              <span>Quality Score Hygiene</span>
-              <span>Competitor Conquest</span>
-            </div>
-          </div>
-
-          <!-- Item 05 -->
-          <div class="service-row" data-reveal>
-            <div class="row-num">05</div>
-            <div class="row-title-wrap">
-              <h3 class="row-title">Lead Generation</h3>
-              <span class="row-tagline">High-intent multi-channel acquisition funnels</span>
-            </div>
-            <div class="row-desc">
-              Sub-second headless landing pages, multi-step qualification forms, and automated CRM routing that filters tire-kickers and delivers verified buyers.
-            </div>
-            <div class="row-deliverables">
-              <span>Custom Landers</span>
-              <span>Automated Qualification</span>
-              <span>Lead Scoring</span>
-            </div>
-          </div>
-
-          <!-- Item 06 -->
-          <div class="service-row" data-reveal>
-            <div class="row-num">06</div>
-            <div class="row-title-wrap">
-              <h3 class="row-title">Remarketing</h3>
-              <span class="row-tagline">Dynamic retargeting that closes warm pipeline</span>
-            </div>
-            <div class="row-desc">
-              Sequential cross-platform messaging across Meta, Google Display, and WhatsApp to recover abandoned carts and maximize repeat purchases.
-            </div>
-            <div class="row-deliverables">
-              <span>Dynamic Catalog Retargeting</span>
-              <span>Sequential Funnels</span>
-              <span>LTV Maximization</span>
-            </div>
-          </div>
-
-          <!-- Item 07 -->
-          <div class="service-row" data-reveal>
-            <div class="row-num">07</div>
-            <div class="row-title-wrap">
-              <h3 class="row-title">Amazon Ads</h3>
-              <span class="row-tagline">Sponsored Products, Brands & Buy Box acceleration</span>
-            </div>
-            <div class="row-desc">
-              Complete marketplace flywheel execution. We coordinate Sponsored Display and Video ads to capture Buy Box dominance and elevate organic rank.
-            </div>
-            <div class="row-deliverables">
-              <span>Sponsored Products</span>
-              <span>ACOS / TACoS Control</span>
-              <span>Buy Box Dominance</span>
-            </div>
-          </div>
-
-          <!-- Item 08 -->
-          <div class="service-row" data-reveal>
-            <div class="row-num">08</div>
-            <div class="row-title-wrap">
-              <h3 class="row-title">Programmatic Advertising</h3>
-              <span class="row-tagline">Automated real-time bidding across premium digital networks</span>
-            </div>
-            <div class="row-desc">
-              Expanding your brand reach beyond walled gardens with targeted programmatic display, audio, and connected TV placements.
-            </div>
-            <div class="row-deliverables">
-              <span>Real-Time Bidding</span>
-              <span>Audience Segmentation</span>
-              <span>Premium Inventory</span>
-            </div>
-          </div>
-
-          <!-- Item 09 -->
-          <div class="service-row highlight-row" data-reveal>
-            <div class="row-num">09</div>
-            <div class="row-title-wrap">
-              <h3 class="row-title">Quick Commerce Retail Media</h3>
-              <span class="row-tagline">Blinkit, Zepto & Instamart dark store dominance</span>
-            </div>
-            <div class="row-desc">
-              Win the 10-minute delivery era. We optimize in-app search placement, brand stores, and category banners coordinated with hyperlocal dark store inventory.
-            </div>
-            <div class="row-deliverables">
-              <span>Blinkit & Zepto Ads</span>
-              <span>Instamart Visibility</span>
-              <span>Dark Store Share</span>
-            </div>
-          </div>
-
+        <!-- Female Vector Figure Laying on the Section Divider Line -->
+        <div class="services-character-wrap" data-reveal>
+          <img src="services-character.png" alt="Arriba Creatives Character" class="services-character-img" width="420" height="161">
         </div>
 
       </div>
@@ -460,21 +753,23 @@
           </p>
         </div>
 
-        <div class="case-ledger-table">
+        <div class="case-cards-grid">
           
-          <div class="case-ledger-row" data-reveal>
-            <div class="case-brand-meta">
-              <span class="case-index">CASE 01</span>
+          <div class="case-card" data-reveal>
+            <div class="case-card-header">
+              <div class="case-card-meta">
+                <span class="case-index">CASE 01</span>
+                <span class="case-industry">D2C Footwear & Fashion</span>
+              </div>
               <h3 class="case-brand-name">Fizzy Goblet</h3>
-              <span class="case-industry">D2C Footwear & Fashion</span>
             </div>
-            <div class="case-details">
-              <h4 class="case-thesis">Scaling Past the ₹50L/mo Revenue Plateau with Advantage+ Liquidity</h4>
+            <div class="case-card-body">
+              <h4 class="case-thesis">Scaling Past the &#8377;50L/mo Revenue Plateau with Advantage+ Liquidity</h4>
               <p class="case-summary">
                 The brand suffered severe audience fatigue from manual ad sets. We restructured their account into single high-liquidity Advantage+ pools, deployed 14 UGC hooks weekly, and scaled profitably pan-India.
               </p>
             </div>
-            <div class="case-stats">
+            <div class="case-card-stats">
               <div class="stat-item">
                 <div class="stat-number-line"><span class="stat-val counter-stat" data-target="4.6" data-decimals="1">0</span><span class="stat-suffix">x</span></div>
                 <span class="stat-name">Blended ROAS</span>
@@ -490,25 +785,27 @@
             </div>
           </div>
 
-          <div class="case-ledger-row" data-reveal>
-            <div class="case-brand-meta">
-              <span class="case-index">CASE 02</span>
+          <div class="case-card" data-reveal>
+            <div class="case-card-header">
+              <div class="case-card-meta">
+                <span class="case-index">CASE 02</span>
+                <span class="case-industry">Luxury Apparel & Couture</span>
+              </div>
               <h3 class="case-brand-name">Tiber Taber & VIYA</h3>
-              <span class="case-industry">Luxury Apparel & Couture</span>
             </div>
-            <div class="case-details">
+            <div class="case-card-body">
               <h4 class="case-thesis">Unlocking Pan-India Demand with Sub-Second Checkout Funnels</h4>
               <p class="case-summary">
                 Engineered custom headless landing pages, optimized high-intent Google Search conquering competitor keywords, and deployed psychology-backed bundle upsells to lift Average Order Value.
               </p>
             </div>
-            <div class="case-stats">
+            <div class="case-card-stats">
               <div class="stat-item">
                 <div class="stat-number-line"><span class="stat-val counter-stat" data-target="3.9" data-decimals="1">0</span><span class="stat-suffix">x</span></div>
                 <span class="stat-name">Consistent ROAS</span>
               </div>
               <div class="stat-item">
-                <div class="stat-number-line"><span class="stat-prefix">₹</span><span class="stat-val counter-stat" data-target="1.8" data-decimals="1">0</span><span class="stat-suffix">Cr</span></div>
+                <div class="stat-number-line"><span class="stat-prefix">&#8377;</span><span class="stat-val counter-stat" data-target="1.8" data-decimals="1">0</span><span class="stat-suffix">Cr</span></div>
                 <span class="stat-name">Monthly Peak Run-Rate</span>
               </div>
               <div class="stat-item">
@@ -518,19 +815,21 @@
             </div>
           </div>
 
-          <div class="case-ledger-row" data-reveal>
-            <div class="case-brand-meta">
-              <span class="case-index">CASE 03</span>
+          <div class="case-card" data-reveal>
+            <div class="case-card-header">
+              <div class="case-card-meta">
+                <span class="case-index">CASE 03</span>
+                <span class="case-industry">FMCG & Quick Commerce</span>
+              </div>
               <h3 class="case-brand-name">Pro Nature Organic & TEA1888</h3>
-              <span class="case-industry">FMCG & Quick Commerce</span>
             </div>
-            <div class="case-details">
+            <div class="case-card-body">
               <h4 class="case-thesis">10-Minute Shelf Dominance on Blinkit, Zepto and Amazon</h4>
               <p class="case-summary">
                 Coordinated hyperlocal dark store stock notifications with in-app search bidding and Amazon Sponsored Brands, driving immediate brand store dominance and compounding organic reorders.
               </p>
             </div>
-            <div class="case-stats">
+            <div class="case-card-stats">
               <div class="stat-item">
                 <div class="stat-number-line"><span class="stat-val counter-stat" data-target="5.2" data-decimals="1">0</span><span class="stat-suffix">x</span></div>
                 <span class="stat-name">Blended MER</span>
@@ -551,83 +850,129 @@
       </div>
     </section>
 
-    <!-- ==================== 5. PROTOCOL ==================== -->
+    <!-- ==================== 5. PRE-ONBOARDING AUDIT ==================== -->
     <section class="protocol-editorial-section" id="approach">
       <div class="container-editorial">
         
-        <div class="section-title-row">
+        <div class="section-title-row" data-reveal>
           <div class="title-col-left">
-            <span class="editorial-sublabel">SYSTEMATIC EXECUTION</span>
-            <h2 class="editorial-heading">The 4-Stage Protocol</h2>
+            <span class="editorial-sublabel">DIAGNOSTIC ARCHITECTURE</span>
+            <h2 class="editorial-heading">Pre-Onboarding Audit</h2>
           </div>
           <p class="title-col-right">
-            Every engagement follows a rigorous, non-linear sprint architecture. No guesswork, no generic playbooks.
+            Every engagement begins with a comprehensive 360-degree diagnostic across your brand, storefront, ad platforms, competitors, and category trends.
           </p>
         </div>
 
-        <div class="protocol-grid">
+        <div class="protocol-track" id="protocol-track">
           
-          <div class="protocol-col" data-reveal>
-            <div class="col-top">
-              <span class="col-step-num">01</span>
-              <span class="col-timeline">DAYS 1 – 10</span>
+          <!-- Step 01 (Constant Foundation) -->
+          <div class="protocol-card" data-step="1">
+            <div class="protocol-card-header">
+              <span class="protocol-step-num">01</span>
+              <span class="protocol-timeline">STEP 01</span>
             </div>
-            <h3 class="col-heading">Forensic Diagnostic</h3>
-            <p class="col-body">
-              Deep dive into your ad accounts, pixel attribution, cohort retention, and true contribution margins. We uncover hidden profit leaks and audience overlap.
-            </p>
-            <ul class="col-list">
-              <li>Pixel & CAPI Validation</li>
-              <li>Unit Economics Margin Map</li>
-              <li>Leakage Elimination Plan</li>
+            <h3 class="protocol-heading">Account Access</h3>
+            <ul class="protocol-list">
+              <li><span class="protocol-dot"></span>Brand Understanding &amp; Review</li>
+              <li><span class="protocol-dot"></span>Ad Account &amp; Pixel Access</li>
+              <li><span class="protocol-dot"></span>Unit Economics Baseline</li>
             </ul>
           </div>
 
-          <div class="protocol-col" data-reveal>
-            <div class="col-top">
-              <span class="col-step-num">02</span>
-              <span class="col-timeline">DAYS 11 – 20</span>
+          <!-- Connector 1 -> 2 -->
+          <div class="protocol-connector" data-connector="1" aria-hidden="true">
+            <div class="connector-track">
+              <svg class="connector-arrow" width="24" height="20" viewBox="0 0 28 24" fill="none">
+                <path class="arrow-stem" d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path class="arrow-tip" d="M15 6L21 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
-            <h3 class="col-heading">Creative & Funnel Sprint</h3>
-            <p class="col-body">
-              Production of psychology-backed video hooks, direct-response UGC reels, and high-converting landing page variants crafted for your demographic.
-            </p>
-            <ul class="col-list">
-              <li>3-Second Hook Testing</li>
-              <li>Sub-Second Lander Build</li>
-              <li>AOV Bundle Engineering</li>
+          </div>
+
+          <!-- Step 02 -->
+          <div class="protocol-card" data-step="2">
+            <div class="protocol-card-header">
+              <span class="protocol-step-num">02</span>
+              <span class="protocol-timeline">STEP 02</span>
+            </div>
+            <h3 class="protocol-heading">Website SEO Audit</h3>
+            <ul class="protocol-list">
+              <li><span class="protocol-dot"></span>Search Results &amp; Visibility</li>
+              <li><span class="protocol-dot"></span>Digital Presence Analysis</li>
+              <li><span class="protocol-dot"></span>Storefront Speed &amp; UX Check</li>
             </ul>
           </div>
 
-          <div class="protocol-col" data-reveal>
-            <div class="col-top">
-              <span class="col-step-num">03</span>
-              <span class="col-timeline">DAYS 21 – 45</span>
+          <!-- Connector 2 -> 3 -->
+          <div class="protocol-connector" data-connector="2" aria-hidden="true">
+            <div class="connector-track">
+              <svg class="connector-arrow" width="24" height="20" viewBox="0 0 28 24" fill="none">
+                <path class="arrow-stem" d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path class="arrow-tip" d="M15 6L21 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
-            <h3 class="col-heading">Algorithmic Scaling</h3>
-            <p class="col-body">
-              Winning creative concepts are migrated into high-liquidity Advantage+ and Search campaign structures with algorithmic bid caps to scale volume profitably.
-            </p>
-            <ul class="col-list">
-              <li>Automated Bid Safeguards</li>
-              <li>Liquidity Pool Restructure</li>
-              <li>Live Blended MER Monitoring</li>
+          </div>
+
+          <!-- Step 03 -->
+          <div class="protocol-card" data-step="3">
+            <div class="protocol-card-header">
+              <span class="protocol-step-num">03</span>
+              <span class="protocol-timeline">STEP 03</span>
+            </div>
+            <h3 class="protocol-heading">Platform-wise Audit</h3>
+            <ul class="protocol-list">
+              <li><span class="protocol-dot"></span>Meta &amp; Google Ads Structure</li>
+              <li><span class="protocol-dot"></span>GA4 &amp; Attribution Check</li>
+              <li><span class="protocol-dot"></span>Spend Leakage &amp; ROAS Study</li>
             </ul>
           </div>
 
-          <div class="protocol-col" data-reveal>
-            <div class="col-top">
-              <span class="col-step-num">04</span>
-              <span class="col-timeline">DAY 46+</span>
+          <!-- Connector 3 -> 4 -->
+          <div class="protocol-connector" data-connector="3" aria-hidden="true">
+            <div class="connector-track">
+              <svg class="connector-arrow" width="24" height="20" viewBox="0 0 28 24" fill="none">
+                <path class="arrow-stem" d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path class="arrow-tip" d="M15 6L21 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
-            <h3 class="col-heading">Omnichannel Flywheel</h3>
-            <p class="col-body">
-              Expanding proven unit economics across Amazon, Blinkit, Zepto, and programmatic channels to capture digital shelf monopoly and build enduring brand equity.
-            </p>
-            <ul class="col-list">
-              <li>Quick Commerce Shelf Conquest</li>
-              <li>Retention & CRM Loops</li>
-              <li>Enterprise Brand Moat</li>
+          </div>
+
+          <!-- Step 04 -->
+          <div class="protocol-card" data-step="4">
+            <div class="protocol-card-header">
+              <span class="protocol-step-num">04</span>
+              <span class="protocol-timeline">STEP 04</span>
+            </div>
+            <h3 class="protocol-heading">Competitor Analysis</h3>
+            <ul class="protocol-list">
+              <li><span class="protocol-dot"></span>Brand vs. Peers Positioning</li>
+              <li><span class="protocol-dot"></span>Competitor Ad &amp; Hook Study</li>
+              <li><span class="protocol-dot"></span>Market Share &amp; Offer Gaps</li>
+            </ul>
+          </div>
+
+          <!-- Connector 4 -> 5 -->
+          <div class="protocol-connector" data-connector="4" aria-hidden="true">
+            <div class="connector-track">
+              <svg class="connector-arrow" width="24" height="20" viewBox="0 0 28 24" fill="none">
+                <path class="arrow-stem" d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <path class="arrow-tip" d="M15 6L21 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Step 05 -->
+          <div class="protocol-card" data-step="5">
+            <div class="protocol-card-header">
+              <span class="protocol-step-num">05</span>
+              <span class="protocol-timeline">STEP 05</span>
+            </div>
+            <h3 class="protocol-heading">Industry Trends</h3>
+            <ul class="protocol-list">
+              <li><span class="protocol-dot"></span>Category Data &amp; Benchmarks</li>
+              <li><span class="protocol-dot"></span>Upcoming Consumer Trends</li>
+              <li><span class="protocol-dot"></span>Growth Opportunity Mapping</li>
             </ul>
           </div>
 
@@ -640,11 +985,17 @@
     <section class="standard-editorial-section" id="standard">
       <div class="container-editorial">
         
-        <div class="manifesto-lead" data-reveal>
-          <span class="editorial-sublabel">THE ARRIBA STANDARD</span>
-          <h2 class="manifesto-quote">
-            "Most agencies trap brands in 12-month lock-in contracts, pass accounts to junior trainees, and report vanity impressions. We built Arriba Labs to be the opposite."
-          </h2>
+        <div class="manifesto-split" data-reveal>
+          <div class="manifesto-text-block">
+            <span class="editorial-sublabel">THE ARRIBA ETHOS</span>
+            <h2 class="editorial-heading standard-heading">Why Us: The Arriba Standard</h2>
+            <p class="manifesto-quote">
+              "Most agencies trap brands in 12-month lock-in contracts, pass accounts to junior trainees, and report vanity impressions. We built Arriba Labs to be the opposite."
+            </p>
+          </div>
+          <div class="manifesto-figure-block">
+            <img src="handshake-character.png" alt="Arriba Labs Partnership" class="manifesto-character-img" width="747" height="456">
+          </div>
         </div>
 
         <div class="comparison-table" data-reveal>
@@ -684,6 +1035,47 @@
       </div>
     </section>
 
+    <!-- ==================== 6B. PARTNERSHIPS ==================== -->
+    <section class="partnerships-editorial-section" id="partnerships">
+      <div class="container-editorial">
+
+        <div class="section-title-row" data-reveal>
+          <div class="title-col-left">
+            <span class="editorial-sublabel">STRATEGIC ECOSYSTEM</span>
+            <h2 class="editorial-heading">Partnerships</h2>
+          </div>
+        </div>
+
+        <div class="partnerships-logo-grid" data-reveal>
+          <div class="partner-logo-card">
+            <img src="logos/partners/meta.svg" alt="Meta" class="partner-grid-img partner--meta" loading="lazy">
+          </div>
+          <div class="partner-logo-card">
+            <img src="logos/partners/mc-saatchi.svg" alt="M&amp;C Saatchi Group" class="partner-grid-img partner--mcsaatchi" loading="lazy">
+          </div>
+          <div class="partner-logo-card">
+            <img src="logos/partners/lemma.png" alt="Lemma" class="partner-grid-img partner--lemma" loading="lazy">
+          </div>
+          <div class="partner-logo-card">
+            <img src="logos/partners/krafting-networks.svg" alt="Krafting Networks" class="partner-grid-img partner--krafting" loading="lazy">
+          </div>
+          <div class="partner-logo-card">
+            <img src="logos/partners/the-wise-idiot.png" alt="The Wise Idiot" class="partner-grid-img partner--wiseidiot" loading="lazy">
+          </div>
+          <div class="partner-logo-card">
+            <img src="logos/partners/3bf.svg" alt="3BF - 3 Brothers &amp; Fils" class="partner-grid-img partner--3bf" loading="lazy">
+          </div>
+          <div class="partner-logo-card">
+            <img src="logos/partners/ps-and-co.svg" alt="ps &amp; co" class="partner-grid-img partner--psco" loading="lazy">
+          </div>
+          <div class="partner-logo-card">
+            <img src="logos/partners/flying-pencil.svg" alt="Flying Pencil" class="partner-grid-img partner--flyingpencil" loading="lazy">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- ==================== 7. VOICES OF FOUNDERS ==================== -->
     <section class="testimonials-editorial-section">
       <div class="container-editorial">
@@ -693,6 +1085,7 @@
             <span class="editorial-sublabel">FOUNDER ENDORSEMENTS</span>
             <h2 class="editorial-heading">Voices of Leadership</h2>
           </div>
+
         </div>
 
         <div class="testimonials-editorial-grid">
@@ -903,32 +1296,25 @@
               </svg>
             </a>
           </div>
+
         </div>
 
         <div class="footer-nav-col">
           <span class="footer-col-header">SERVICES</span>
           <ul class="footer-list">
-            <li><a href="#services">Strategy & Planning</a></li>
-            <li><a href="#services">Search Engine Marketing</a></li>
-            <li><a href="#services">Search Engine Optimization</a></li>
-            <li><a href="#services">Pay Per Click</a></li>
-            <li><a href="#services">Lead Generation</a></li>
-            <li><a href="#services">Remarketing</a></li>
-            <li><a href="#services">Amazon Ads</a></li>
-            <li><a href="#services">Programmatic Advertising</a></li>
-            <li><a href="#services">Quick Commerce Retail Media</a></li>
+            <li><a href="#services">Performance Marketing</a></li>
+            <li><a href="#services">Creative Studio & UGC</a></li>
+            <li><a href="#services">Amazon & Quick Commerce</a></li>
+            <li><a href="#services">Growth Architecture</a></li>
           </ul>
         </div>
 
         <div class="footer-nav-col">
           <span class="footer-col-header">NAVIGATION</span>
           <ul class="footer-list">
-            <li><a href="#hero">Overview</a></li>
             <li><a href="#services">Capabilities</a></li>
-            <li><a href="#clients">Client Roster</a></li>
             <li><a href="#results">Case Ledger</a></li>
             <li><a href="#approach">Protocol</a></li>
-            <li><a href="#standard">The Standard</a></li>
             <li><a href="#contact">Consultation</a></li>
           </ul>
         </div>
@@ -941,6 +1327,7 @@
             <p><strong>Inquiries:</strong> <a href="mailto:growth@arribalabs.com">growth@arribalabs.com</a></p>
             <p><strong>Mon – Fri:</strong> 9:30 AM – 7:00 PM IST</p>
           </div>
+
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ARRIBA LABS - MOTION ENGINE
  * Lenis Smooth Scroll, 3-Arrow Logo Scroll-Stacking Rig, GSAP Counters & Reveals
  */
@@ -215,7 +215,10 @@
     // 2. Initialize Counters
     initCounterStats();
 
-    // 3. Batch reveals for sections
+    // 3. Initialize 4-Stage Protocol Sequential Animation
+    initProtocolSequence();
+
+    // 4. Batch reveals for sections
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       const revealElements = document.querySelectorAll('[data-reveal]');
       revealElements.forEach((el) => {
@@ -234,6 +237,88 @@
           }
         );
       });
+    }
+  }
+
+  // =========================================================================
+  // 5B. THE 4-STAGE PROTOCOL: 4-CARD SEQUENTIAL ANIMATION
+  // =========================================================================
+  function initProtocolSequence() {
+    const track = document.getElementById('protocol-track');
+    if (!track) return;
+
+    // Progressive enhancement: add is-animated class so CSS activates sequence mode
+    track.classList.add('is-animated');
+
+    const card2 = track.querySelector('.protocol-card[data-step="2"]');
+    const card3 = track.querySelector('.protocol-card[data-step="3"]');
+    const card4 = track.querySelector('.protocol-card[data-step="4"]');
+    const card5 = track.querySelector('.protocol-card[data-step="5"]');
+    const conn1 = track.querySelector('.protocol-connector[data-connector="1"]');
+    const conn2 = track.querySelector('.protocol-connector[data-connector="2"]');
+    const conn3 = track.querySelector('.protocol-connector[data-connector="3"]');
+    const conn4 = track.querySelector('.protocol-connector[data-connector="4"]');
+
+    let hasPlayed = false;
+
+    function runStepSequenceOnce() {
+      if (hasPlayed) return;
+      hasPlayed = true;
+
+      // Step 1: Connector 1 activates (Card 1 points to Card 2)
+      setTimeout(() => {
+        if (conn1) conn1.classList.add('is-active');
+
+        // Step 2: Card 2 appears
+        setTimeout(() => {
+          if (card2) card2.classList.add('is-step-active');
+
+          // Step 3: Connector 2 activates (Card 2 points to Card 3)
+          setTimeout(() => {
+            if (conn2) conn2.classList.add('is-active');
+
+            // Step 4: Card 3 appears
+            setTimeout(() => {
+              if (card3) card3.classList.add('is-step-active');
+
+              // Step 5: Connector 3 activates (Card 3 points to Card 4)
+              setTimeout(() => {
+                if (conn3) conn3.classList.add('is-active');
+
+                // Step 6: Card 4 appears
+                setTimeout(() => {
+                  if (card4) card4.classList.add('is-step-active');
+
+                  // Step 7: Connector 4 activates (Card 4 points to Card 5)
+                  setTimeout(() => {
+                    if (conn4) conn4.classList.add('is-active');
+
+                    // Step 8: Card 5 appears and all cards remain permanently visible
+                    setTimeout(() => {
+                      if (card5) card5.classList.add('is-step-active');
+                    }, 350);
+                  }, 520);
+                }, 350);
+              }, 520);
+            }, 350);
+          }, 520);
+        }, 350);
+      }, 450);
+    }
+
+    // Play sequence once when user reaches the section
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !hasPlayed) {
+            runStepSequenceOnce();
+            observer.unobserve(track);
+          }
+        });
+      }, { threshold: 0.25 });
+      observer.observe(track);
+    } else {
+      runStepSequenceOnce();
     }
   }
 
@@ -468,4 +553,33 @@
     });
   }
 
+
+  // =========================================================================
+  // 10. WHAT WE OFFER: ARRIBA PERFORMANCE ACCORDION TOGGLE
+  // =========================================================================
+  const perfCard = document.getElementById('card-performance');
+  const perfToggle = document.getElementById('performance-toggle');
+  if (perfCard && perfToggle) {
+    function togglePerformance() {
+      const isExpanded = perfCard.classList.toggle('is-expanded');
+      perfToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      const drawer = document.getElementById('performance-strategies');
+      if (drawer) drawer.setAttribute('aria-hidden', isExpanded ? 'false' : 'true');
+      const label = perfToggle.querySelector('.trigger-label');
+      if (label) {
+        label.textContent = isExpanded ? 'Collapse Services' : 'View All Services';
+      }
+      if (typeof ScrollTrigger !== 'undefined') {
+        setTimeout(() => ScrollTrigger.refresh(), 300);
+      }
+    }
+
+    perfToggle.addEventListener('click', togglePerformance);
+    perfToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        togglePerformance();
+      }
+    });
+  }
 })();

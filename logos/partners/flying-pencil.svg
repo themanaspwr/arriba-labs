@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 130" width="340" height="130">
+  <defs>
+    <mask id="fp-cutout">
+      <rect width="130" height="130" fill="white"/>
+      <!-- 'f' crossbar and top hook + shared vertical stem + 'p' loop cutout -->
+      <path d="M58 28 C48 28 44 33 44 43 V104" fill="none" stroke="black" stroke-width="6.5" stroke-linecap="round"/>
+      <line x1="33" y1="52" x2="55" y2="52" stroke="black" stroke-width="6.5" stroke-linecap="round"/>
+      <path d="M44 58 C48 52 55 49 63 49 C75 49 84 58 84 70 C84 82 75 91 63 91 C55 91 48 88 44 82" fill="none" stroke="black" stroke-width="6.5" stroke-linecap="round"/>
+    </mask>
+  </defs>
+  <!-- Left White Circle with transparent 'fp' cutout -->
+  <circle cx="62" cy="65" r="54" fill="#FFFFFF" mask="url(#fp-cutout)"/>
+  <!-- Right Typography: flying / pencil / CRAFTING BRAND EXPERIENCES -->
+  <text x="136" y="46" fill="#FFFFFF" font-family="'Plus Jakarta Sans', 'Inter', Arial, sans-serif" font-size="27" font-weight="500" letter-spacing="-0.5">flying</text>
+  <text x="135" y="88" fill="#FFFFFF" font-family="'Plus Jakarta Sans', 'Inter', Arial, sans-serif" font-size="48" font-weight="600" letter-spacing="-1.2">pencil</text>
+  <text x="137" y="109" fill="#FFFFFF" font-family="'Plus Jakarta Sans', 'Inter', Arial, sans-serif" font-size="9.5" font-weight="600" letter-spacing="1.4" opacity="0.88">CRAFTING BRAND EXPERIENCES</text>
+</svg>

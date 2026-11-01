@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 165" width="240" height="165">
+  <!-- Left Silver '3' Block -->
+  <path fill="#C4CCD4" d="M16 10 H82 C98 10 108 20 108 35 C108 46 101 55 90 58 C102 61 110 71 110 83 C110 99 98 110 80 110 H16 V86 H72 C78 86 82 82 82 77 C82 72 78 68 72 68 H36 V48 H71 C77 48 80 44 80 39 C80 34 77 31 71 31 H16 Z"/>
+  <!-- Center Two Red D-Counters forming the negative-space 'B' -->
+  <path fill="#F02828" d="M108 30 H121 C128 30 133 35 133 41 C133 47 128 52 121 52 H108 Z"/>
+  <path fill="#F02828" d="M108 68 H121 C128 68 133 73 133 79 C133 85 128 90 121 90 H108 Z"/>
+  <!-- Right Silver 'F' Block with left B-contour -->
+  <path fill="#C4CCD4" d="M132 10 H224 V32 H178 V49 H220 V71 H178 V110 H132 C144 103 151 92 151 79 C151 69 145 61 136 58 C144 54 150 46 150 37 C150 25 143 15 132 10 Z"/>
+  <!-- Bottom Label: 3 BROTHERS & FILS -->
+  <text x="120" y="144" fill="#FFFFFF" font-family="'Plus Jakarta Sans', 'Arial Narrow', Arial, sans-serif" font-size="22" font-weight="800" text-anchor="middle" letter-spacing="0.6">3 BROTHERS &amp; FILS</text>
+</svg>
