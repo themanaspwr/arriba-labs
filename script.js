@@ -215,10 +215,13 @@
     // 2. Initialize Counters
     initCounterStats();
 
-    // 3. Initialize 4-Stage Protocol Sequential Animation
+    // 3. Initialize 5-Step Audit Sequential Animation
     initProtocolSequence();
 
-    // 4. Batch reveals for sections
+    // 4. Initialize One-Time Typewriter Animation on Right-Column Descriptions
+    initTypewriterDescriptions();
+
+    // 5. Batch reveals for sections
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       const revealElements = document.querySelectorAll('[data-reveal]');
       revealElements.forEach((el) => {
@@ -320,6 +323,74 @@
     } else {
       runStepSequenceOnce();
     }
+  }
+
+  // =========================================================================
+  // 5C. ONE-TIME TYPEWRITER ANIMATION FOR SECTION RIGHT DESCRIPTIONS
+  // =========================================================================
+  function initTypewriterDescriptions() {
+    const elements = document.querySelectorAll('[data-typewriter]');
+    if (!elements.length) return;
+
+    elements.forEach((el) => {
+      const fullText = el.textContent.replace(/\s+/g, ' ').trim();
+      if (!fullText) return;
+
+      el.textContent = '';
+      const charSpans = [];
+
+      for (let i = 0; i < fullText.length; i++) {
+        const span = document.createElement('span');
+        span.className = 'tw-char';
+        span.textContent = fullText[i];
+        el.appendChild(span);
+        charSpans.push(span);
+      }
+
+      let hasTyped = false;
+
+      function playTypewriterOnce() {
+        if (hasTyped) return;
+        hasTyped = true;
+
+        let idx = 0;
+        const speedMs = 18;
+
+        function typeNextChar() {
+          if (idx > 0) {
+            charSpans[idx - 1].classList.remove('is-cursor');
+          }
+          if (idx < charSpans.length) {
+            charSpans[idx].classList.add('is-typed', 'is-cursor');
+            idx++;
+            setTimeout(typeNextChar, speedMs);
+          } else {
+            // Keep blinking caret briefly at the end, then remove so text stays clean
+            setTimeout(() => {
+              if (charSpans.length) {
+                charSpans[charSpans.length - 1].classList.remove('is-cursor');
+              }
+            }, 900);
+          }
+        }
+
+        typeNextChar();
+      }
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !hasTyped) {
+              playTypewriterOnce();
+              observer.unobserve(el);
+            }
+          });
+        }, { threshold: 0.35 });
+        observer.observe(el);
+      } else {
+        playTypewriterOnce();
+      }
+    });
   }
 
   // =========================================================================

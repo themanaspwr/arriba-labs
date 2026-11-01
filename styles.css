@@ -1012,9 +1012,38 @@ body.cursor-tag-active .cursor-tag {
 }
 
 .title-col-right {
-  font-size: 1.12rem;
+  font-size: 0.88rem;
   color: var(--text-body);
   line-height: 1.65;
+}
+
+.title-col-right .tw-char {
+  opacity: 0;
+}
+
+.title-col-right .tw-char.is-typed {
+  opacity: 1;
+}
+
+.title-col-right .tw-char.is-cursor {
+  position: relative;
+}
+
+.title-col-right .tw-char.is-cursor::after {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: 0.12em;
+  width: 2px;
+  height: 1em;
+  background: var(--c-sky);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.75);
+  animation: tw-caret-blink 0.75s step-end infinite;
+}
+
+@keyframes tw-caret-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 /* Interactive Rows */
