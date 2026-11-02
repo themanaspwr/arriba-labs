@@ -82,7 +82,7 @@
     const chevGlow = document.getElementById('chev-glow');
     const scrollPill = document.getElementById('scroll-pill');
 
-    if (!chevMid || !chevBot) return;
+    if (!chevMid || !chevBot || typeof gsap === 'undefined') return;
 
     // Luxurious, deliberate timing for auto-stack sequence
     const tl = gsap.timeline({ delay: 0.45 });
@@ -244,7 +244,7 @@
   }
 
   // =========================================================================
-  // 5B. THE 4-STAGE PROTOCOL: 4-CARD SEQUENTIAL ANIMATION
+  // 5B. PRE-ONBOARDING AUDIT: 5-CARD SEQUENTIAL ANIMATION
   // =========================================================================
   function initProtocolSequence() {
     const track = document.getElementById('protocol-track');
@@ -543,59 +543,108 @@
   });
 
   // =========================================================================
-  // 9. CONSULTATION FORM WITH FORMSUBMIT INTEGRATION
+  // 9. CONSULTATION FORM WITH BOT DEFENSE & FORMSUBMIT INTEGRATION
   // =========================================================================
   const form = document.getElementById('strategy-form');
   const successBanner = document.getElementById('form-success');
+  const formLoadedAt = Date.now();
+  let isSubmitting = false;
 
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+
+      if (isSubmitting) return;
+
+      // 1. Bot check: Honeypot trap
+      const honey = form.querySelector('input[name="_honey"]');
+      if (honey && honey.value.trim() !== '') {
+        // Drop automated spam submission silently
+        return;
+      }
+
+      // 2. Bot check: Time-trap (reject submissions completed in < 1.2 seconds)
+      if (Date.now() - formLoadedAt < 1200) {
+        return;
+      }
 
       let valid = true;
       const name = document.getElementById('full-name');
       const email = document.getElementById('work-email');
       const url = document.getElementById('brand-name');
       const spend = document.getElementById('ad-spend-select');
+      const phone = document.getElementById('phone-number');
+      const goal = document.getElementById('growth-goal');
 
       form.querySelectorAll('.input-wrap').forEach((wrap) => wrap.classList.remove('has-error'));
 
-      if (!name || !name.value.trim()) {
+      // Validate Name (2-100 characters)
+      const cleanName = name ? name.value.trim().slice(0, 100) : '';
+      if (!cleanName || cleanName.length < 2) {
         if (name) name.closest('.input-wrap').classList.add('has-error');
         valid = false;
       }
 
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!email || !emailRegex.test(email.value.trim())) {
+      // Validate Work Email (strict RFC regex)
+      const cleanEmail = email ? email.value.trim().slice(0, 120) : '';
+      const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
+      if (!cleanEmail || !emailRegex.test(cleanEmail)) {
         if (email) email.closest('.input-wrap').classList.add('has-error');
         valid = false;
       }
 
-      if (!url || !url.value.trim()) {
+      // Validate URL (safe http/https only, no javascript: or data:)
+      let cleanUrl = url ? url.value.trim().slice(0, 250) : '';
+      let isValidUrl = false;
+      if (cleanUrl) {
+        if (!/^https?:\/\//i.test(cleanUrl)) {
+          cleanUrl = 'https://' + cleanUrl;
+        }
+        try {
+          const parsed = new URL(cleanUrl);
+          isValidUrl = (parsed.protocol === 'http:' || parsed.protocol === 'https:') && parsed.hostname.includes('.');
+        } catch (_) {
+          isValidUrl = false;
+        }
+      }
+      if (!cleanUrl || !isValidUrl) {
         if (url) url.closest('.input-wrap').classList.add('has-error');
         valid = false;
       }
 
-      if (!spend || !spend.value.trim()) {
+      // Validate Monthly Ad Spend
+      const cleanSpend = spend ? spend.value.trim().slice(0, 80) : '';
+      if (!cleanSpend) {
         if (spend) spend.closest('.input-wrap').classList.add('has-error');
         valid = false;
       }
 
+      // Validate Phone (optional, but if provided check safe format)
+      const cleanPhone = phone ? phone.value.trim().slice(0, 30) : '';
+      if (cleanPhone && !/^[+\d\s().-]{7,25}$/.test(cleanPhone)) {
+        if (phone) phone.closest('.input-wrap').classList.add('has-error');
+        valid = false;
+      }
+
+      const cleanGoal = goal ? goal.value.trim().slice(0, 2000) : '';
+
       if (valid) {
+        isSubmitting = true;
         const submitBtn = document.getElementById('submit-btn');
+        const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
         if (submitBtn) {
           submitBtn.disabled = true;
           submitBtn.innerHTML = '<span>Confirming Session...</span>';
         }
 
         const payload = {
-          "Full Name": name.value.trim(),
-          "Work Email": email.value.trim(),
-          "Brand Website": url.value.trim(),
-          "Phone / WhatsApp": document.getElementById('phone-number') ? document.getElementById('phone-number').value.trim() : 'Not provided',
-          "Monthly Ad Spend": spend.value.trim(),
-          "Primary Challenge / Goal": document.getElementById('growth-goal') ? document.getElementById('growth-goal').value.trim() : 'Not specified',
-          _subject: `New Growth Consultation Request - ${name.value.trim()} (${url.value.trim()})`,
+          "Full Name": cleanName,
+          "Work Email": cleanEmail,
+          "Brand Website": cleanUrl,
+          "Phone / WhatsApp": cleanPhone || 'Not provided',
+          "Monthly Ad Spend": cleanSpend,
+          "Primary Challenge / Goal": cleanGoal || 'Not specified',
+          _subject: `New Growth Consultation Request - ${cleanName} (${cleanUrl})`,
           _template: 'table',
           _captcha: 'false'
         };
@@ -608,7 +657,10 @@
           },
           body: JSON.stringify(payload)
         })
-        .then((res) => res.json())
+        .then((res) => {
+          if (!res.ok) throw new Error('Network error');
+          return res.json();
+        })
         .then(() => {
           if (submitBtn) submitBtn.style.display = 'none';
           if (successBanner) {
@@ -618,7 +670,11 @@
           form.reset();
         })
         .catch(() => {
+          // Graceful fallback to standard POST submission
           form.submit();
+        })
+        .finally(() => {
+          isSubmitting = false;
         });
       }
     });

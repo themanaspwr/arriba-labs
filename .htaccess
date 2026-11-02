@@ -1,0 +1,46 @@
+# ----------------------------------------------------------------------
+# 1. ENFORCE HTTPS & CANONICAL HOST
+# ----------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Redirect HTTP to HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ----------------------------------------------------------------------
+# 2. HTTP SECURITY HEADERS
+# ----------------------------------------------------------------------
+<IfModule mod_headers.c>
+  # HTTP Strict Transport Security (HSTS)
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+  # Clickjacking Defense
+  Header always set X-Frame-Options "DENY"
+
+  # MIME-type sniffing defense
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Legacy XSS Filter
+  Header always set X-XSS-Protection "1; mode=block"
+
+  # Referrer Policy
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Permissions Policy
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+
+  # Content Security Policy (CSP)
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formsubmit.co; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co; upgrade-insecure-requests;"
+</IfModule>
+
+# ----------------------------------------------------------------------
+# 3. PREVENT DIRECTORY BROWSING & ACCESS TO HIDDEN FILES
+# ----------------------------------------------------------------------
+Options -Indexes
+
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
