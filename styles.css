@@ -2295,9 +2295,87 @@ body.cursor-tag-active .cursor-tag {
     gap: 36px;
   }
 
+  .comparison-table {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .comp-header-row {
+    display: none;
+  }
+
   .comp-row {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px 18px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .comp-row:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .comp-col-label {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-white);
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    margin-bottom: 2px;
+  }
+
+  .comp-col-legacy {
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: #94a3b8;
+  }
+
+  .comp-col-legacy::before {
+    content: 'TRADITIONAL AGENCIES';
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: #64748b;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+
+  .comp-col-arriba {
+    padding: 12px 14px;
+    background: rgba(56, 189, 248, 0.04);
+    border: 1px solid rgba(56, 189, 248, 0.15);
+    border-left: 2px solid var(--c-sky);
+    border-image: linear-gradient(180deg, var(--c-sky), var(--c-orange)) 1;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #ffffff;
+  }
+
+  .comp-col-arriba::before {
+    content: 'THE ARRIBA ENGINE';
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--c-sky);
+    margin-bottom: 5px;
+    text-transform: uppercase;
   }
 
   .manifesto-split {
@@ -2316,14 +2394,6 @@ body.cursor-tag-active .cursor-tag {
     margin: 0 auto;
     display: block;
     transform: none;
-  }
-
-  .comp-header-row {
-    display: none;
-  }
-
-  .comp-col-arriba {
-    padding-left: 14px;
   }
 
   .case-card {
@@ -2744,10 +2814,20 @@ body.cursor-tag-active .cursor-tag {
     font-size: 0.8rem;
   }
   .hero-platform-trust {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
     font-size: 0.68rem;
-    gap: 4px 8px;
-    flex-wrap: wrap;
+    gap: 6px;
+    letter-spacing: 0.06em;
+    margin-top: 2px;
+  }
+  .hero-platform-trust .trust-dot {
+    display: none;
+  }
+  .hero-platform-trust .trust-badge {
+    color: rgba(255, 255, 255, 0.72);
   }
 }
 
