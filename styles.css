@@ -1642,6 +1642,10 @@ body.cursor-tag-active .cursor-tag {
   border-image: linear-gradient(180deg, var(--c-sky), var(--c-orange)) 1;
 }
 
+.comparison-mobile-cards {
+  display: none;
+}
+
 /* --------------------------------------------------------------------------
    11B. PARTNERSHIPS SHOWCASE
    -------------------------------------------------------------------------- */
@@ -2295,87 +2299,122 @@ body.cursor-tag-active .cursor-tag {
     gap: 36px;
   }
 
-  .comparison-table {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .comp-header-row {
+  .comp-table-desktop {
     display: none;
   }
 
-  .comp-row {
+  .comparison-mobile-cards {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 22px 18px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 16px;
+    gap: 18px;
+    width: 100%;
+  }
+
+  .comp-mobile-card {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 24px 20px;
     position: relative;
     overflow: hidden;
   }
 
-  .comp-row:last-child {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  .comp-card-legacy {
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.018);
   }
 
-  .comp-col-label {
-    font-size: 1.05rem;
+  .comp-card-arriba {
+    border-color: rgba(56, 189, 248, 0.28);
+    background: rgba(56, 189, 248, 0.03);
+    box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.65), 0 0 24px rgba(56, 189, 248, 0.08);
+  }
+
+  .comp-card-arriba::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 5%, rgba(56, 189, 248, 0.8) 35%, rgba(168, 85, 247, 0.7) 65%, rgba(255, 122, 40, 0.85) 90%, transparent 98%);
+  }
+
+  .comp-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .comp-card-badge {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .comp-card-legacy .comp-card-badge {
+    color: #64748b;
+  }
+
+  .comp-card-arriba .comp-card-badge {
+    color: var(--c-sky);
+  }
+
+  .comp-card-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--text-white);
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    margin-bottom: 2px;
   }
 
-  .comp-col-legacy {
-    padding: 12px 14px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-left: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
+  .comp-card-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .comp-card-list li {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .comp-item-label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .comp-card-legacy .comp-item-label {
+    color: #64748b;
+  }
+
+  .comp-card-arriba .comp-item-label {
+    color: var(--c-sky);
+  }
+
+  .comp-item-text {
     font-size: 0.88rem;
     line-height: 1.5;
+  }
+
+  .comp-card-legacy .comp-item-text {
     color: #94a3b8;
   }
 
-  .comp-col-legacy::before {
-    content: 'TRADITIONAL AGENCIES';
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 0.64rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    color: #64748b;
-    margin-bottom: 5px;
-    text-transform: uppercase;
-  }
-
-  .comp-col-arriba {
-    padding: 12px 14px;
-    background: rgba(56, 189, 248, 0.04);
-    border: 1px solid rgba(56, 189, 248, 0.15);
-    border-left: 2px solid var(--c-sky);
-    border-image: linear-gradient(180deg, var(--c-sky), var(--c-orange)) 1;
-    border-radius: 8px;
-    font-size: 0.92rem;
-    font-weight: 600;
-    line-height: 1.5;
+  .comp-card-arriba .comp-item-text {
     color: #ffffff;
-  }
-
-  .comp-col-arriba::before {
-    content: 'THE ARRIBA ENGINE';
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 0.64rem;
-    font-weight: 800;
-    letter-spacing: 0.1em;
-    color: var(--c-sky);
-    margin-bottom: 5px;
-    text-transform: uppercase;
+    font-weight: 500;
   }
 
   .manifesto-split {
