@@ -283,7 +283,7 @@ body.cursor-tag-active .cursor-tag {
 .header-nav {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
 }
 
 .nav-link {
@@ -822,7 +822,7 @@ body.cursor-tag-active .cursor-tag {
    7. CLIENT ROSTER & EDITORIAL MARQUEE
    -------------------------------------------------------------------------- */
 .clients-section-editorial {
-  padding: 32px 0 48px;
+  padding: 32px 0 28px;
   border-top: 1px solid var(--border-line);
   border-bottom: 1px solid var(--border-line);
   background: rgba(13, 13, 18, 0.3);
@@ -830,6 +830,24 @@ body.cursor-tag-active .cursor-tag {
 
 .clients-header-bar {
   margin-bottom: 24px;
+}
+
+.clients-footer-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+.clients-counting-note {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: var(--text-body);
+  opacity: 0.88;
 }
 
 .editorial-sublabel {
@@ -1138,7 +1156,7 @@ body.cursor-tag-active .cursor-tag {
    9. RESULTS: CASE LEDGER (CARDS FORMAT)
    -------------------------------------------------------------------------- */
 .results-editorial-section {
-  padding: 56px 0 120px 0;
+  padding: 56px 0 64px 0;
   border-bottom: 1px solid var(--border-line);
   position: relative;
 }
@@ -1225,6 +1243,20 @@ body.cursor-tag-active .cursor-tag {
   white-space: nowrap;
 }
 
+.case-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.case-brand-logo {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+}
+
 .case-brand-name {
   font-family: var(--font-display);
   font-size: 1.65rem;
@@ -1238,7 +1270,46 @@ body.cursor-tag-active .cursor-tag {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  margin-bottom: 28px;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.case-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.case-block-title {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--c-sky);
+  margin: 0;
+}
+
+.case-initiatives-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.case-initiatives-list li {
+  font-size: 0.86rem;
+  color: var(--text-body);
+  line-height: 1.5;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.case-initiatives-list .protocol-dot {
+  margin-top: 7px;
 }
 
 .case-thesis {
@@ -1251,10 +1322,26 @@ body.cursor-tag-active .cursor-tag {
 }
 
 .case-summary {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--text-body);
-  line-height: 1.62;
+  line-height: 1.58;
   margin-bottom: 0;
+}
+
+.case-results-wrap {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.case-results-kicker {
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--c-orange-soft);
+  margin-bottom: 12px;
 }
 
 .case-card-stats {
@@ -1264,6 +1351,16 @@ body.cursor-tag-active .cursor-tag {
   padding-top: 22px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   margin-top: auto;
+}
+
+.case-results-wrap .case-card-stats {
+  padding-top: 0;
+  border-top: none;
+}
+
+.case-card-stats--2col {
+  grid-template-columns: 1fr 1.3fr;
+  gap: 16px;
 }
 
 .stat-item {
@@ -1314,11 +1411,95 @@ body.cursor-tag-active .cursor-tag {
   line-height: 1.35;
 }
 
+/* Industries We Work With Slow Marquee Band */
+.industries-band {
+  margin-top: 56px;
+  padding-top: 36px;
+  border-top: 1px solid var(--border-line);
+}
+
+.industries-band-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.industries-band-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-weight: 800;
+  color: var(--text-white);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.industries-marquee-wrap {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 6px 0;
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
+.industries-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-roll-left 38s linear infinite;
+  will-change: transform;
+}
+
+.industries-marquee-wrap:hover .industries-marquee-track {
+  animation-play-state: paused;
+}
+
+.industries-marquee-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-right: 16px;
+}
+
+.industry-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 22px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  white-space: nowrap;
+  transition: border-color 0.28s ease, background 0.28s ease, transform 0.28s ease, color 0.28s ease;
+}
+
+.industry-pill:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  background: rgba(56, 189, 248, 0.06);
+  color: var(--text-white);
+  transform: translateY(-2px);
+}
+
+.industry-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--c-orange);
+  box-shadow: 0 0 8px rgba(255, 122, 40, 0.65);
+  flex-shrink: 0;
+}
+
 /* --------------------------------------------------------------------------
    10. PROTOCOL (4-CARD SEQUENTIAL FORMAT)
    -------------------------------------------------------------------------- */
 .protocol-editorial-section {
-  padding: 100px 0 56px 0;
+  padding: 72px 0 56px 0;
   border-bottom: 1px solid var(--border-line);
   position: relative;
 }
@@ -2136,6 +2317,7 @@ body.cursor-tag-active .cursor-tag {
   align-items: center;
   font-size: 0.82rem;
   color: var(--text-dim);
+  padding-right: 185px;
 }
 
 .footer-legal {
@@ -2361,6 +2543,8 @@ body.cursor-tag-active .cursor-tag {
     flex-direction: column;
     gap: 16px;
     text-align: center;
+    padding-right: 0;
+    padding-bottom: 48px;
   }
 }
 

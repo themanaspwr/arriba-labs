@@ -576,7 +576,7 @@
         valid = false;
       }
 
-      if (!spend || !spend.value) {
+      if (!spend || !spend.value.trim()) {
         if (spend) spend.closest('.input-wrap').classList.add('has-error');
         valid = false;
       }
@@ -593,7 +593,7 @@
           "Work Email": email.value.trim(),
           "Brand Website": url.value.trim(),
           "Phone / WhatsApp": document.getElementById('phone-number') ? document.getElementById('phone-number').value.trim() : 'Not provided',
-          "Monthly Ad Spend": (spend.options && spend.selectedIndex >= 0) ? spend.options[spend.selectedIndex].text : spend.value,
+          "Monthly Ad Spend": spend.value.trim(),
           "Primary Challenge / Goal": document.getElementById('growth-goal') ? document.getElementById('growth-goal').value.trim() : 'Not specified',
           _subject: `New Growth Consultation Request - ${name.value.trim()} (${url.value.trim()})`,
           _template: 'table',
