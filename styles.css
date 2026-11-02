@@ -882,15 +882,19 @@ body.cursor-tag-active .cursor-tag {
   padding-right: 36px;
 }
 
+.client-logo-item,
 .client-logo-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 6px 8px;
   opacity: 0.82;
+  cursor: default;
+  user-select: none;
   transition: opacity 0.28s var(--ease-smooth), transform 0.28s var(--ease-smooth), filter 0.28s var(--ease-smooth);
 }
 
+.client-logo-item:hover,
 .client-logo-link:hover {
   opacity: 1;
   transform: translateY(-2px) scale(1.04);
