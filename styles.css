@@ -52,6 +52,11 @@
   padding: 0;
 }
 
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
 html {
   font-size: 16px;
   background-color: var(--bg-deep);
@@ -2250,11 +2255,36 @@ body.cursor-tag-active .cursor-tag {
     padding: 24px 22px;
   }
 
+  /* Disable sequence animation on mobile & tablet devices (<= 1100px) */
+  .protocol-track.is-animated .protocol-card,
+  .protocol-track .protocol-card,
+  .protocol-card {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    transition: none !important;
+  }
+
+  .protocol-track.is-animated .protocol-card::before,
+  .protocol-card::before {
+    opacity: 0.65 !important;
+  }
+
   .protocol-connector {
     flex: 0 0 28px;
     height: 28px;
     margin: 4px auto;
     transform: rotate(90deg);
+    opacity: 0.85 !important;
+    color: var(--c-sky) !important;
+  }
+
+  .connector-arrow .arrow-stem {
+    stroke-dashoffset: 0 !important;
+  }
+
+  .connector-arrow .arrow-tip {
+    opacity: 1 !important;
   }
 
   .protocol-track.is-animated .protocol-connector.is-active {
@@ -2872,11 +2902,11 @@ body.cursor-tag-active .cursor-tag {
 
 @media (max-width: 520px) {
   .hero-stage-split {
-    grid-template-columns: clamp(80px, 26vw, 120px) 1fr;
+    grid-template-columns: clamp(75px, 24vw, 110px) 1fr;
     gap: 12px;
   }
   .container-editorial {
-    padding: 0 18px;
+    padding: 0 16px;
   }
   .protocol-card {
     padding: 20px 16px;
@@ -2886,6 +2916,52 @@ body.cursor-tag-active .cursor-tag {
   }
   .protocol-heading {
     font-size: 1.05rem;
+  }
+  .hero-clean-title {
+    font-size: clamp(1.2rem, 4.4vw, 1.6rem);
+  }
+  .band-num {
+    font-size: 1.55rem;
+  }
+  .band-label {
+    font-size: 0.65rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .container-editorial {
+    padding: 0 12px;
+  }
+  .hero-stage-split {
+    grid-template-columns: clamp(68px, 22vw, 85px) 1fr;
+    gap: 10px;
+  }
+  .hero-clean-title {
+    font-size: 1.15rem;
+    line-height: 1.2;
+  }
+  .hero-top-kicker {
+    font-size: 0.58rem;
+  }
+  .hero-editorial-copy {
+    font-size: 0.74rem;
+  }
+  .hero-actions-cluster .btn {
+    padding: 10px 12px;
+    font-size: 0.74rem;
+  }
+  .hero-stat-band {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 10px;
+  }
+  .band-num {
+    font-size: 1.35rem;
+  }
+  .manifesto-character-img {
+    width: clamp(180px, 80vw, 260px);
+  }
+  .services-character-img {
+    width: clamp(180px, 80vw, 260px);
   }
 }
 

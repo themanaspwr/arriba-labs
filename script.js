@@ -250,6 +250,10 @@
     const track = document.getElementById('protocol-track');
     if (!track) return;
 
+    // Disable sequence animation on mobile and tablet devices (<= 1040px)
+    // All 5 cards remain immediately and permanently visible
+    if (window.innerWidth <= 1040) return;
+
     // Progressive enhancement: add is-animated class so CSS activates sequence mode
     track.classList.add('is-animated');
 
