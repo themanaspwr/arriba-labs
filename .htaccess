@@ -40,6 +40,9 @@
 # ----------------------------------------------------------------------
 Options -Indexes
 
+# Custom 404 Error Document
+ErrorDocument 404 /404.html
+
 <FilesMatch "^\.">
   Order allow,deny
   Deny from all

@@ -676,7 +676,18 @@
         .finally(() => {
           isSubmitting = false;
         });
+      } else {
+        const firstInvalid = form.querySelector('.input-wrap.has-error input, .input-wrap.has-error textarea');
+        if (firstInvalid) firstInvalid.focus();
       }
+    });
+
+    // Real-time error state removal on input
+    form.querySelectorAll('input, textarea').forEach((input) => {
+      input.addEventListener('input', () => {
+        const wrap = input.closest('.input-wrap');
+        if (wrap) wrap.classList.remove('has-error');
+      });
     });
   }
 
@@ -708,5 +719,41 @@
         togglePerformance();
       }
     });
+  }
+
+  // =========================================================================
+  // 11. COOKIE & PRIVACY CONSENT BANNER
+  // =========================================================================
+  const cookieBanner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('cookie-accept-btn');
+  const essentialBtn = document.getElementById('cookie-essential-btn');
+
+  if (cookieBanner) {
+    let consent = null;
+    try {
+      consent = localStorage.getItem('arriba_cookie_consent');
+    } catch (_) {}
+
+    if (!consent) {
+      setTimeout(() => {
+        cookieBanner.classList.add('is-visible');
+        cookieBanner.setAttribute('aria-hidden', 'false');
+      }, 1500);
+    }
+
+    function dismissCookieBanner(choice) {
+      try {
+        localStorage.setItem('arriba_cookie_consent', choice);
+      } catch (_) {}
+      cookieBanner.classList.remove('is-visible');
+      cookieBanner.setAttribute('aria-hidden', 'true');
+    }
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', () => dismissCookieBanner('all'));
+    }
+    if (essentialBtn) {
+      essentialBtn.addEventListener('click', () => dismissCookieBanner('essential'));
+    }
   }
 })();
