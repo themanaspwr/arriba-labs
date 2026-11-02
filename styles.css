@@ -2631,6 +2631,60 @@ body.cursor-tag-active .cursor-tag {
 }
 
 @media (max-width: 800px) {
+  /* Reduced empty space on mobile with optically centered logo */
+  .chevron-experience-section {
+    height: auto;
+    min-height: clamp(300px, 44vh, 380px);
+  }
+
+  .chevron-sticky-stage {
+    height: auto;
+    min-height: clamp(300px, 44vh, 380px);
+    padding-top: 64px;
+    padding-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .chevron-ambient-glow {
+    width: 82vw;
+    max-width: 360px;
+    height: 220px;
+  }
+
+  .chevron-center-cluster {
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .chevron-hero-rig {
+    width: clamp(250px, 74vw, 320px);
+  }
+
+  .chevron-wordmark-wrap {
+    width: calc(clamp(250px, 74vw, 320px) * 0.8602);
+    margin-top: calc(clamp(250px, 74vw, 320px) * 0.0268);
+  }
+
+  .chevron-layer.layer-mid {
+    transform: translateY(38px) scale(0.98);
+  }
+
+  .chevron-layer.layer-bot {
+    transform: translateY(68px) scale(0.96);
+  }
+
+  .scroll-indicator-pill {
+    display: none;
+  }
+
+  .hero-editorial-section {
+    padding-top: 44px;
+    padding-bottom: 56px;
+  }
+
   .hero-stage-split {
     grid-template-columns: clamp(90px, 28vw, 160px) 1fr;
     gap: clamp(14px, 3.5vw, 28px);
