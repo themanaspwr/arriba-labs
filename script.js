@@ -7,6 +7,16 @@
   'use strict';
 
   // =========================================================================
+  // 0. IMMEDIATE THEME RESTORATION (PRE-DOM EXECUTION)
+  // =========================================================================
+  try {
+    const savedInitialTheme = localStorage.getItem('arriba_theme');
+    if (savedInitialTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+    }
+  } catch (_) {}
+
+  // =========================================================================
   // 1. LENIS SMOOTH SCROLL & GSAP SYNC
   // =========================================================================
   let lenis = null;
@@ -759,5 +769,72 @@
     if (essentialBtn) {
       essentialBtn.addEventListener('click', () => dismissCookieBanner('essential'));
     }
+  }
+
+  // =========================================================================
+  // 12. THEME SWITCHER (DARK / LIGHT MODE)
+  // =========================================================================
+  const themeToggle = document.getElementById('theme-toggle');
+  const drawerThemeToggle = document.getElementById('drawer-theme-toggle');
+
+  function getPreferredTheme() {
+    try {
+      const saved = localStorage.getItem('arriba_theme');
+      if (saved === 'light' || saved === 'dark') return saved;
+    } catch (_) {}
+    return 'dark'; // Dark mode is default as per requirements
+  }
+
+  function applyTheme(theme, persist) {
+    if (persist === undefined) persist = true;
+    const isLight = theme === 'light';
+
+    if (isLight) {
+      document.documentElement.setAttribute('data-theme', 'light');
+      if (themeToggle) {
+        themeToggle.setAttribute('aria-label', 'Switch to dark mode');
+        themeToggle.setAttribute('title', 'Switch to dark mode');
+      }
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      if (themeToggle) {
+        themeToggle.setAttribute('aria-label', 'Switch to light mode');
+        themeToggle.setAttribute('title', 'Switch to light mode');
+      }
+    }
+
+    // Sync drawer toggle state if present
+    if (drawerThemeToggle) {
+      const darkBtn = drawerThemeToggle.querySelector('[data-mode="dark"]');
+      const lightBtn = drawerThemeToggle.querySelector('[data-mode="light"]');
+      if (darkBtn) darkBtn.classList.toggle('active', !isLight);
+      if (lightBtn) lightBtn.classList.toggle('active', isLight);
+    }
+
+    if (persist) {
+      try {
+        localStorage.setItem('arriba_theme', theme);
+      } catch (_) {}
+    }
+  }
+
+  // Initial sync with DOM state
+  applyTheme(getPreferredTheme(), false);
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const isCurrentlyLight = document.documentElement.getAttribute('data-theme') === 'light';
+      applyTheme(isCurrentlyLight ? 'dark' : 'light');
+    });
+  }
+
+  if (drawerThemeToggle) {
+    drawerThemeToggle.addEventListener('click', (e) => {
+      const modeBtn = e.target.closest('[data-mode]');
+      if (modeBtn) {
+        const mode = modeBtn.getAttribute('data-mode');
+        applyTheme(mode);
+      }
+    });
   }
 })();
