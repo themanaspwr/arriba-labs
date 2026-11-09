@@ -3354,7 +3354,7 @@ html[data-theme="light"] .site-header {
 html[data-theme="light"] .brand-logo-img,
 html[data-theme="light"] .footer-logo,
 html[data-theme="light"] .drawer-header img {
-  content: url('images/arriba-logo-dark.png');
+  content: url('images/arriba-logo-gradient.png');
 }
 
 html[data-theme="light"] .nav-link {
@@ -3371,19 +3371,25 @@ html[data-theme="light"] .location-badge {
   color: #475569;
 }
 
-/* Chevron Section */
+/* Chevron Section - No background shadows & Wordmark matching Chevron Color Palette */
 html[data-theme="light"] .chevron-experience-section,
 html[data-theme="light"] .chevron-sticky-stage {
-  background: transparent;
+  background: transparent !important;
 }
 
 html[data-theme="light"] .chevron-ambient-glow {
-  background: radial-gradient(ellipse at center, rgba(192, 132, 252, 0.35) 0%, rgba(56, 189, 248, 0.25) 50%, transparent 75%);
-  filter: blur(55px);
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
 }
 
-html[data-theme="light"] .chevron-brand-text {
-  content: url('images/arriba-wordmark-dark.png');
+html[data-theme="light"] .chevron-hero-img {
+  filter: none !important;
+}
+
+html[data-theme="light"] .arriba-wordmark-img {
+  content: url('images/arriba-wordmark-gradient.png') !important;
+  filter: none !important;
 }
 
 /* Hero Section */

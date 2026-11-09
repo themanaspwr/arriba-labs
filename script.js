@@ -803,6 +803,16 @@
       }
     }
 
+    // Sync wordmark and logo images to matching gradient palette
+    const wmImg = document.querySelector('.arriba-wordmark-img');
+    if (wmImg) {
+      wmImg.src = isLight ? 'images/arriba-wordmark-gradient.png' : 'images/arriba-wordmark.png';
+    }
+    const brandLogos = document.querySelectorAll('.brand-logo-img, .footer-logo, .drawer-header img');
+    brandLogos.forEach((img) => {
+      img.src = isLight ? 'images/arriba-logo-gradient.png' : 'images/arriba-logo-white.png';
+    });
+
     // Sync drawer toggle state if present
     if (drawerThemeToggle) {
       const darkBtn = drawerThemeToggle.querySelector('[data-mode="dark"]');
