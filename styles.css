@@ -484,13 +484,13 @@ html[data-theme="light"] .splash-ambient-glow {
 
 .splash-chevron-layer.splash-layer-mid {
   opacity: 0;
-  transform: translateY(26px);
+  transform: translateY(36px);
   z-index: 2;
 }
 
 .splash-chevron-layer.splash-layer-bot {
   opacity: 0;
-  transform: translateY(48px);
+  transform: translateY(64px);
   z-index: 1;
 }
 
