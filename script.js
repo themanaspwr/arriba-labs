@@ -7,14 +7,12 @@
   'use strict';
 
   // =========================================================================
-  // 0. IMMEDIATE THEME RESTORATION (PRE-DOM EXECUTION)
+  // 0. DEFAULT DARK THEME ENFORCEMENT (Do not persist or restore theme)
   // =========================================================================
   try {
-    const savedInitialTheme = localStorage.getItem('arriba_theme');
-    if (savedInitialTheme === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light');
-    }
+    localStorage.removeItem('arriba_theme');
   } catch (_) {}
+  document.documentElement.removeAttribute('data-theme');
 
   // =========================================================================
   // 1. LENIS SMOOTH SCROLL & GSAP SYNC
@@ -796,15 +794,10 @@
   const drawerThemeToggle = document.getElementById('drawer-theme-toggle');
 
   function getPreferredTheme() {
-    try {
-      const saved = localStorage.getItem('arriba_theme');
-      if (saved === 'light' || saved === 'dark') return saved;
-    } catch (_) {}
-    return 'dark'; // Dark mode is default as per requirements
+    return 'dark'; // Always dark by default, never restore from storage
   }
 
-  function applyTheme(theme, persist) {
-    if (persist === undefined) persist = true;
+  function applyTheme(theme) {
     const isLight = theme === 'light';
 
     if (isLight) {
@@ -865,16 +858,10 @@
       if (darkBtn) darkBtn.classList.toggle('active', !isLight);
       if (lightBtn) lightBtn.classList.toggle('active', isLight);
     }
-
-    if (persist) {
-      try {
-        localStorage.setItem('arriba_theme', theme);
-      } catch (_) {}
-    }
   }
 
-  // Initial sync with DOM state
-  applyTheme(getPreferredTheme(), false);
+  // Initial sync with default dark state
+  applyTheme('dark');
 
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
