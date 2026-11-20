@@ -814,13 +814,13 @@
       }
     }
 
-    // Sync wordmark and logo images to matching gradient palette
+    // Wordmark and brand logos use matching logo gradient palette in both dark and light mode
     document.querySelectorAll('.arriba-wordmark-img').forEach((wmImg) => {
-      wmImg.src = isLight ? 'images/arriba-wordmark-gradient.png' : 'images/arriba-wordmark.png';
+      wmImg.src = 'images/arriba-wordmark-gradient.png';
     });
     const brandLogos = document.querySelectorAll('.brand-logo-img, .footer-logo, .drawer-header img');
     brandLogos.forEach((img) => {
-      img.src = isLight ? 'images/arriba-logo-gradient.png' : 'images/arriba-logo-white.png';
+      img.src = 'images/arriba-logo-gradient.png';
     });
 
     // Sync client brand logos with full authentic colors in light mode

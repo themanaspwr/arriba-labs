@@ -3373,9 +3373,9 @@ html[data-theme="light"] .site-header {
   box-shadow: 0 4px 24px rgba(67, 56, 202, 0.04);
 }
 
-html[data-theme="light"] .brand-logo-img,
-html[data-theme="light"] .footer-logo,
-html[data-theme="light"] .drawer-header img {
+.brand-logo-img,
+.footer-logo,
+.drawer-header img {
   content: url('images/arriba-logo-gradient.png');
 }
 
@@ -3393,8 +3393,8 @@ html[data-theme="light"] .location-badge {
   color: #475569;
 }
 
-/* Splash Preloader & Wordmark matching Chevron Color Palette */
-html[data-theme="light"] .arriba-wordmark-img {
+/* Splash Preloader & Wordmark matching Chevron Color Palette across modes */
+.arriba-wordmark-img {
   content: url('images/arriba-wordmark-gradient.png') !important;
   filter: none !important;
 }
