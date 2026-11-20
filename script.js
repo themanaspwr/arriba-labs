@@ -838,6 +838,8 @@
         img.src = isLight ? 'logos/av-store-light.png' : 'logos/av-store.png';
       } else if (src.includes('tiber-taber')) {
         img.src = isLight ? 'logos/tiber-taber.svg' : 'logos/tiber-taber.png';
+      } else if (src.includes('sr-store')) {
+        img.src = isLight ? 'logos/sr-store-color.png' : 'logos/sr-store.png';
       }
     });
 

@@ -3536,7 +3536,8 @@ html[data-theme="light"] .client-logo-img[src*="nykaa-fashion"],
 html[data-theme="light"] .client-logo-img[src*="av-store"],
 html[data-theme="light"] .client-logo-img[src*="tiber-taber"],
 html[data-theme="light"] .client-logo-img[src*="the-india-craft-house"],
-html[data-theme="light"] .client-logo-img[src*="craft-house"] {
+html[data-theme="light"] .client-logo-img[src*="craft-house"],
+html[data-theme="light"] .client-logo-img[src*="sr-store"] {
   filter: none !important;
   opacity: 1 !important;
 }
@@ -3548,7 +3549,8 @@ html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="nykaa-fa
 html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="av-store"],
 html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="tiber-taber"],
 html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="the-india-craft-house"],
-html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="craft-house"] {
+html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="craft-house"],
+html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="sr-store"] {
   filter: none !important;
   opacity: 1 !important;
 }
@@ -3564,6 +3566,9 @@ html[data-theme="light"] .client-logo-img[src*="av-store"] {
 }
 html[data-theme="light"] .client-logo-img[src*="tiber-taber"] {
   content: url('logos/tiber-taber.svg');
+}
+html[data-theme="light"] .client-logo-img[src*="sr-store"] {
+  content: url('logos/sr-store-color.png');
 }
 
 /* Protocol Cards */
