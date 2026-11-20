@@ -3945,19 +3945,54 @@ html[data-theme="light"] .testimonial-editorial-item {
   border: 1px solid rgba(14, 14, 23, 0.12);
   box-shadow: 0 12px 36px rgba(67, 56, 202, 0.06);
   border-radius: 18px;
-  padding: 28px 24px;
+  padding: 32px 28px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
 }
 
+html[data-theme="light"] .testimonial-editorial-item:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(67, 56, 202, 0.35);
+  box-shadow: 0 16px 44px rgba(67, 56, 202, 0.12);
+}
+
+html[data-theme="light"] .testimonial-editorial-item::before {
+  top: 0;
+  left: 28px;
+  width: 48px;
+  height: 3px;
+  border-radius: 0 0 4px 4px;
+}
+
+html[data-theme="light"] .test-body,
 html[data-theme="light"] .testimonial-quote {
-  color: #1e293b;
+  color: #0e0e17 !important;
+  font-weight: 500;
+  line-height: 1.7;
 }
 
+html[data-theme="light"] .test-name,
 html[data-theme="light"] .author-name {
-  color: #0e0e17;
+  color: #0e0e17 !important;
+  font-weight: 700;
 }
 
+html[data-theme="light"] .test-title,
 html[data-theme="light"] .author-role {
-  color: #64748b;
+  color: #475569 !important;
+  font-weight: 600;
+}
+
+html[data-theme="light"] .contact-wa-box {
+  background: rgba(67, 56, 202, 0.04);
+  border: 1px solid rgba(14, 14, 23, 0.1);
+  border-left: 3px solid #f97316;
+}
+
+html[data-theme="light"] .wa-kicker {
+  color: #4338ca;
 }
 
 /* Contact Section & Form */
