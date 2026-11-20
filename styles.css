@@ -3805,32 +3805,39 @@ html[data-theme="light"] .manifesto-pullquote {
 }
 
 html[data-theme="light"] .comp-table-desktop {
-  background: rgba(255, 255, 255, 0.65);
-  border-color: rgba(14, 14, 23, 0.08);
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(14, 14, 23, 0.12);
   box-shadow: 0 12px 36px rgba(67, 56, 202, 0.05);
 }
 
-html[data-theme="light"] .comp-col-header,
-html[data-theme="light"] .comp-cell {
-  border-color: rgba(14, 14, 23, 0.08);
+html[data-theme="light"] .comp-header-row {
+  border-bottom: 2px solid rgba(14, 14, 23, 0.1);
+}
+
+html[data-theme="light"] .comp-row {
+  border-bottom: 1px solid rgba(14, 14, 23, 0.08);
+}
+
+html[data-theme="light"] .comp-col-label {
+  color: #0e0e17;
+  font-weight: 700;
+}
+
+html[data-theme="light"] .comp-col-legacy {
+  color: #475569;
 }
 
 html[data-theme="light"] .comp-col-arriba {
-  background: rgba(67, 56, 202, 0.04);
+  background: rgba(67, 56, 202, 0.05);
+  color: #0e0e17;
+  font-weight: 600;
 }
 
 html[data-theme="light"] .comp-row:hover {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.85);
 }
 
-html[data-theme="light"] .comp-cell-dim {
-  color: #64748b;
-}
-
-html[data-theme="light"] .comp-cell-bright {
-  color: #0e0e17;
-}
-
+/* Mobile Comparison Cards */
 html[data-theme="light"] .comp-mobile-card {
   background: rgba(255, 255, 255, 0.76);
   border: 1px solid rgba(14, 14, 23, 0.12);
@@ -3839,21 +3846,51 @@ html[data-theme="light"] .comp-mobile-card {
 
 html[data-theme="light"] .comp-mobile-card.arriba-card,
 html[data-theme="light"] .comp-mobile-card.comp-card-arriba {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(67, 56, 202, 0.3);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(67, 56, 202, 0.35);
   box-shadow: 0 14px 40px rgba(67, 56, 202, 0.1);
 }
 
-html[data-theme="light"] .comp-point-item {
-  border-bottom-color: rgba(14, 14, 23, 0.08);
-}
-
-html[data-theme="light"] .comp-point-title {
+html[data-theme="light"] .comp-card-title {
   color: #0e0e17;
 }
 
-html[data-theme="light"] .comp-point-desc {
+html[data-theme="light"] .comp-card-arriba .comp-card-badge {
+  color: #0284c7;
+}
+
+html[data-theme="light"] .comp-card-legacy .comp-card-badge {
+  color: #64748b;
+}
+
+html[data-theme="light"] .comp-card-arriba .comp-item-label {
+  color: #0284c7;
+  font-weight: 800;
+}
+
+html[data-theme="light"] .comp-card-legacy .comp-item-label {
   color: #475569;
+  font-weight: 700;
+}
+
+html[data-theme="light"] .comp-card-arriba .comp-item-text {
+  color: #0e0e17;
+  font-weight: 600;
+}
+
+html[data-theme="light"] .comp-card-legacy .comp-item-text {
+  color: #334155;
+  font-weight: 500;
+}
+
+html[data-theme="light"] .comp-card-list li {
+  border-bottom: 1px solid rgba(14, 14, 23, 0.06);
+  padding-bottom: 10px;
+}
+
+html[data-theme="light"] .comp-card-list li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 /* Partnerships & Testimonials */
