@@ -3592,7 +3592,10 @@ html[data-theme="light"] .client-logo-img[src*="tata-soulfull"],
 html[data-theme="light"] .client-logo-img[src*="anthrilo"],
 html[data-theme="light"] .client-logo-img[src*="pro-nature-organic"],
 html[data-theme="light"] .client-logo-img[src*="nykaa-fashion"],
-html[data-theme="light"] .client-logo-img[src*="av-store"] {
+html[data-theme="light"] .client-logo-img[src*="av-store"],
+html[data-theme="light"] .client-logo-img[src*="tiber-taber"],
+html[data-theme="light"] .client-logo-img[src*="the-india-craft-house"],
+html[data-theme="light"] .client-logo-img[src*="craft-house"] {
   filter: none !important;
   opacity: 1 !important;
 }
@@ -3601,7 +3604,10 @@ html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="tata-sou
 html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="anthrilo"],
 html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="pro-nature-organic"],
 html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="nykaa-fashion"],
-html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="av-store"] {
+html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="av-store"],
+html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="tiber-taber"],
+html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="the-india-craft-house"],
+html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="craft-house"] {
   filter: none !important;
   opacity: 1 !important;
 }
@@ -3614,6 +3620,9 @@ html[data-theme="light"] .client-logo-img[src*="pro-nature-organic"] {
 }
 html[data-theme="light"] .client-logo-img[src*="av-store"] {
   content: url('logos/av-store-light.png');
+}
+html[data-theme="light"] .client-logo-img[src*="tiber-taber"] {
+  content: url('logos/tiber-taber.svg');
 }
 
 /* Protocol Cards */

@@ -822,6 +822,8 @@
         img.src = isLight ? 'logos/pro-nature-organic-light.png' : 'logos/pro-nature-organic.png';
       } else if (src.includes('av-store')) {
         img.src = isLight ? 'logos/av-store-light.png' : 'logos/av-store.png';
+      } else if (src.includes('tiber-taber')) {
+        img.src = isLight ? 'logos/tiber-taber.svg' : 'logos/tiber-taber.png';
       }
     });
 
