@@ -3613,6 +3613,12 @@ html[data-theme="light"] .protocol-step-num {
   color: #0e0e17;
 }
 
+html[data-theme="light"] .protocol-timeline {
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.28);
+}
+
 html[data-theme="light"] .protocol-tag {
   background: rgba(67, 56, 202, 0.08);
   color: #4338ca;
@@ -3624,7 +3630,21 @@ html[data-theme="light"] .protocol-heading {
 }
 
 html[data-theme="light"] .protocol-desc {
-  color: #475569;
+  color: #334155;
+}
+
+html[data-theme="light"] .protocol-list {
+  border-top: 1px solid rgba(14, 14, 23, 0.08);
+}
+
+html[data-theme="light"] .protocol-list li {
+  color: #1e293b;
+  font-weight: 600;
+}
+
+html[data-theme="light"] .protocol-dot {
+  background: var(--c-orange);
+  box-shadow: 0 0 6px rgba(255, 122, 40, 0.45);
 }
 
 html[data-theme="light"] .protocol-connector {
@@ -3891,6 +3911,7 @@ html[data-theme="light"] .contact-text {
 }
 
 html[data-theme="light"] .commit-item {
+  color: #334155;
   border-bottom-color: rgba(14, 14, 23, 0.08);
 }
 
