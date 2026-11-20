@@ -813,6 +813,18 @@
       img.src = isLight ? 'images/arriba-logo-gradient.png' : 'images/arriba-logo-white.png';
     });
 
+    // Sync client brand logos with full authentic colors in light mode
+    document.querySelectorAll('.client-logo-img').forEach((img) => {
+      const src = img.getAttribute('src') || '';
+      if (src.includes('nykaa-fashion')) {
+        img.src = isLight ? 'logos/nykaa-fashion-light.svg' : 'logos/nykaa-fashion.svg';
+      } else if (src.includes('pro-nature-organic')) {
+        img.src = isLight ? 'logos/pro-nature-organic-light.png' : 'logos/pro-nature-organic.png';
+      } else if (src.includes('av-store')) {
+        img.src = isLight ? 'logos/av-store-light.png' : 'logos/av-store.png';
+      }
+    });
+
     // Sync drawer toggle state if present
     if (drawerThemeToggle) {
       const darkBtn = drawerThemeToggle.querySelector('[data-mode="dark"]');

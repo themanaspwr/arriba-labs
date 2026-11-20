@@ -3561,6 +3561,35 @@ html[data-theme="light"] .client-logo-item:hover .client-logo-img {
   filter: brightness(0) saturate(100%) opacity(1);
 }
 
+/* Preserve Authentic Full Brand Colors for Colored Logos in Light Mode */
+html[data-theme="light"] .client-logo-img[src*="tata-soulfull"],
+html[data-theme="light"] .client-logo-img[src*="anthrilo"],
+html[data-theme="light"] .client-logo-img[src*="pro-nature-organic"],
+html[data-theme="light"] .client-logo-img[src*="nykaa-fashion"],
+html[data-theme="light"] .client-logo-img[src*="av-store"] {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="tata-soulfull"],
+html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="anthrilo"],
+html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="pro-nature-organic"],
+html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="nykaa-fashion"],
+html[data-theme="light"] .client-logo-item:hover .client-logo-img[src*="av-store"] {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+html[data-theme="light"] .client-logo-img[src*="nykaa-fashion"] {
+  content: url('logos/nykaa-fashion-light.svg');
+}
+html[data-theme="light"] .client-logo-img[src*="pro-nature-organic"] {
+  content: url('logos/pro-nature-organic-light.png');
+}
+html[data-theme="light"] .client-logo-img[src*="av-store"] {
+  content: url('logos/av-store-light.png');
+}
+
 /* Protocol Cards */
 html[data-theme="light"] .protocol-card {
   background: rgba(255, 255, 255, 0.68);
