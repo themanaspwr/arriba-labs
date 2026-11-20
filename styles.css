@@ -1674,24 +1674,35 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 .comparison-table {
   display: flex;
   flex-direction: column;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border-line);
+  border-radius: 24px;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .comp-row {
   display: grid;
-  grid-template-columns: 240px 1fr 1fr;
+  grid-template-columns: 220px 1.15fr 1.3fr;
   align-items: center;
-  gap: 40px;
-  padding: 24px 0;
-  border-top: 1px solid var(--border-line);
+  gap: 32px;
+  padding: 22px 36px;
+  border-bottom: 1px solid var(--border-line);
   font-size: 0.96rem;
+  transition: background 0.2s ease;
 }
 
 .comp-row:last-child {
-  border-bottom: 1px solid var(--border-line);
+  border-bottom: none;
 }
 
 .comp-header-row {
-  font-size: 0.74rem;
+  padding: 20px 36px;
+  background: rgba(255, 255, 255, 0.035);
+  border-bottom: 1px solid var(--border-line);
+  font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.12em;
   color: var(--text-dim);
@@ -1701,16 +1712,19 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 .comp-col-label {
   font-weight: 700;
   color: var(--text-white);
+  line-height: 1.4;
 }
 
 .comp-col-legacy {
   color: var(--text-dim);
+  line-height: 1.5;
 }
 
 .comp-col-arriba {
   color: #f1f5f9;
   font-weight: 600;
-  padding-left: 24px;
+  line-height: 1.5;
+  padding-left: 20px;
   border-left: 2px solid var(--c-sky);
   border-image: linear-gradient(180deg, var(--c-sky), var(--c-orange)) 1;
 }
@@ -2368,6 +2382,12 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 
   .comp-row {
     grid-template-columns: 160px 1fr 1fr;
+    padding: 18px 24px;
+    gap: 20px;
+  }
+
+  .comp-header-row {
+    padding: 16px 24px;
   }
 
   .contact-split {
@@ -3846,18 +3866,29 @@ html[data-theme="light"] .manifesto-pullquote {
   border-left-color: #4338ca;
 }
 
-html[data-theme="light"] .comp-table-desktop {
-  background: rgba(255, 255, 255, 0.76);
+html[data-theme="light"] .comp-table-desktop,
+html[data-theme="light"] .comparison-table {
+  background: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(14, 14, 23, 0.12);
-  box-shadow: 0 12px 36px rgba(67, 56, 202, 0.05);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 16px 44px rgba(67, 56, 202, 0.06), 0 2px 8px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 html[data-theme="light"] .comp-header-row {
-  border-bottom: 2px solid rgba(14, 14, 23, 0.1);
+  background: rgba(248, 250, 252, 0.9);
+  border-bottom: 1px solid rgba(14, 14, 23, 0.08);
+  color: #64748b;
 }
 
 html[data-theme="light"] .comp-row {
-  border-bottom: 1px solid rgba(14, 14, 23, 0.08);
+  border-bottom: 1px solid rgba(14, 14, 23, 0.07);
+}
+
+html[data-theme="light"] .comp-row:last-child {
+  border-bottom: none;
 }
 
 html[data-theme="light"] .comp-col-label {
@@ -3870,13 +3901,17 @@ html[data-theme="light"] .comp-col-legacy {
 }
 
 html[data-theme="light"] .comp-col-arriba {
-  background: rgba(67, 56, 202, 0.05);
+  background: rgba(67, 56, 202, 0.04);
   color: #0e0e17;
   font-weight: 600;
+  padding: 10px 18px 10px 20px;
+  border-radius: 8px;
+  border-left: 3px solid #6366f1;
+  border-image: linear-gradient(180deg, #6366f1, #f97316) 1;
 }
 
 html[data-theme="light"] .comp-row:hover {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 /* Mobile Comparison Cards */
