@@ -825,6 +825,18 @@
       }
     });
 
+    // Sync partner brand logos with authentic brand colors in light mode
+    document.querySelectorAll('.partner-grid-img').forEach((img) => {
+      const src = img.getAttribute('src') || '';
+      if (src.includes('meta')) {
+        img.src = isLight ? 'logos/partners/meta-light.svg' : 'logos/partners/meta.svg';
+      } else if (src.includes('3bf')) {
+        img.src = isLight ? 'logos/partners/3bf-light.svg' : 'logos/partners/3bf.svg';
+      } else if (src.includes('krafting-networks')) {
+        img.src = isLight ? 'logos/partners/krafting-networks-light.svg' : 'logos/partners/krafting-networks.svg';
+      }
+    });
+
     // Sync drawer toggle state if present
     if (drawerThemeToggle) {
       const darkBtn = drawerThemeToggle.querySelector('[data-mode="dark"]');
