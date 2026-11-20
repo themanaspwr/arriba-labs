@@ -83,80 +83,95 @@
   }
 
   // =========================================================================
-  // 3. 3-ARROW LOGO AUTO-STACK INTRO ANIMATION (Smooth entrance on load)
+  // 3. CINEMATIC SPLASH PRELOADER (Loads, breathes for 1.35s, fades into site)
   // =========================================================================
-  function initLogoStackingAnimation() {
-    const chevMid = document.getElementById('chev-mid');
-    const chevBot = document.getElementById('chev-bot');
-    const chevWordmark = document.getElementById('chev-wordmark');
-    const chevGlow = document.getElementById('chev-glow');
-    const scrollPill = document.getElementById('scroll-pill');
+  function initSplashPreloader() {
+    const splash = document.getElementById('splash-preloader');
+    if (!splash) return;
 
-    if (!chevMid || !chevBot || typeof gsap === 'undefined') return;
+    const mid = document.getElementById('splash-mid');
+    const bot = document.getElementById('splash-bot');
+    const wm = document.getElementById('splash-wordmark');
+    const cluster = document.getElementById('splash-cluster');
+    const glow = document.getElementById('splash-glow');
 
-    // Luxurious, deliberate timing for auto-stack sequence
-    const tl = gsap.timeline({ delay: 0.45 });
+    if (typeof gsap !== 'undefined') {
+      // Set initial states
+      gsap.set(mid, { opacity: 0, y: 22, scale: 0.98 });
+      gsap.set(bot, { opacity: 0, y: 42, scale: 0.96 });
+      if (wm) gsap.set(wm, { opacity: 0, y: 12 });
 
-    // 1. Middle Chevron rises smoothly from below
-    tl.to(chevMid, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.85,
-      ease: 'power3.out'
-    }, 0.1);
+      const tl = gsap.timeline();
 
-    // 2. Lower Chevron rises smoothly into stack
-    tl.to(chevBot, {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      duration: 0.85,
-      ease: 'power3.out'
-    }, 0.65);
-
-    // 3. ARRIBA Wordmark glides up into crisp white
-    if (chevWordmark) {
-      tl.to(chevWordmark, {
+      // 1. Logo layers assemble cleanly and swiftly
+      tl.to(mid, {
         opacity: 1,
         y: 0,
-        duration: 0.7,
+        scale: 1,
+        duration: 0.35,
         ease: 'power2.out'
-      }, 1.15);
-    }
+      }, 0.05);
 
-    // 4. Subtle bloom pulse on full assembly
-    if (chevGlow) {
-      tl.to(chevGlow, {
-        opacity: 0.9,
-        scale: 1.12,
-        duration: 0.45,
-        ease: 'power2.out'
-      }, 1.3);
-
-      tl.to(chevGlow, {
-        opacity: 0.5,
-        scale: 1.0,
-        duration: 0.7,
-        ease: 'power1.inOut'
-      }, 1.75);
-    }
-
-    // 5. Scroll pill fades in gracefully
-    if (scrollPill) {
-      tl.to(scrollPill, {
+      tl.to(bot, {
         opacity: 1,
         y: 0,
-        duration: 0.55,
+        scale: 1,
+        duration: 0.35,
         ease: 'power2.out'
-      }, 1.55);
+      }, 0.16);
 
-      window.addEventListener('scroll', function hidePill() {
-        if (window.scrollY > 15) {
-          gsap.to(scrollPill, { opacity: 0, y: 8, duration: 0.25 });
-          window.removeEventListener('scroll', hidePill);
+      if (wm) {
+        tl.to(wm, {
+          opacity: 1,
+          y: 0,
+          duration: 0.35,
+          ease: 'power2.out'
+        }, 0.26);
+      }
+
+      // 2. Logo breathes for exactly 1.35 seconds
+      tl.to(cluster, {
+        scale: 1.04,
+        duration: 0.675,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: 1
+      }, 0.35);
+
+      if (glow) {
+        tl.to(glow, {
+          scale: 1.15,
+          opacity: 0.95,
+          duration: 0.675,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: 1
+        }, 0.35);
+      }
+
+      // 3. Fade into actual website after completing the 1.35s breathe cycle
+      tl.to(splash, {
+        opacity: 0,
+        duration: 0.65,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          splash.classList.add('is-faded');
+          if (splash.parentNode) {
+            splash.parentNode.removeChild(splash);
+          }
         }
-      }, { passive: true });
+      }, 1.70);
+
+    } else {
+      // Fallback if GSAP is unavailable
+      setTimeout(() => {
+        splash.style.transition = 'opacity 0.65s ease';
+        splash.style.opacity = '0';
+        setTimeout(() => {
+          splash.classList.add('is-faded');
+          if (splash.parentNode) splash.parentNode.removeChild(splash);
+        }, 650);
+      }, 1700);
     }
   }
 
@@ -219,8 +234,8 @@
   // 5. SCROLL-TRIGGERED REVEALS ([data-reveal])
   // =========================================================================
   function initScrollAnimations() {
-    // 1. Initialize Logo Stacking
-    initLogoStackingAnimation();
+    // 1. Initialize Splash Preloader
+    initSplashPreloader();
 
     // 2. Initialize Counters
     initCounterStats();
@@ -804,10 +819,9 @@
     }
 
     // Sync wordmark and logo images to matching gradient palette
-    const wmImg = document.querySelector('.arriba-wordmark-img');
-    if (wmImg) {
+    document.querySelectorAll('.arriba-wordmark-img').forEach((wmImg) => {
       wmImg.src = isLight ? 'images/arriba-wordmark-gradient.png' : 'images/arriba-wordmark.png';
-    }
+    });
     const brandLogos = document.querySelectorAll('.brand-logo-img, .footer-logo, .drawer-header img');
     brandLogos.forEach((img) => {
       img.src = isLight ? 'images/arriba-logo-gradient.png' : 'images/arriba-logo-white.png';
