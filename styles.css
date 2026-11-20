@@ -724,31 +724,39 @@ body.cursor-tag-active .cursor-tag {
   transform: translateY(-2px);
 }
 
-/* Architectural Stat Band */
+/* Architectural Stat Band - Rounded Luminous Card */
 .hero-stat-band {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 36px;
-  padding-top: 52px;
-  border-top: 1px solid var(--border-line);
+  gap: 0;
+  margin-top: 52px;
+  padding: 24px 20px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid var(--border-line);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
+
 .band-cell {
   display: flex;
   flex-direction: column;
-  padding-left: 18px;
-  border-left: 1px solid var(--border-line);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 12px 20px;
   position: relative;
 }
 
+@media (min-width: 861px) {
+  .band-cell:not(:last-child) {
+    border-right: 1px solid var(--border-line);
+  }
+}
+
 .band-cell::before {
-  content: '';
-  position: absolute;
-  left: -1px;
-  top: 0;
-  width: 2px;
-  height: 18px;
-  background: linear-gradient(180deg, var(--c-orange), transparent);
-  border-radius: 2px;
+  display: none;
 }
 
 .band-num {
@@ -757,15 +765,20 @@ body.cursor-tag-active .cursor-tag {
   font-weight: 800;
   line-height: 1.1;
   color: var(--text-white);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
+  text-align: center;
+  width: 100%;
 }
 
 .band-label {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-dim);
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
+  text-align: center;
+  width: 100%;
+  line-height: 1.35;
 }
 
 /* --------------------------------------------------------------------------
@@ -2344,7 +2357,35 @@ body.cursor-tag-active .cursor-tag {
 
   .hero-stat-band {
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 0;
+    padding: 16px 12px;
+    border-radius: 20px;
+    margin-top: 36px;
+  }
+
+  .band-cell {
+    padding: 16px 12px;
+    border-right: none;
+  }
+
+  .band-cell:nth-child(1),
+  .band-cell:nth-child(3) {
+    border-right: 1px solid var(--border-line);
+  }
+
+  .band-cell:nth-child(1),
+  .band-cell:nth-child(2) {
+    border-bottom: 1px solid var(--border-line);
+  }
+
+  .band-cell:nth-child(2),
+  .band-cell:nth-child(4) {
+    border-right: none;
+  }
+
+  .band-cell:nth-child(3),
+  .band-cell:nth-child(4) {
+    border-bottom: none;
   }
 
   
@@ -2979,10 +3020,19 @@ body.cursor-tag-active .cursor-tag {
   }
   .hero-stat-band {
     grid-template-columns: 1fr 1fr;
-    gap: 14px 10px;
+    gap: 0;
+    padding: 12px 8px;
+    border-radius: 16px;
+    margin-top: 28px;
+  }
+  .band-cell {
+    padding: 12px 8px;
   }
   .band-num {
     font-size: 1.35rem;
+  }
+  .band-label {
+    font-size: 0.7rem;
   }
   .manifesto-character-img {
     width: clamp(180px, 80vw, 260px);
@@ -3418,10 +3468,12 @@ html[data-theme="light"] .hero-platform-trust .trust-badge {
 }
 
 html[data-theme="light"] .hero-stat-band {
-  border-top: 1px solid rgba(14, 14, 23, 0.08);
-  border-bottom: 1px solid rgba(14, 14, 23, 0.08);
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 22px;
+  box-shadow: 0 12px 36px rgba(67, 56, 202, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 html[data-theme="light"] .band-num {
@@ -3430,6 +3482,10 @@ html[data-theme="light"] .band-num {
 
 html[data-theme="light"] .band-label {
   color: #64748b;
+}
+
+html[data-theme="light"] .band-cell {
+  border-color: rgba(14, 14, 23, 0.08);
 }
 
 /* Client Showcase Marquee - Luminous Glassmorphic Upgrade */
