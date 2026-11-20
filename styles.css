@@ -3473,6 +3473,16 @@ html[data-theme="light"] .hero-editorial-section {
   background: transparent;
 }
 
+html[data-theme="light"] .hero-top-kicker .kicker-tag {
+  color: #334155;
+  font-weight: 800;
+}
+
+html[data-theme="light"] .hero-top-kicker .kicker-sub {
+  color: #000000 !important;
+  font-weight: 800;
+}
+
 html[data-theme="light"] .hero-clean-title {
   background: linear-gradient(120deg, #0e0e17 25%, #4338ca 65%, #1e3c72 100%);
   -webkit-background-clip: text;
