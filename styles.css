@@ -718,6 +718,19 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-stat-band::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 122, 40, 0.65) 30%, rgba(253, 186, 116, 0.85) 50%, rgba(255, 122, 40, 0.65) 70%, transparent 100%);
+  pointer-events: none;
 }
 
 .band-cell {
@@ -749,6 +762,40 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   margin-bottom: 6px;
   text-align: center;
   width: 100%;
+}
+
+.stat-orange {
+  color: var(--c-orange, #ff7a28);
+  font-weight: 800;
+  margin-left: 2px;
+  display: inline-block;
+  text-shadow: 0 0 12px rgba(255, 122, 40, 0.35);
+}
+
+.band-orange-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c-orange, #ff7a28);
+  box-shadow: 0 0 10px rgba(255, 122, 40, 0.7);
+  margin-right: 8px;
+  vertical-align: middle;
+  transform: translateY(-2px);
+  animation: bandDotPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes bandDotPulse {
+  0%, 100% {
+    opacity: 0.85;
+    transform: translateY(-2px) scale(1);
+    box-shadow: 0 0 8px rgba(255, 122, 40, 0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.2);
+    box-shadow: 0 0 14px rgba(255, 122, 40, 0.9);
+  }
 }
 
 .band-label {
@@ -3443,8 +3490,22 @@ html[data-theme="light"] .hero-stat-band {
   -webkit-backdrop-filter: blur(20px);
 }
 
+html[data-theme="light"] .hero-stat-band::before {
+  background: linear-gradient(90deg, transparent 0%, rgba(234, 88, 12, 0.6) 30%, rgba(251, 146, 60, 0.8) 50%, rgba(234, 88, 12, 0.6) 70%, transparent 100%);
+}
+
 html[data-theme="light"] .band-num {
   color: #0e0e17;
+}
+
+html[data-theme="light"] .stat-orange {
+  color: #ea580c;
+  text-shadow: none;
+}
+
+html[data-theme="light"] .band-orange-dot {
+  background: #ea580c;
+  box-shadow: 0 0 10px rgba(234, 88, 12, 0.5);
 }
 
 html[data-theme="light"] .band-label {
