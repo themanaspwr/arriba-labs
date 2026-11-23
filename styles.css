@@ -1688,86 +1688,12 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 }
 
 .manifesto-split {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 48px;
-  margin-bottom: 48px;
-  max-width: 1040px;
+  display: block;
+  margin-bottom: 44px;
 }
 
 .manifesto-text-block {
-  flex: 1 1 600px;
-  max-width: 660px;
-}
-
-.manifesto-arrow-wrap {
-  flex: 0 0 clamp(190px, 20vw, 250px);
-  width: clamp(190px, 20vw, 250px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-}
-
-.scaling-arrow-svg {
-  width: 100%;
-  height: auto;
-  display: block;
-  overflow: visible;
-}
-
-/* Scaling Arrow Animation (Arriba Logo Palette) */
-.scaling-arrow-group {
-  transform-origin: 22px 222px;
-  animation: scalingArrowSurge 3.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
-@keyframes scalingArrowSurge {
-  0%, 100% {
-    transform: scale(0.96) translate(0, 0);
-  }
-  50% {
-    transform: scale(1.04) translate(4px, -6px);
-  }
-}
-
-.arrow-pulse-beam {
-  stroke-dasharray: 60 280;
-  animation: arrowBeamRun 2.4s linear infinite;
-}
-
-@keyframes arrowBeamRun {
-  0% {
-    stroke-dashoffset: 340;
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.95;
-  }
-  80% {
-    opacity: 0.95;
-  }
-  100% {
-    stroke-dashoffset: -40;
-    opacity: 0;
-  }
-}
-
-.arrow-tip-ping {
-  transform-origin: 274px 76px;
-  animation: arrowTipPing 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-}
-
-@keyframes arrowTipPing {
-  0% {
-    transform: scale(0.6);
-    opacity: 1;
-  }
-  75%, 100% {
-    transform: scale(2.6);
-    opacity: 0;
-  }
+  max-width: 860px;
 }
 
 .standard-heading {
@@ -2678,14 +2604,7 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   }
 
   .manifesto-split {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
     margin-bottom: 36px;
-  }
-
-  .manifesto-arrow-wrap {
-    width: 210px;
   }
 
   .case-card {
