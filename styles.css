@@ -1903,13 +1903,71 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 @media (max-width: 960px) {
   .partnerships-logo-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 14px;
+  }
+  .partner-logo-card {
+    height: 110px;
+    padding: 18px 20px;
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 600px) {
+  .partnerships-editorial-section {
+    padding: 40px 0 48px 0;
+  }
+  .partnerships-editorial-section .section-title-row {
+    margin-bottom: 24px;
+  }
   .partnerships-logo-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .partner-logo-card {
+    height: 82px;
+    padding: 10px 14px;
+    border-radius: 12px;
+  }
+  .partner-grid-img {
+    max-width: 125px;
+    max-height: 44px;
+  }
+  .partner--mcsaatchi {
+    height: 46px;
+  }
+  .partner--meta {
+    height: 28px;
+  }
+  .partner--lemma {
+    height: 28px;
+  }
+  .partner--krafting {
+    height: 30px;
+  }
+  .partner--wiseidiot {
+    height: 24px;
+  }
+  .partner--3bf {
+    height: 36px;
+  }
+  .partner--psco {
+    height: 26px;
+  }
+  .partner--flyingpencil {
+    height: 34px;
+  }
+}
+
+@media (max-width: 360px) {
+  .partnerships-logo-grid {
+    gap: 8px;
+  }
+  .partner-logo-card {
+    height: 72px;
+    padding: 8px 10px;
+  }
+  .partner-grid-img {
+    max-width: 105px;
+    max-height: 36px;
   }
 }
 
