@@ -2267,40 +2267,15 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
     padding: 24px 22px;
   }
 
-  /* Disable sequence animation on mobile & tablet devices (<= 1100px) */
-  .protocol-track.is-animated .protocol-card,
-  .protocol-track .protocol-card,
-  .protocol-card {
-    opacity: 1 !important;
-    transform: none !important;
-    pointer-events: auto !important;
-    transition: none !important;
-  }
-
-  .protocol-track.is-animated .protocol-card::before,
-  .protocol-card::before {
-    opacity: 0.65 !important;
-  }
-
   .protocol-connector {
     flex: 0 0 28px;
     height: 28px;
     margin: 4px auto;
     transform: rotate(90deg);
-    opacity: 0.85 !important;
-    color: var(--c-sky) !important;
-  }
-
-  .connector-arrow .arrow-stem {
-    stroke-dashoffset: 0 !important;
-  }
-
-  .connector-arrow .arrow-tip {
-    opacity: 1 !important;
   }
 
   .protocol-track.is-animated .protocol-connector.is-active {
-    transform: rotate(90deg) translateX(3px);
+    transform: rotate(90deg) translateY(3px);
   }
 
   .comp-row {

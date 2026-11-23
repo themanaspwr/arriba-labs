@@ -276,11 +276,7 @@
     const track = document.getElementById('protocol-track');
     if (!track) return;
 
-    // Disable sequence animation on mobile and tablet devices (<= 1040px)
-    // All 5 cards remain immediately and permanently visible
-    if (window.innerWidth <= 1040) return;
-
-    // Progressive enhancement: add is-animated class so CSS activates sequence mode
+    // Enable sequence animation state
     track.classList.add('is-animated');
 
     const card2 = track.querySelector('.protocol-card[data-step="2"]');
@@ -339,8 +335,28 @@
       }, 450);
     }
 
-    // Play sequence once when user reaches the section
-    if ('IntersectionObserver' in window) {
+    // Trigger via GSAP ScrollTrigger (synced with Lenis) or IntersectionObserver fallback
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.create({
+        trigger: track,
+        start: 'top 80%',
+        once: true,
+        onEnter: () => {
+          const splash = document.getElementById('splash-preloader');
+          if (splash && !splash.classList.contains('is-faded')) {
+            const checkSplash = setInterval(() => {
+              const sp = document.getElementById('splash-preloader');
+              if (!sp || sp.classList.contains('is-faded')) {
+                clearInterval(checkSplash);
+                runStepSequenceOnce();
+              }
+            }, 100);
+          } else {
+            runStepSequenceOnce();
+          }
+        }
+      });
+    } else if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting && !hasPlayed) {
@@ -348,7 +364,7 @@
             observer.unobserve(track);
           }
         });
-      }, { threshold: 0.25 });
+      }, { threshold: 0.15 });
       observer.observe(track);
     } else {
       runStepSequenceOnce();
