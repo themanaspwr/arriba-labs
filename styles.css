@@ -596,10 +596,10 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 
 .glass-plate {
   position: absolute;
-  top: 130px;
-  left: 40px;
-  width: 580px;
-  height: calc(580px * 714 / 1566);
+  top: 50px;
+  left: 10px;
+  width: 460px;
+  height: 460px;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -637,21 +637,21 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 .tri-glass-shape {
   fill: url(#triGlassFill);
   stroke: url(#triGlassStroke);
-  stroke-width: 2.5;
+  stroke-width: 2.2;
   stroke-linejoin: round;
 }
 
 .tri-glass-rim {
   fill: none;
   stroke: rgba(255, 255, 255, 0.12);
-  stroke-width: 1.5;
+  stroke-width: 1.2;
   stroke-linejoin: round;
 }
 
 .plate-glow-cyan {
   position: absolute;
-  top: 10%;
-  left: 36%;
+  top: 25%;
+  left: 22%;
   width: 180px;
   height: 180px;
   border-radius: 50%;
@@ -663,8 +663,8 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 
 .plate-glow-violet {
   position: absolute;
-  top: 15%;
-  left: 50%;
+  top: 32%;
+  left: 45%;
   width: 170px;
   height: 170px;
   border-radius: 50%;
@@ -676,13 +676,13 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 
 .plate-specular-light {
   position: absolute;
-  top: -12px;
-  left: calc(50% - 60px);
+  top: 3%;
+  left: 3%;
   width: 120px;
-  height: 70px;
+  height: 120px;
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgba(255, 255, 255, 0.35) 0%, rgba(56, 189, 248, 0.12) 45%, transparent 70%);
-  filter: blur(8px);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, rgba(56, 189, 248, 0.12) 45%, transparent 70%);
+  filter: blur(10px);
   pointer-events: none;
 }
 
