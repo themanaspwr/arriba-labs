@@ -335,29 +335,6 @@
     } else {
       setTimeout(revealPlatesFromDarkDepth, 350);
     }
-
-    // Interactive 3D mouse parallax on hero hover (front-facing angles)
-    const heroSection = document.getElementById('hero');
-    const cluster = document.getElementById('hero-glass-cluster');
-    if (heroSection && cluster && window.innerWidth > 900) {
-      heroSection.addEventListener('mousemove', (e) => {
-        const rect = heroSection.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        const rotX = 10 - y * 8;
-        const rotY = -8 + x * 10;
-        const rotZ = 6 + x * 2;
-        cluster.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
-      });
-
-      heroSection.addEventListener('mouseleave', () => {
-        cluster.style.transition = 'transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
-        cluster.style.transform = 'rotateX(10deg) rotateY(-8deg) rotateZ(6deg)';
-        setTimeout(() => {
-          cluster.style.transition = '';
-        }, 1200);
-      });
-    }
   }
 
   // =========================================================================

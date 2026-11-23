@@ -586,19 +586,6 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   height: 100%;
   transform-style: preserve-3d;
   transform: rotateX(10deg) rotateY(-8deg) rotateZ(6deg);
-  animation: heroGlassFloat 9s ease-in-out infinite alternate;
-}
-
-@keyframes heroGlassFloat {
-  0% {
-    transform: rotateX(10deg) rotateY(-8deg) rotateZ(6deg) translateY(0px);
-  }
-  50% {
-    transform: rotateX(12deg) rotateY(-6deg) rotateZ(7deg) translateY(-8px);
-  }
-  100% {
-    transform: rotateX(8deg) rotateY(-10deg) rotateZ(5deg) translateY(6px);
-  }
 }
 
 .glass-plate {
