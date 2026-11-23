@@ -479,22 +479,22 @@ html[data-theme="light"] .splash-ambient-glow {
   will-change: transform, opacity;
 }
 
-.splash-chevron-layer.splash-layer-top {
-  opacity: 1;
-  transform: translateY(0);
-  z-index: 3;
+.splash-chevron-layer.splash-layer-bot {
+  opacity: 0;
+  transform: translateY(28px);
+  z-index: 1;
 }
 
 .splash-chevron-layer.splash-layer-mid {
   opacity: 0;
-  transform: translateY(36px);
+  transform: translateY(28px);
   z-index: 2;
 }
 
-.splash-chevron-layer.splash-layer-bot {
+.splash-chevron-layer.splash-layer-top {
   opacity: 0;
-  transform: translateY(64px);
-  z-index: 1;
+  transform: translateY(28px);
+  z-index: 3;
 }
 
 .splash-chevron-img {

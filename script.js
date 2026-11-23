@@ -87,6 +87,7 @@
     const splash = document.getElementById('splash-preloader');
     if (!splash) return;
 
+    const top = document.getElementById('splash-top');
     const mid = document.getElementById('splash-mid');
     const bot = document.getElementById('splash-bot');
     const wm = document.getElementById('splash-wordmark');
@@ -95,62 +96,72 @@
 
     if (typeof gsap !== 'undefined') {
       // Set initial hidden states with elegant downward offsets
-      gsap.set(mid, { opacity: 0, y: 36, scale: 0.98 });
-      gsap.set(bot, { opacity: 0, y: 64, scale: 0.96 });
+      gsap.set(bot, { opacity: 0, y: 28, scale: 0.96 });
+      gsap.set(mid, { opacity: 0, y: 28, scale: 0.97 });
+      gsap.set(top, { opacity: 0, y: 28, scale: 0.98 });
       if (wm) gsap.set(wm, { opacity: 0, y: 16 });
 
       const tl = gsap.timeline();
 
-      // 1. Smooth, unhurried logo formation sequence
-      // Middle Chevron glides up into place
-      tl.to(mid, {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        duration: 0.85,
-        ease: 'power3.out'
-      }, 0.25);
-
-      // Lower Chevron glides up smoothly into stack
+      // Logo formation sequence:
+      // 1. Smaller Chevron (inner) appears first
       tl.to(bot, {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.85,
+        duration: 0.65,
         ease: 'power3.out'
-      }, 0.70);
+      }, 0.20);
 
-      // ARRIBA Wordmark glides up into crisp focus
+      // 2. Medium Chevron appears next
+      tl.to(mid, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.65,
+        ease: 'power3.out'
+      }, 0.65);
+
+      // 3. Biggest Chevron (outer) appears third
+      tl.to(top, {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.65,
+        ease: 'power3.out'
+      }, 1.10);
+
+      // 4. ARRIBA Wordmark glides up into crisp focus
       if (wm) {
         tl.to(wm, {
           opacity: 1,
           y: 0,
-          duration: 0.75,
+          duration: 0.65,
           ease: 'power2.out'
-        }, 1.15);
+        }, 1.55);
       }
 
-      // 2. Fully assembled logo breathes for exactly 1.35 seconds (1.60s to 2.95s)
+      // Fully assembled logo breathes
       tl.to(cluster, {
         scale: 1.045,
-        duration: 0.675,
+        duration: 0.65,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: 1
-      }, 1.60);
+      }, 2.05);
 
       if (glow) {
         tl.to(glow, {
           scale: 1.18,
           opacity: 0.95,
-          duration: 0.675,
+          duration: 0.65,
           ease: 'sine.inOut',
           yoyo: true,
           repeat: 1
-        }, 1.60);
+        }, 2.05);
       }
 
-      // 3. Smooth, cinematic fade into the actual website
+      // Smooth cinematic fade into the actual website
       tl.to(splash, {
         opacity: 0,
         duration: 0.75,
@@ -161,7 +172,7 @@
             splash.parentNode.removeChild(splash);
           }
         }
-      }, 2.95);
+      }, 3.35);
 
     } else {
       // Fallback if GSAP is unavailable
@@ -172,7 +183,7 @@
           splash.classList.add('is-faded');
           if (splash.parentNode) splash.parentNode.removeChild(splash);
         }, 750);
-      }, 2950);
+      }, 3350);
     }
   }
 
