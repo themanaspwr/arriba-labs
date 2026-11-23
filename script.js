@@ -238,10 +238,13 @@
     // 1. Initialize Splash Preloader
     initSplashPreloader();
 
-    // 2. Initialize Counters
+    // 2. Initialize Ambient 3D Glass Stack in Hero
+    initHeroGlassStack();
+
+    // 3. Initialize Counters
     initCounterStats();
 
-    // 3. Initialize 5-Step Audit Sequential Animation
+    // 4. Initialize 5-Step Audit Sequential Animation
     initProtocolSequence();
 
     // 4. Initialize One-Time Typewriter Animation on Right-Column Descriptions
@@ -265,6 +268,77 @@
             }
           }
         );
+      });
+    }
+  }
+
+  // =========================================================================
+  // 5A. HERO 3D AMBIENT GLASS STACK ANIMATION (ONE-BY-ONE REVEAL)
+  // =========================================================================
+  function initHeroGlassStack() {
+    const scene = document.getElementById('hero-glass-scene');
+    if (!scene) return;
+
+    const plates = scene.querySelectorAll('.glass-plate');
+    if (!plates.length) return;
+
+    let hasRevealed = false;
+
+    function revealPlatesOneByOne() {
+      if (hasRevealed) return;
+      hasRevealed = true;
+
+      // Reveal back to front: Plate 6 -> Plate 1
+      const reversed = Array.from(plates).reverse();
+      reversed.forEach((plate, i) => {
+        setTimeout(() => {
+          plate.classList.add('is-plate-visible');
+          const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
+          const baseOpacity = 1 - (layerIdx * 0.08);
+          plate.style.opacity = baseOpacity.toString();
+          plate.style.transform = `translate3d(${layerIdx * 32}px, ${layerIdx * 22}px, ${layerIdx * -32}px)`;
+        }, i * 200); // 200ms stagger between each layer
+      });
+
+      setTimeout(() => {
+        scene.classList.add('is-assembled');
+      }, reversed.length * 200 + 400);
+    }
+
+    // Trigger after splash preloader fades, or on load
+    const splash = document.getElementById('splash-preloader');
+    if (splash && !splash.classList.contains('is-faded')) {
+      const checkSplash = setInterval(() => {
+        const sp = document.getElementById('splash-preloader');
+        if (!sp || sp.classList.contains('is-faded')) {
+          clearInterval(checkSplash);
+          setTimeout(revealPlatesOneByOne, 200);
+        }
+      }, 100);
+    } else {
+      setTimeout(revealPlatesOneByOne, 350);
+    }
+
+    // Interactive 3D mouse parallax on hero hover
+    const heroSection = document.getElementById('hero');
+    const cluster = document.getElementById('hero-glass-cluster');
+    if (heroSection && cluster && window.innerWidth > 900) {
+      heroSection.addEventListener('mousemove', (e) => {
+        const rect = heroSection.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        const rotX = 48 - y * 12;
+        const rotY = -18 + x * 14;
+        const rotZ = 35 + x * 4;
+        cluster.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
+      });
+
+      heroSection.addEventListener('mouseleave', () => {
+        cluster.style.transition = 'transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
+        cluster.style.transform = 'rotateX(48deg) rotateY(-18deg) rotateZ(35deg)';
+        setTimeout(() => {
+          cluster.style.transition = '';
+        }, 1200);
       });
     }
   }
