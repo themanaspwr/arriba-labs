@@ -836,6 +836,42 @@
   }
 
   // =========================================================================
+  // 10B. CASE LEDGER MOBILE ACCORDION (Click to view full case study)
+  // =========================================================================
+  const caseCards = document.querySelectorAll('.case-card');
+  if (caseCards.length) {
+    caseCards.forEach((card) => {
+      const header = card.querySelector('.case-card-header');
+      if (!header) return;
+
+      function toggleCaseCard() {
+        // Only active on mobile screens (width <= 860px)
+        if (window.innerWidth > 860) return;
+
+        const isExpanded = card.classList.toggle('is-expanded');
+        header.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+
+        const label = card.querySelector('.case-expand-label');
+        if (label) {
+          label.textContent = isExpanded ? 'Close Case' : 'View Case';
+        }
+
+        if (typeof ScrollTrigger !== 'undefined') {
+          setTimeout(() => ScrollTrigger.refresh(), 350);
+        }
+      }
+
+      header.addEventListener('click', toggleCaseCard);
+      header.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleCaseCard();
+        }
+      });
+    });
+  }
+
+  // =========================================================================
   // 11. COOKIE & PRIVACY CONSENT BANNER
   // =========================================================================
   const cookieBanner = document.getElementById('cookie-banner');

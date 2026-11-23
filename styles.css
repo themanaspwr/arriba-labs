@@ -1255,7 +1255,24 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 .case-brand-row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 14px;
+}
+
+.case-brand-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.case-expand-btn {
+  display: none;
+}
+
+.case-card-details {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
 }
 
 .case-brand-logo {
@@ -2448,12 +2465,112 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   
 
   .case-cards-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .case-card {
-    padding: 30px 24px;
+    padding: 16px 18px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease;
+  }
+
+  .case-card:hover {
+    transform: none;
+  }
+
+  .case-card-header {
+    margin-bottom: 0;
+    cursor: pointer;
+    user-select: none;
+    transition: margin-bottom 0.3s ease, padding-bottom 0.3s ease;
+  }
+
+  .case-card-meta {
+    margin-bottom: 10px;
+    gap: 8px;
+  }
+
+  .case-brand-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .case-brand-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .case-brand-logo {
+    height: 38px;
+    max-width: 85px;
+  }
+
+  .case-brand-name {
+    font-size: 1.25rem;
+  }
+
+  .case-expand-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.24);
+    color: var(--c-sky);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+    transition: all 0.28s ease;
+  }
+
+  .case-chevron {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .case-card-details {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, padding-top 0.3s ease;
+    padding-top: 0;
+  }
+
+  /* Expanded state on mobile phones */
+  .case-card.is-expanded {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(56, 189, 248, 0.35);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .case-card.is-expanded .case-card-header {
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .case-card.is-expanded .case-expand-btn {
+    background: rgba(56, 189, 248, 0.16);
+    border-color: rgba(56, 189, 248, 0.45);
+    color: #ffffff;
+  }
+
+  .case-card.is-expanded .case-chevron {
+    transform: rotate(180deg);
+  }
+
+  .case-card.is-expanded .case-card-details {
+    max-height: 1400px;
+    opacity: 1;
+    padding-top: 4px;
   }
 
   .protocol-track {
@@ -2681,7 +2798,7 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   }
 
   .case-card {
-    padding: 26px 20px;
+    padding: 14px 16px;
   }
 
   .case-card-meta {
@@ -4025,6 +4142,28 @@ html[data-theme="light"] .case-study-card:hover {
   background: rgba(255, 255, 255, 0.92);
   border-color: rgba(67, 56, 202, 0.35);
   box-shadow: 0 20px 48px rgba(67, 56, 202, 0.12);
+}
+
+html[data-theme="light"] .case-expand-btn {
+  background: rgba(67, 56, 202, 0.08);
+  border-color: rgba(67, 56, 202, 0.22);
+  color: #4338ca;
+}
+
+html[data-theme="light"] .case-card.is-expanded {
+  background: #ffffff;
+  border-color: rgba(67, 56, 202, 0.35);
+  box-shadow: 0 12px 36px rgba(67, 56, 202, 0.12);
+}
+
+html[data-theme="light"] .case-card.is-expanded .case-card-header {
+  border-bottom-color: rgba(14, 14, 23, 0.08);
+}
+
+html[data-theme="light"] .case-card.is-expanded .case-expand-btn {
+  background: rgba(67, 56, 202, 0.15);
+  border-color: rgba(67, 56, 202, 0.45);
+  color: #312e81;
 }
 
 html[data-theme="light"] .case-card::before,
