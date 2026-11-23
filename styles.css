@@ -572,16 +572,16 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
    -------------------------------------------------------------------------- */
 .hero-glass-scene {
   position: absolute;
-  right: -60px;
+  right: -50px;
   top: 50%;
   transform: translateY(-50%);
-  width: 980px;
+  width: 1000px;
   height: 720px;
   perspective: 1200px;
   perspective-origin: 50% 50%;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.42;
+  opacity: 0.52;
   overflow: visible;
   transition: opacity 0.8s ease;
 }
@@ -603,16 +603,16 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
     transform: rotateX(12deg) rotateY(-6deg) translateY(0px);
   }
   50% {
-    transform: rotateX(10deg) rotateY(-4deg) translateY(-12px);
+    transform: rotateX(10deg) rotateY(-4deg) translateY(-14px);
   }
 }
 
 .glass-plate {
   position: absolute;
-  top: 220px;
+  top: 190px;
   left: 0;
-  width: 980px;
-  height: 447px;
+  width: 1000px;
+  height: 456px;
   background: transparent;
   border: none;
   box-shadow: none;
@@ -629,8 +629,8 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   height: 100%;
   clip-path: url(#chevronClip);
   -webkit-clip-path: url(#chevronClip);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   pointer-events: none;
 }
 
@@ -642,22 +642,22 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   height: 100%;
   overflow: visible;
   filter: 
-    drop-shadow(0 24px 50px rgba(0, 0, 0, 0.58))
-    drop-shadow(0 -3px 18px rgba(56, 189, 248, 0.28))
-    drop-shadow(0 3px 20px rgba(168, 85, 247, 0.22));
+    drop-shadow(0 28px 55px rgba(0, 0, 0, 0.62))
+    drop-shadow(0 -4px 22px rgba(56, 189, 248, 0.32))
+    drop-shadow(0 4px 24px rgba(168, 85, 247, 0.28));
 }
 
 .tri-glass-shape {
   fill: url(#triGlassFill);
   stroke: url(#triGlassStroke);
-  stroke-width: 2.2;
+  stroke-width: 3.8;
   stroke-linejoin: round;
 }
 
 .tri-glass-rim {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.12);
-  stroke-width: 1.2;
+  stroke: rgba(255, 255, 255, 0.22);
+  stroke-width: 1.8;
   stroke-linejoin: round;
 }
 

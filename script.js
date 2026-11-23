@@ -296,28 +296,30 @@
     let hasRevealed = false;
 
     // Set initial dark depth state for all plates immediately
+    // plates are in DOM order: plate-3 (layer 2) to plate-1 (layer 0)
+    // platesArr reversed: plate-1 (layer 0, base) -> plate-2 (layer 1, mid) -> plate-3 (layer 2, top)
     const platesArr = Array.from(plates).reverse();
     platesArr.forEach((plate) => {
       const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
       const tx = 0;
-      const ty = layerIdx * -48;
-      const tz = layerIdx * -36;
+      const ty = layerIdx * -85;
+      const tz = layerIdx * -45;
       plate.style.opacity = '0';
       plate.style.filter = 'blur(14px) brightness(0.15)';
-      plate.style.transform = `translate3d(${tx}px, ${ty + 45}px, ${tz - 280}px) scale(0.85)`;
+      plate.style.transform = `translate3d(${tx}px, ${ty + 50}px, ${tz - 300}px) scale(0.85)`;
     });
 
     function revealPlatesFromDarkDepth() {
       if (hasRevealed) return;
       hasRevealed = true;
 
-      // Reveal bottom to top: Plate 1 (bottom) -> Plate 6 (top) stacking upwards
+      // Reveal bottom to top: Plate 1 (base) -> Plate 2 (mid) -> Plate 3 (top) stacking upwards
       platesArr.forEach((plate, i) => {
         const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
         const tx = 0;
-        const ty = layerIdx * -48;
-        const tz = layerIdx * -36;
-        const baseOpacity = 0.78 - (layerIdx * 0.055);
+        const ty = layerIdx * -85;
+        const tz = layerIdx * -45;
+        const baseOpacity = 0.88 - (layerIdx * 0.08);
 
         setTimeout(() => {
           plate.classList.add('is-plate-visible');
@@ -325,12 +327,12 @@
           plate.style.opacity = baseOpacity.toString();
           plate.style.filter = 'blur(0px) brightness(1)';
           plate.style.transform = `translate3d(${tx}px, ${ty}px, ${tz}px) scale(1)`;
-        }, i * 180); // 180ms stagger: stacks upwards layer by layer
+        }, i * 240); // 240ms stagger: stacks upwards layer by layer
       });
 
       setTimeout(() => {
         scene.classList.add('is-assembled');
-      }, platesArr.length * 180 + 500);
+      }, platesArr.length * 240 + 500);
     }
 
     // Trigger after splash preloader fades, or on load
