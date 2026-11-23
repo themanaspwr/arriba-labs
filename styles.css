@@ -3709,30 +3709,30 @@ html[data-theme="light"] .drawer-theme-toggle {
    lavender and lilac on the left/bottom, and delicate ice-cyan on the right.
    ========================================================================== */
 html[data-theme="light"] {
-  --bg-deep: #f7f5fc;
-  --bg-surface: rgba(255, 255, 255, 0.75);
-  --bg-subtle: rgba(255, 255, 255, 0.9);
+  --bg-deep: #f6f8fd;
+  --bg-surface: rgba(255, 255, 255, 0.78);
+  --bg-subtle: rgba(255, 255, 255, 0.92);
 
   --text-white: #0e0e17;
   --text-heading: #0f101a;
   --text-body: #475569;
   --text-dim: #64748b;
-  --text-accent: #4338ca;
+  --text-accent: #2563eb;
 
   --border-line: rgba(14, 14, 23, 0.08);
-  --border-active: rgba(67, 56, 202, 0.45);
+  --border-active: rgba(37, 99, 235, 0.45);
 }
 
 html[data-theme="light"],
 html[data-theme="light"] body.editorial-body {
-  background-color: #f7f5fc;
+  background-color: #f6f8fd;
   background-image: 
-    radial-gradient(circle at 90% 12%, rgba(189, 232, 230, 0.8) 0%, rgba(189, 232, 230, 0) 55%),
-    radial-gradient(circle at 10% 25%, rgba(241, 207, 255, 0.78) 0%, rgba(241, 207, 255, 0) 50%),
-    radial-gradient(circle at 10% 85%, rgba(231, 185, 255, 0.75) 0%, rgba(231, 185, 255, 0) 55%),
-    radial-gradient(circle at 88% 85%, rgba(171, 228, 222, 0.7) 0%, rgba(171, 228, 222, 0) 55%),
-    radial-gradient(circle at 50% 50%, rgba(218, 213, 235, 0.45) 0%, rgba(218, 213, 235, 0) 65%),
-    linear-gradient(135deg, #fafbff 0%, #f4effa 45%, #ecf5f8 100%);
+    radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.16) 0%, rgba(124, 58, 237, 0) 52%),
+    radial-gradient(circle at 8% 80%, rgba(99, 102, 241, 0.14) 0%, rgba(99, 102, 241, 0) 50%),
+    radial-gradient(circle at 90% 16%, rgba(29, 78, 216, 0.16) 0%, rgba(29, 78, 216, 0) 55%),
+    radial-gradient(circle at 88% 85%, rgba(37, 99, 235, 0.13) 0%, rgba(37, 99, 235, 0) 52%),
+    radial-gradient(circle at 50% 50%, rgba(147, 138, 232, 0.08) 0%, rgba(147, 138, 232, 0) 65%),
+    linear-gradient(135deg, #f8f9fe 0%, #f2f3fd 45%, #ecf2fc 100%);
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
@@ -3799,15 +3799,9 @@ html[data-theme="light"] .hero-top-kicker .kicker-sub {
 }
 
 html[data-theme="light"] .hero-clean-title {
-  background: linear-gradient(120deg, #0e0e17 25%, #4338ca 65%, #1e3c72 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-html[data-theme="light"] .gradient-text {
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #0284c7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0e0e17;
+  background: none;
+  -webkit-text-fill-color: #0e0e17;
 }
 
 html[data-theme="light"] .hero-editorial-copy {
@@ -3826,14 +3820,14 @@ html[data-theme="light"] .tri-glass-shape {
 }
 
 html[data-theme="light"] .tri-glass-rim {
-  stroke: rgba(15, 23, 42, 0.08);
+  stroke: rgba(124, 58, 237, 0.22);
 }
 
 html[data-theme="light"] .triangle-glass-svg {
   filter: 
-    drop-shadow(0 16px 36px rgba(14, 14, 23, 0.12))
-    drop-shadow(0 -2px 14px rgba(2, 132, 199, 0.18))
-    drop-shadow(0 2px 14px rgba(124, 58, 237, 0.15));
+    drop-shadow(0 20px 42px rgba(29, 78, 216, 0.12))
+    drop-shadow(0 -3px 18px rgba(124, 58, 237, 0.16))
+    drop-shadow(0 3px 20px rgba(37, 99, 235, 0.14));
 }
 
 html[data-theme="light"] .hero-glass-scene {
