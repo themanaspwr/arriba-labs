@@ -1688,87 +1688,26 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 }
 
 .manifesto-split {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 48px;
   margin-bottom: 48px;
+  max-width: 1040px;
 }
 
 .manifesto-text-block {
-  max-width: 680px;
+  flex: 1 1 600px;
+  max-width: 660px;
 }
 
-.manifesto-arrow-stage {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.scaling-arrow-card {
-  width: clamp(280px, 28vw, 360px);
-  background: rgba(16, 185, 129, 0.03);
-  border: 1px solid rgba(16, 185, 129, 0.18);
-  border-radius: 16px;
-  padding: 18px 20px 14px;
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5), 0 0 24px rgba(16, 185, 129, 0.08);
-  backdrop-filter: blur(12px);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.scaling-arrow-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(16, 185, 129, 0.32);
-  box-shadow: 0 20px 48px -10px rgba(0, 0, 0, 0.6), 0 0 32px rgba(16, 185, 129, 0.14);
-}
-
-.scaling-arrow-header {
+.manifesto-arrow-wrap {
+  flex: 0 0 clamp(190px, 20vw, 250px);
+  width: clamp(190px, 20vw, 250px);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 6px;
-}
-
-.scaling-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #10b981;
-}
-
-.scaling-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 8px #10b981;
-  animation: scalingDotBlink 2s ease-in-out infinite;
-}
-
-@keyframes scalingDotBlink {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.4;
-    transform: scale(0.85);
-  }
-}
-
-.scaling-metric {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 800;
-  color: #34d399;
-  letter-spacing: -0.02em;
-}
-
-.scaling-arrow-canvas {
-  width: 100%;
+  justify-content: center;
+  pointer-events: none;
 }
 
 .scaling-arrow-svg {
@@ -1778,10 +1717,10 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   overflow: visible;
 }
 
-/* Scaling Arrow Animation */
+/* Scaling Arrow Animation (Arriba Logo Palette) */
 .scaling-arrow-group {
   transform-origin: 22px 222px;
-  animation: scalingArrowSurge 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: scalingArrowSurge 3.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes scalingArrowSurge {
@@ -1789,13 +1728,13 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
     transform: scale(0.96) translate(0, 0);
   }
   50% {
-    transform: scale(1.03) translate(4px, -6px);
+    transform: scale(1.04) translate(4px, -6px);
   }
 }
 
 .arrow-pulse-beam {
   stroke-dasharray: 60 280;
-  animation: arrowBeamRun 2.6s linear infinite;
+  animation: arrowBeamRun 2.4s linear infinite;
 }
 
 @keyframes arrowBeamRun {
@@ -1817,7 +1756,7 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 
 .arrow-tip-ping {
   transform-origin: 274px 76px;
-  animation: arrowTipPing 2.6s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  animation: arrowTipPing 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 
 @keyframes arrowTipPing {
@@ -1826,7 +1765,7 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
     opacity: 1;
   }
   75%, 100% {
-    transform: scale(2.8);
+    transform: scale(2.6);
     opacity: 0;
   }
 }
@@ -2739,18 +2678,14 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   }
 
   .manifesto-split {
-    grid-template-columns: 1fr;
-    gap: 28px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
     margin-bottom: 36px;
   }
 
-  .manifesto-arrow-stage {
-    justify-content: flex-start;
-  }
-
-  .scaling-arrow-card {
-    max-width: 320px;
-    width: 100%;
+  .manifesto-arrow-wrap {
+    width: 210px;
   }
 
   .case-card {
@@ -4697,12 +4632,3 @@ html[data-theme="light"] .btn-whatsapp-drawer:hover {
   color: #ffffff !important;
 }
 
-html[data-theme="light"] .scaling-arrow-card {
-  background: rgba(16, 185, 129, 0.05);
-  border-color: rgba(16, 185, 129, 0.25);
-  box-shadow: 0 14px 30px -8px rgba(16, 185, 129, 0.12);
-}
-
-html[data-theme="light"] .arrow-grid-lines {
-  stroke: rgba(14, 14, 23, 0.08);
-}
