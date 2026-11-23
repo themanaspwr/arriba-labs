@@ -218,76 +218,79 @@
           <!-- Ambient 3D Glass Stack (Right Column Background) -->
           <div class="hero-glass-scene" id="hero-glass-scene" aria-hidden="true">
             <div class="hero-glass-cluster" id="hero-glass-cluster">
-              <!-- Shared SVG Gradient Definitions -->
+              <!-- Shared SVG Gradient & ClipPath Definitions -->
               <svg class="triangle-glass-defs" width="0" height="0" style="position: absolute; pointer-events: none;">
                 <defs>
+                  <clipPath id="chevronClip" clipPathUnits="objectBoundingBox">
+                    <polygon points="0.4987,0 0.998,0.9986 0.917,0.9986 0.4987,0.2381 0.083,0.9986 0.0013,0.9986" />
+                  </clipPath>
                   <linearGradient id="triGlassFill" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.08" />
-                    <stop offset="28%" stop-color="#38bdf8" stop-opacity="0.035" />
-                    <stop offset="70%" stop-color="#a855f7" stop-opacity="0.04" />
-                    <stop offset="100%" stop-color="#141423" stop-opacity="0.32" />
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.10" />
+                    <stop offset="25%" stop-color="#38bdf8" stop-opacity="0.05" />
+                    <stop offset="70%" stop-color="#a855f7" stop-opacity="0.06" />
+                    <stop offset="100%" stop-color="#0f172a" stop-opacity="0.45" />
                   </linearGradient>
                   <linearGradient id="triGlassStroke" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95" />
-                    <stop offset="25%" stop-color="#38bdf8" stop-opacity="0.8" />
-                    <stop offset="75%" stop-color="#a855f7" stop-opacity="0.5" />
+                    <stop offset="25%" stop-color="#38bdf8" stop-opacity="0.80" />
+                    <stop offset="75%" stop-color="#a855f7" stop-opacity="0.50" />
                     <stop offset="100%" stop-color="#6366f1" stop-opacity="0.25" />
                   </linearGradient>
                   <!-- Light theme gradients -->
                   <linearGradient id="triGlassFillLight" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8" />
-                    <stop offset="35%" stop-color="#38bdf8" stop-opacity="0.12" />
-                    <stop offset="70%" stop-color="#a855f7" stop-opacity="0.1" />
-                    <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.7" />
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.85" />
+                    <stop offset="35%" stop-color="#38bdf8" stop-opacity="0.14" />
+                    <stop offset="70%" stop-color="#a855f7" stop-opacity="0.12" />
+                    <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.75" />
                   </linearGradient>
                   <linearGradient id="triGlassStrokeLight" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#0284c7" stop-opacity="0.75" />
-                    <stop offset="50%" stop-color="#7c3aed" stop-opacity="0.5" />
-                    <stop offset="100%" stop-color="#0f172a" stop-opacity="0.15" />
+                    <stop offset="0%" stop-color="#0284c7" stop-opacity="0.80" />
+                    <stop offset="50%" stop-color="#7c3aed" stop-opacity="0.55" />
+                    <stop offset="100%" stop-color="#0f172a" stop-opacity="0.20" />
                   </linearGradient>
                 </defs>
               </svg>
 
               <div class="glass-plate plate-6" data-layer="6" style="--layer-idx: 5;">
                 <div class="tri-glass-blur-backdrop"></div>
-                <svg class="triangle-glass-svg" viewBox="0 0 480 480" aria-hidden="true">
-                  <path class="tri-glass-shape" d="M 65 120 Q 45 45 120 65 L 420 132 L 362 190 L 168 145 Q 124 124 145 168 L 190 362 L 132 420 Z" />
-                  <path class="tri-glass-rim" d="M 76 122 Q 56 56 122 76 L 406 139 L 366 179 L 174 135 Q 133 133 135 174 L 179 366 L 139 406 Z" />
+                <svg class="triangle-glass-svg" viewBox="0 0 1566 714" aria-hidden="true">
+                  <path class="tri-glass-shape" d="M 781 0 L 1563 713 L 1436 713 L 781 170 L 130 713 L 2 713 Z" />
+                  <path class="tri-glass-rim" d="M 781 24 L 1530 690 L 1445 690 L 781 194 L 121 690 L 36 690 Z" />
                 </svg>
               </div>
               <div class="glass-plate plate-5" data-layer="5" style="--layer-idx: 4;">
                 <div class="tri-glass-blur-backdrop"></div>
-                <svg class="triangle-glass-svg" viewBox="0 0 480 480" aria-hidden="true">
-                  <path class="tri-glass-shape" d="M 65 120 Q 45 45 120 65 L 420 132 L 362 190 L 168 145 Q 124 124 145 168 L 190 362 L 132 420 Z" />
-                  <path class="tri-glass-rim" d="M 76 122 Q 56 56 122 76 L 406 139 L 366 179 L 174 135 Q 133 133 135 174 L 179 366 L 139 406 Z" />
+                <svg class="triangle-glass-svg" viewBox="0 0 1566 714" aria-hidden="true">
+                  <path class="tri-glass-shape" d="M 781 0 L 1563 713 L 1436 713 L 781 170 L 130 713 L 2 713 Z" />
+                  <path class="tri-glass-rim" d="M 781 24 L 1530 690 L 1445 690 L 781 194 L 121 690 L 36 690 Z" />
                 </svg>
               </div>
               <div class="glass-plate plate-4" data-layer="4" style="--layer-idx: 3;">
                 <div class="tri-glass-blur-backdrop"></div>
-                <svg class="triangle-glass-svg" viewBox="0 0 480 480" aria-hidden="true">
-                  <path class="tri-glass-shape" d="M 65 120 Q 45 45 120 65 L 420 132 L 362 190 L 168 145 Q 124 124 145 168 L 190 362 L 132 420 Z" />
-                  <path class="tri-glass-rim" d="M 76 122 Q 56 56 122 76 L 406 139 L 366 179 L 174 135 Q 133 133 135 174 L 179 366 L 139 406 Z" />
+                <svg class="triangle-glass-svg" viewBox="0 0 1566 714" aria-hidden="true">
+                  <path class="tri-glass-shape" d="M 781 0 L 1563 713 L 1436 713 L 781 170 L 130 713 L 2 713 Z" />
+                  <path class="tri-glass-rim" d="M 781 24 L 1530 690 L 1445 690 L 781 194 L 121 690 L 36 690 Z" />
                 </svg>
               </div>
               <div class="glass-plate plate-3" data-layer="3" style="--layer-idx: 2;">
                 <div class="tri-glass-blur-backdrop"></div>
-                <svg class="triangle-glass-svg" viewBox="0 0 480 480" aria-hidden="true">
-                  <path class="tri-glass-shape" d="M 65 120 Q 45 45 120 65 L 420 132 L 362 190 L 168 145 Q 124 124 145 168 L 190 362 L 132 420 Z" />
-                  <path class="tri-glass-rim" d="M 76 122 Q 56 56 122 76 L 406 139 L 366 179 L 174 135 Q 133 133 135 174 L 179 366 L 139 406 Z" />
+                <svg class="triangle-glass-svg" viewBox="0 0 1566 714" aria-hidden="true">
+                  <path class="tri-glass-shape" d="M 781 0 L 1563 713 L 1436 713 L 781 170 L 130 713 L 2 713 Z" />
+                  <path class="tri-glass-rim" d="M 781 24 L 1530 690 L 1445 690 L 781 194 L 121 690 L 36 690 Z" />
                 </svg>
               </div>
               <div class="glass-plate plate-2" data-layer="2" style="--layer-idx: 1;">
                 <div class="tri-glass-blur-backdrop"></div>
-                <svg class="triangle-glass-svg" viewBox="0 0 480 480" aria-hidden="true">
-                  <path class="tri-glass-shape" d="M 65 120 Q 45 45 120 65 L 420 132 L 362 190 L 168 145 Q 124 124 145 168 L 190 362 L 132 420 Z" />
-                  <path class="tri-glass-rim" d="M 76 122 Q 56 56 122 76 L 406 139 L 366 179 L 174 135 Q 133 133 135 174 L 179 366 L 139 406 Z" />
+                <svg class="triangle-glass-svg" viewBox="0 0 1566 714" aria-hidden="true">
+                  <path class="tri-glass-shape" d="M 781 0 L 1563 713 L 1436 713 L 781 170 L 130 713 L 2 713 Z" />
+                  <path class="tri-glass-rim" d="M 781 24 L 1530 690 L 1445 690 L 781 194 L 121 690 L 36 690 Z" />
                 </svg>
               </div>
               <div class="glass-plate plate-1" data-layer="1" style="--layer-idx: 0;">
                 <div class="tri-glass-blur-backdrop"></div>
-                <svg class="triangle-glass-svg" viewBox="0 0 480 480" aria-hidden="true">
-                  <path class="tri-glass-shape" d="M 65 120 Q 45 45 120 65 L 420 132 L 362 190 L 168 145 Q 124 124 145 168 L 190 362 L 132 420 Z" />
-                  <path class="tri-glass-rim" d="M 76 122 Q 56 56 122 76 L 406 139 L 366 179 L 174 135 Q 133 133 135 174 L 179 366 L 139 406 Z" />
+                <svg class="triangle-glass-svg" viewBox="0 0 1566 714" aria-hidden="true">
+                  <path class="tri-glass-shape" d="M 781 0 L 1563 713 L 1436 713 L 781 170 L 130 713 L 2 713 Z" />
+                  <path class="tri-glass-rim" d="M 781 24 L 1530 690 L 1445 690 L 781 194 L 121 690 L 36 690 Z" />
                 </svg>
                 <div class="plate-glow-cyan"></div>
                 <div class="plate-glow-violet"></div>

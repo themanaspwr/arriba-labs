@@ -299,8 +299,8 @@
     const platesArr = Array.from(plates).reverse();
     platesArr.forEach((plate) => {
       const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
-      const tx = layerIdx * 42;
-      const ty = layerIdx * 22;
+      const tx = layerIdx * 28;
+      const ty = layerIdx * 18;
       const tz = layerIdx * -54;
       plate.style.opacity = '0';
       plate.style.filter = 'blur(14px) brightness(0.15)';
@@ -314,8 +314,8 @@
       // Reveal back to front: Plate 6 -> Plate 1
       platesArr.forEach((plate, i) => {
         const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
-        const tx = layerIdx * 42;
-        const ty = layerIdx * 22;
+        const tx = layerIdx * 28;
+        const ty = layerIdx * 18;
         const tz = layerIdx * -54;
         const baseOpacity = 0.72 - (layerIdx * 0.065);
 
