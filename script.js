@@ -273,7 +273,7 @@
   }
 
   // =========================================================================
-  // 5A. HERO 3D AMBIENT GLASS STACK ANIMATION (ONE-BY-ONE REVEAL)
+  // 5A. HERO 3D AMBIENT GLASS STACK ANIMATION (EMERGE FROM DEPTH TO FRONT)
   // =========================================================================
   function initHeroGlassStack() {
     const scene = document.getElementById('hero-glass-scene');
@@ -284,25 +284,42 @@
 
     let hasRevealed = false;
 
-    function revealPlatesOneByOne() {
+    // Set initial dark depth state for all plates immediately
+    const platesArr = Array.from(plates).reverse();
+    platesArr.forEach((plate) => {
+      const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
+      const tx = layerIdx * 30;
+      const ty = layerIdx * 18;
+      const tz = layerIdx * -42;
+      plate.style.opacity = '0';
+      plate.style.filter = 'blur(14px) brightness(0.15)';
+      plate.style.transform = `translate3d(${tx - 20}px, ${ty - 16}px, ${tz - 360}px) scale(0.55)`;
+    });
+
+    function revealPlatesFromDarkDepth() {
       if (hasRevealed) return;
       hasRevealed = true;
 
       // Reveal back to front: Plate 6 -> Plate 1
-      const reversed = Array.from(plates).reverse();
-      reversed.forEach((plate, i) => {
+      platesArr.forEach((plate, i) => {
+        const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
+        const tx = layerIdx * 30;
+        const ty = layerIdx * 18;
+        const tz = layerIdx * -42;
+        const baseOpacity = 0.95 - (layerIdx * 0.08);
+
         setTimeout(() => {
           plate.classList.add('is-plate-visible');
-          const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
-          const baseOpacity = 1 - (layerIdx * 0.08);
+          plate.style.transition = 'opacity 1.05s cubic-bezier(0.16, 1, 0.3, 1), transform 1.05s cubic-bezier(0.16, 1, 0.3, 1), filter 1.05s ease';
           plate.style.opacity = baseOpacity.toString();
-          plate.style.transform = `translate3d(${layerIdx * 32}px, ${layerIdx * 22}px, ${layerIdx * -32}px)`;
-        }, i * 200); // 200ms stagger between each layer
+          plate.style.filter = 'blur(0px) brightness(1)';
+          plate.style.transform = `translate3d(${tx}px, ${ty}px, ${tz}px) scale(1)`;
+        }, i * 220); // 220ms stagger between each layer emerging from dark depth
       });
 
       setTimeout(() => {
         scene.classList.add('is-assembled');
-      }, reversed.length * 200 + 400);
+      }, platesArr.length * 220 + 500);
     }
 
     // Trigger after splash preloader fades, or on load
@@ -312,14 +329,14 @@
         const sp = document.getElementById('splash-preloader');
         if (!sp || sp.classList.contains('is-faded')) {
           clearInterval(checkSplash);
-          setTimeout(revealPlatesOneByOne, 200);
+          setTimeout(revealPlatesFromDarkDepth, 200);
         }
       }, 100);
     } else {
-      setTimeout(revealPlatesOneByOne, 350);
+      setTimeout(revealPlatesFromDarkDepth, 350);
     }
 
-    // Interactive 3D mouse parallax on hero hover
+    // Interactive 3D mouse parallax on hero hover (front-facing angles)
     const heroSection = document.getElementById('hero');
     const cluster = document.getElementById('hero-glass-cluster');
     if (heroSection && cluster && window.innerWidth > 900) {
@@ -327,15 +344,15 @@
         const rect = heroSection.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
-        const rotX = 48 - y * 12;
-        const rotY = -18 + x * 14;
-        const rotZ = 35 + x * 4;
+        const rotX = 18 - y * 10;
+        const rotY = -14 + x * 12;
+        const rotZ = 12 + x * 3;
         cluster.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
       });
 
       heroSection.addEventListener('mouseleave', () => {
         cluster.style.transition = 'transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
-        cluster.style.transform = 'rotateX(48deg) rotateY(-18deg) rotateZ(35deg)';
+        cluster.style.transform = 'rotateX(18deg) rotateY(-14deg) rotateZ(12deg)';
         setTimeout(() => {
           cluster.style.transition = '';
         }, 1200);

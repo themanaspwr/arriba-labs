@@ -557,7 +557,7 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 .hero-content-block {
   max-width: 740px;
   position: relative;
-  z-index: 2;
+  z-index: 5;
   margin-bottom: 0;
 }
 
@@ -566,16 +566,16 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
    -------------------------------------------------------------------------- */
 .hero-glass-scene {
   position: absolute;
-  right: 0;
+  right: -10px;
   top: 48%;
   transform: translateY(-50%);
-  width: 480px;
-  height: 440px;
+  width: 520px;
+  height: 500px;
   perspective: 1200px;
-  perspective-origin: 35% 45%;
+  perspective-origin: 40% 50%;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.55;
+  opacity: 0.62;
   overflow: visible;
   transition: opacity 0.8s ease;
 }
@@ -585,78 +585,85 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transform: rotateX(48deg) rotateY(-18deg) rotateZ(35deg);
+  transform: rotateX(18deg) rotateY(-14deg) rotateZ(12deg);
   animation: heroGlassFloat 9s ease-in-out infinite alternate;
 }
 
 @keyframes heroGlassFloat {
   0% {
-    transform: rotateX(48deg) rotateY(-18deg) rotateZ(35deg) translateY(0px);
+    transform: rotateX(18deg) rotateY(-14deg) rotateZ(12deg) translateY(0px);
   }
   50% {
-    transform: rotateX(50deg) rotateY(-16deg) rotateZ(36deg) translateY(-8px);
+    transform: rotateX(20deg) rotateY(-12deg) rotateZ(13deg) translateY(-8px);
   }
   100% {
-    transform: rotateX(46deg) rotateY(-20deg) rotateZ(34deg) translateY(6px);
+    transform: rotateX(16deg) rotateY(-16deg) rotateZ(11deg) translateY(6px);
   }
 }
 
 .glass-plate {
   position: absolute;
-  top: 100px;
+  top: 70px;
   left: 60px;
-  width: 230px;
-  height: 230px;
-  border-radius: 28px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(56, 189, 248, 0.015) 35%, rgba(168, 85, 247, 0.025) 75%, rgba(0, 0, 0, 0.22) 100%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  border-top: 1.5px solid rgba(56, 189, 248, 0.75);
-  border-left: 1.5px solid rgba(56, 189, 248, 0.55);
-  border-bottom: 1.5px solid rgba(168, 85, 247, 0.5);
-  border-right: 1.5px solid rgba(168, 85, 247, 0.3);
+  width: 280px;
+  height: 280px;
+  border-radius: 34px;
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.08) 0%, 
+    rgba(56, 189, 248, 0.04) 30%, 
+    rgba(168, 85, 247, 0.055) 70%, 
+    rgba(15, 12, 28, 0.58) 100%
+  );
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1.5px solid rgba(56, 189, 248, 0.85);
+  border-left: 1.5px solid rgba(56, 189, 248, 0.65);
+  border-bottom: 1.5px solid rgba(168, 85, 247, 0.6);
+  border-right: 1.5px solid rgba(168, 85, 247, 0.38);
   box-shadow: 
-    0 16px 36px rgba(0, 0, 0, 0.6),
-    inset 0 1px 1px rgba(255, 255, 255, 0.2),
-    0 -2px 14px rgba(56, 189, 248, 0.18),
-    0 2px 14px rgba(168, 85, 247, 0.15);
+    0 22px 48px rgba(0, 0, 0, 0.72),
+    inset 0 1px 2px rgba(255, 255, 255, 0.24),
+    inset 0 -1px 2px rgba(168, 85, 247, 0.18),
+    0 -2px 18px rgba(56, 189, 248, 0.22),
+    0 2px 18px rgba(168, 85, 247, 0.18);
   transform-style: preserve-3d;
   opacity: 0;
-  transform: translate3d(calc(var(--layer-idx) * 32px), calc(var(--layer-idx) * 22px), calc(var(--layer-idx) * -32px)) translateY(32px) scale(0.92);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, filter;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
 }
 
 .plate-inner-rim {
   position: absolute;
-  inset: 5px;
-  border-radius: 23px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  inset: 6px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   pointer-events: none;
 }
 
 .plate-glow-cyan {
   position: absolute;
-  top: 32%;
-  left: 28%;
-  width: 90px;
-  height: 90px;
+  top: 30%;
+  left: 26%;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.8) 0%, rgba(56, 189, 248, 0.25) 45%, transparent 70%);
-  filter: blur(14px);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.85) 0%, rgba(56, 189, 248, 0.3) 45%, transparent 70%);
+  filter: blur(18px);
   pointer-events: none;
   animation: orbPulseCyan 6s ease-in-out infinite alternate;
 }
 
 .plate-glow-violet {
   position: absolute;
-  top: 40%;
-  left: 56%;
-  width: 80px;
-  height: 80px;
+  top: 38%;
+  left: 54%;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.75) 0%, rgba(168, 85, 247, 0.2) 45%, transparent 70%);
-  filter: blur(16px);
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.8) 0%, rgba(168, 85, 247, 0.25) 45%, transparent 70%);
+  filter: blur(20px);
   pointer-events: none;
   animation: orbPulseViolet 6s ease-in-out infinite alternate 1s;
 }
@@ -664,8 +671,8 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 .plate-specular-light {
   position: absolute;
   inset: 0;
-  border-radius: 28px;
-  background: linear-gradient(120deg, transparent 32%, rgba(255, 255, 255, 0.12) 46%, transparent 58%);
+  border-radius: 34px;
+  background: linear-gradient(125deg, transparent 32%, rgba(255, 255, 255, 0.14) 46%, transparent 60%);
   pointer-events: none;
 }
 
