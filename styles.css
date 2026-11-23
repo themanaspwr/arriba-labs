@@ -543,46 +543,11 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   border-top: none;
 }
 
-/* 2-Column Hero Split: Vector Character on Left, Content on Right */
-.hero-stage-split {
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 52px;
-  align-items: center;
-  position: relative;
-  margin-bottom: 48px;
-}
-
-.hero-figure-column {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.hero-character-img {
-  width: 100%;
-  max-width: 240px;
-  height: auto;
-  display: block;
-  user-select: none;
-  -webkit-user-drag: none;
-  filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.65));
-  animation: heroCharacterFloat 5s ease-in-out infinite;
-}
-
-@keyframes heroCharacterFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
-}
-
+/* Hero Content Block */
 .hero-content-block {
-  margin-left: 0;
-  max-width: 100%;
+  max-width: 980px;
+  margin-bottom: 48px;
+  position: relative;
 }
 
 .hero-top-kicker {
@@ -996,36 +961,14 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
    8. SERVICES: INTERACTIVE EDITORIAL INDEX
    -------------------------------------------------------------------------- */
 .services-editorial-section {
-  padding-top: 120px;
-  padding-bottom: 0;
+  padding-top: 110px;
+  padding-bottom: 96px;
   border-bottom: 1px solid var(--border-line);
   position: relative;
 }
 
 .services-editorial-section .section-title-row {
   margin-bottom: 40px;
-}
-
-/* Female Vector Figure Laying on the Section Divider Line */
-.services-character-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  margin-top: 24px;
-  margin-bottom: -2px;
-  line-height: 0;
-  position: relative;
-  z-index: 4;
-  pointer-events: none;
-}
-
-.services-character-img {
-  width: clamp(340px, 32vw, 440px);
-  height: auto;
-  display: block;
-  user-select: none;
-  -webkit-user-drag: none;
-  filter: drop-shadow(0 -4px 12px rgba(123, 67, 151, 0.12)) drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
 }
 
 .section-title-row {
@@ -1622,15 +1565,12 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 }
 
 .manifesto-split {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 48px;
-  margin-bottom: 48px;
+  display: block;
+  margin-bottom: 44px;
 }
 
 .manifesto-text-block {
-  max-width: 680px;
+  max-width: 860px;
 }
 
 .standard-heading {
@@ -1652,23 +1592,6 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   color: var(--text-body);
   margin-top: 0;
   margin-bottom: 0;
-}
-
-.manifesto-figure-block {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex-shrink: 0;
-}
-
-.manifesto-character-img {
-  width: clamp(260px, 25vw, 345px);
-  height: auto;
-  display: block;
-  user-select: none;
-  -webkit-user-drag: none;
-  transform: translateX(-40px);
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.55));
 }
 
 .comparison-table {
@@ -2577,21 +2500,7 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   }
 
   .manifesto-split {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .manifesto-figure-block {
-    justify-content: center;
-    width: 100%;
-    margin: 12px auto;
-  }
-
-  .manifesto-character-img {
-    width: clamp(220px, 62vw, 320px);
-    margin: 0 auto;
-    display: block;
-    transform: none;
+    margin-bottom: 36px;
   }
 
   .case-card {
@@ -2892,22 +2801,8 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   .cap-card {
     padding: 30px 22px;
   }
-  .services-character-wrap {
-    margin-top: 16px;
-    margin-bottom: -2px;
-  }
-  .services-character-img {
-    width: clamp(240px, 60vw, 340px);
-  }
   .results-editorial-section {
     padding: 44px 0 80px 0;
-  }
-}
-
-@media (max-width: 1040px) and (min-width: 801px) {
-  .hero-stage-split {
-    grid-template-columns: 220px 1fr;
-    gap: 36px;
   }
 }
 
@@ -2931,29 +2826,9 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
     padding-bottom: 56px;
   }
 
-  .hero-stage-split {
-    grid-template-columns: clamp(90px, 28vw, 160px) 1fr;
-    gap: clamp(14px, 3.5vw, 28px);
-    align-items: flex-start;
-    margin-bottom: 36px;
-  }
-  .hero-figure-column {
-    order: 0;
-    max-width: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    position: sticky;
-    top: 86px;
-  }
-  .hero-character-img {
-    width: 100%;
-    max-width: 160px;
-    height: auto;
-  }
   .hero-content-block {
     margin-left: 0;
+    margin-bottom: 32px;
     text-align: left;
   }
   .hero-top-kicker {
@@ -2964,10 +2839,10 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
     margin-bottom: 12px;
   }
   .hero-clean-title {
-    font-size: clamp(1.25rem, 4.2vw, 1.85rem);
-    line-height: 1.22;
-    margin-bottom: 14px;
-    letter-spacing: -0.02em;
+    font-size: clamp(1.85rem, 5.2vw, 2.4rem);
+    line-height: 1.18;
+    margin-bottom: 16px;
+    letter-spacing: -0.025em;
   }
   .hero-editorial-copy {
     font-size: clamp(0.78rem, 2.5vw, 0.9rem);
@@ -3008,10 +2883,6 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 }
 
 @media (max-width: 520px) {
-  .hero-stage-split {
-    grid-template-columns: clamp(75px, 24vw, 110px) 1fr;
-    gap: 12px;
-  }
   .container-editorial {
     padding: 0 16px;
   }
@@ -3025,7 +2896,7 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
     font-size: 1.05rem;
   }
   .hero-clean-title {
-    font-size: clamp(1.2rem, 4.4vw, 1.6rem);
+    font-size: clamp(1.75rem, 5.8vw, 2.1rem);
   }
   .band-num {
     font-size: 1.55rem;
@@ -3039,12 +2910,8 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   .container-editorial {
     padding: 0 12px;
   }
-  .hero-stage-split {
-    grid-template-columns: clamp(68px, 22vw, 85px) 1fr;
-    gap: 10px;
-  }
   .hero-clean-title {
-    font-size: 1.15rem;
+    font-size: 1.6rem;
     line-height: 1.2;
   }
   .hero-top-kicker {
@@ -3072,12 +2939,6 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   }
   .band-label {
     font-size: 0.7rem;
-  }
-  .manifesto-character-img {
-    width: clamp(180px, 80vw, 260px);
-  }
-  .services-character-img {
-    width: clamp(180px, 80vw, 260px);
   }
 }
 
