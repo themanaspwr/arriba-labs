@@ -302,11 +302,11 @@
     platesArr.forEach((plate) => {
       const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
       const tx = 0;
-      const ty = layerIdx * -155;
-      const tz = layerIdx * -48;
+      const ty = layerIdx * -135;
+      const tz = layerIdx * -44;
       plate.style.opacity = '0';
       plate.style.filter = 'blur(14px) brightness(0.15)';
-      plate.style.transform = `translate3d(${tx}px, ${ty + 50}px, ${tz - 300}px) scale(0.85)`;
+      plate.style.transform = `translate3d(${tx}px, ${ty + 45}px, ${tz - 280}px) scale(0.85)`;
     });
 
     function revealPlatesFromDarkDepth() {
@@ -317,8 +317,8 @@
       platesArr.forEach((plate, i) => {
         const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
         const tx = 0;
-        const ty = layerIdx * -155;
-        const tz = layerIdx * -48;
+        const ty = layerIdx * -135;
+        const tz = layerIdx * -44;
         const baseOpacity = 0.88 - (layerIdx * 0.08);
 
         setTimeout(() => {
