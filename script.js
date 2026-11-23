@@ -299,25 +299,25 @@
     const platesArr = Array.from(plates).reverse();
     platesArr.forEach((plate) => {
       const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
-      const tx = layerIdx * 50;
-      const ty = layerIdx * 50;
-      const tz = layerIdx * -48;
+      const tx = 0;
+      const ty = layerIdx * -48;
+      const tz = layerIdx * -36;
       plate.style.opacity = '0';
       plate.style.filter = 'blur(14px) brightness(0.15)';
-      plate.style.transform = `translate3d(${tx - 20}px, ${ty - 20}px, ${tz - 360}px) scale(0.6)`;
+      plate.style.transform = `translate3d(${tx}px, ${ty + 45}px, ${tz - 280}px) scale(0.85)`;
     });
 
     function revealPlatesFromDarkDepth() {
       if (hasRevealed) return;
       hasRevealed = true;
 
-      // Reveal back to front: Plate 6 -> Plate 1
+      // Reveal bottom to top: Plate 1 (bottom) -> Plate 6 (top) stacking upwards
       platesArr.forEach((plate, i) => {
         const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
-        const tx = layerIdx * 50;
-        const ty = layerIdx * 50;
-        const tz = layerIdx * -48;
-        const baseOpacity = 0.72 - (layerIdx * 0.065);
+        const tx = 0;
+        const ty = layerIdx * -48;
+        const tz = layerIdx * -36;
+        const baseOpacity = 0.78 - (layerIdx * 0.055);
 
         setTimeout(() => {
           plate.classList.add('is-plate-visible');
@@ -325,12 +325,12 @@
           plate.style.opacity = baseOpacity.toString();
           plate.style.filter = 'blur(0px) brightness(1)';
           plate.style.transform = `translate3d(${tx}px, ${ty}px, ${tz}px) scale(1)`;
-        }, i * 220); // 220ms stagger between each layer emerging from dark depth
+        }, i * 180); // 180ms stagger: stacks upwards layer by layer
       });
 
       setTimeout(() => {
         scene.classList.add('is-assembled');
-      }, platesArr.length * 220 + 500);
+      }, platesArr.length * 180 + 500);
     }
 
     // Trigger after splash preloader fades, or on load
