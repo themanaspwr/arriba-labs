@@ -966,17 +966,6 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   gap: 8px;
 }
 
-.section-title-row .editorial-sublabel::before,
-.manifesto-text-block .editorial-sublabel::before {
-  content: '';
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--c-orange);
-  box-shadow: 0 0 8px rgba(255, 122, 40, 0.65);
-  flex-shrink: 0;
-}
-
 .count-badge {
   display: inline-flex;
   align-items: center;
@@ -1140,7 +1129,7 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1.1;
-  margin-top: 12px;
+  margin-top: 0;
 }
 
 .title-col-right {
