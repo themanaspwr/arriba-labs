@@ -2860,7 +2860,7 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 
 /* Creative Tools & Sparkle Animation */
 .creative-tools-group {
-  transform-origin: 12px 13px;
+  transform-origin: 41px 48.5px;
   animation: creativeToolsWiggle 3.6s ease-in-out infinite;
 }
 
@@ -2884,18 +2884,18 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 }
 
 .sparkle-large {
-  transform-origin: 14px 4.3px;
+  transform-origin: 52.5px 14px;
 }
 
 .sparkle-small {
-  transform-origin: 18.8px 2.9px;
+  transform-origin: 70px 7.5px;
   animation-delay: 0.75s;
 }
 
 @keyframes creativeSparklePulse {
   0%, 100% {
     transform: scale(0.65);
-    opacity: 0.4;
+    opacity: 0.45;
   }
   50% {
     transform: scale(1.25);
