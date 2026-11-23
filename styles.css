@@ -576,7 +576,7 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   top: 50%;
   transform: translateY(-50%);
   width: 1000px;
-  height: 720px;
+  height: 780px;
   perspective: 1200px;
   perspective-origin: 50% 50%;
   pointer-events: none;
@@ -609,7 +609,7 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 
 .glass-plate {
   position: absolute;
-  top: 190px;
+  top: 310px;
   left: 0;
   width: 1000px;
   height: 456px;

@@ -302,8 +302,8 @@
     platesArr.forEach((plate) => {
       const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
       const tx = 0;
-      const ty = layerIdx * -85;
-      const tz = layerIdx * -45;
+      const ty = layerIdx * -155;
+      const tz = layerIdx * -48;
       plate.style.opacity = '0';
       plate.style.filter = 'blur(14px) brightness(0.15)';
       plate.style.transform = `translate3d(${tx}px, ${ty + 50}px, ${tz - 300}px) scale(0.85)`;
@@ -313,12 +313,12 @@
       if (hasRevealed) return;
       hasRevealed = true;
 
-      // Reveal bottom to top: Plate 1 (base) -> Plate 2 (mid) -> Plate 3 (top) stacking upwards
+      // Reveal bottom to top: Plate 1 (base) -> Plate 2 (mid) -> Plate 3 (top) stacking upwards with light overlap
       platesArr.forEach((plate, i) => {
         const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
         const tx = 0;
-        const ty = layerIdx * -85;
-        const tz = layerIdx * -45;
+        const ty = layerIdx * -155;
+        const tz = layerIdx * -48;
         const baseOpacity = 0.88 - (layerIdx * 0.08);
 
         setTimeout(() => {
