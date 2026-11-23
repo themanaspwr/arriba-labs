@@ -2779,12 +2779,129 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 }
 
 .cap-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 2.5vw, 2.3rem);
   font-weight: 800;
   color: var(--text-white);
   letter-spacing: -0.02em;
   margin-bottom: 16px;
+}
+
+/* Card Favicons */
+.cap-favicon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 9px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cap-card:hover .cap-favicon {
+  transform: scale(1.08);
+}
+
+.cap-favicon-odometer {
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  color: #38bdf8;
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.12);
+}
+
+.cap-favicon-creatives {
+  background: rgba(192, 132, 252, 0.08);
+  border: 1px solid rgba(192, 132, 252, 0.22);
+  color: #c084fc;
+  box-shadow: 0 0 14px rgba(192, 132, 252, 0.12);
+}
+
+.favicon-svg-odometer,
+.favicon-svg-creatives {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+/* Odometer Needle Animation */
+.odometer-needle {
+  transform-origin: 12px 15px;
+  animation: odometerNeedleSweep 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes odometerNeedleSweep {
+  0% {
+    transform: rotate(-52deg);
+  }
+  18% {
+    transform: rotate(-52deg);
+  }
+  45% {
+    transform: rotate(52deg);
+  }
+  55% {
+    transform: rotate(40deg);
+  }
+  65% {
+    transform: rotate(50deg);
+  }
+  85% {
+    transform: rotate(-52deg);
+  }
+  100% {
+    transform: rotate(-52deg);
+  }
+}
+
+/* Creative Tools & Sparkle Animation */
+.creative-tools-group {
+  transform-origin: 12px 13px;
+  animation: creativeToolsWiggle 3.6s ease-in-out infinite;
+}
+
+@keyframes creativeToolsWiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
+}
+
+.creative-sparkle {
+  animation: creativeSparklePulse 2.2s ease-in-out infinite;
+}
+
+.sparkle-large {
+  transform-origin: 14px 4.3px;
+}
+
+.sparkle-small {
+  transform-origin: 18.8px 2.9px;
+  animation-delay: 0.75s;
+}
+
+@keyframes creativeSparklePulse {
+  0%, 100% {
+    transform: scale(0.65);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 1;
+    filter: drop-shadow(0 0 3px currentColor);
+  }
 }
 
 .cap-desc {
@@ -3765,6 +3882,20 @@ html[data-theme="light"] .cap-card-performance:hover .cap-trigger-pill {
 
 html[data-theme="light"] .cap-title {
   color: #0e0e17;
+}
+
+html[data-theme="light"] .cap-favicon-odometer {
+  background: rgba(2, 132, 199, 0.08);
+  border-color: rgba(2, 132, 199, 0.25);
+  color: #0284c7;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);
+}
+
+html[data-theme="light"] .cap-favicon-creatives {
+  background: rgba(147, 51, 234, 0.08);
+  border-color: rgba(147, 51, 234, 0.25);
+  color: #9333ea;
+  box-shadow: 0 2px 8px rgba(147, 51, 234, 0.08);
 }
 
 html[data-theme="light"] .cap-desc {
