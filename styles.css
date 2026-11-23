@@ -2830,31 +2830,31 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 
 /* Odometer Needle Animation */
 .odometer-needle {
-  transform-origin: 12px 16px;
-  animation: odometerNeedleSweep 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transform-origin: 71px 67px;
+  animation: odometerNeedleSweep 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 @keyframes odometerNeedleSweep {
   0% {
-    transform: rotate(0deg);
+    transform: rotate(-95deg);
   }
   15% {
-    transform: rotate(0deg);
+    transform: rotate(-95deg);
   }
   48% {
-    transform: rotate(120deg);
+    transform: rotate(10deg);
   }
   58% {
-    transform: rotate(112deg);
+    transform: rotate(2deg);
   }
   68% {
-    transform: rotate(120deg);
+    transform: rotate(10deg);
   }
   86% {
-    transform: rotate(0deg);
+    transform: rotate(-95deg);
   }
   100% {
-    transform: rotate(0deg);
+    transform: rotate(-95deg);
   }
 }
 
