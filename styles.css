@@ -566,16 +566,16 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
    -------------------------------------------------------------------------- */
 .hero-glass-scene {
   position: absolute;
-  right: -10px;
+  right: -25px;
   top: 48%;
   transform: translateY(-50%);
-  width: 520px;
-  height: 500px;
+  width: 580px;
+  height: 540px;
   perspective: 1200px;
   perspective-origin: 40% 50%;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.62;
+  opacity: 0.42;
   overflow: visible;
   transition: opacity 0.8s ease;
 }
@@ -585,49 +585,49 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transform: rotateX(18deg) rotateY(-14deg) rotateZ(12deg);
+  transform: rotateX(10deg) rotateY(-8deg) rotateZ(6deg);
   animation: heroGlassFloat 9s ease-in-out infinite alternate;
 }
 
 @keyframes heroGlassFloat {
   0% {
-    transform: rotateX(18deg) rotateY(-14deg) rotateZ(12deg) translateY(0px);
+    transform: rotateX(10deg) rotateY(-8deg) rotateZ(6deg) translateY(0px);
   }
   50% {
-    transform: rotateX(20deg) rotateY(-12deg) rotateZ(13deg) translateY(-8px);
+    transform: rotateX(12deg) rotateY(-6deg) rotateZ(7deg) translateY(-8px);
   }
   100% {
-    transform: rotateX(16deg) rotateY(-16deg) rotateZ(11deg) translateY(6px);
+    transform: rotateX(8deg) rotateY(-10deg) rotateZ(5deg) translateY(6px);
   }
 }
 
 .glass-plate {
   position: absolute;
-  top: 70px;
-  left: 60px;
-  width: 280px;
-  height: 280px;
-  border-radius: 34px;
+  top: 60px;
+  left: 40px;
+  width: 340px;
+  height: 340px;
+  border-radius: 40px;
   background: linear-gradient(
     135deg, 
-    rgba(255, 255, 255, 0.08) 0%, 
-    rgba(56, 189, 248, 0.04) 30%, 
-    rgba(168, 85, 247, 0.055) 70%, 
-    rgba(15, 12, 28, 0.58) 100%
+    rgba(255, 255, 255, 0.065) 0%, 
+    rgba(56, 189, 248, 0.025) 30%, 
+    rgba(168, 85, 247, 0.035) 70%, 
+    rgba(20, 20, 35, 0.28) 100%
   );
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-top: 1.5px solid rgba(56, 189, 248, 0.85);
-  border-left: 1.5px solid rgba(56, 189, 248, 0.65);
-  border-bottom: 1.5px solid rgba(168, 85, 247, 0.6);
-  border-right: 1.5px solid rgba(168, 85, 247, 0.38);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-top: 1.5px solid rgba(56, 189, 248, 0.7);
+  border-left: 1.5px solid rgba(56, 189, 248, 0.5);
+  border-bottom: 1.5px solid rgba(168, 85, 247, 0.45);
+  border-right: 1.5px solid rgba(168, 85, 247, 0.28);
   box-shadow: 
-    0 22px 48px rgba(0, 0, 0, 0.72),
-    inset 0 1px 2px rgba(255, 255, 255, 0.24),
-    inset 0 -1px 2px rgba(168, 85, 247, 0.18),
-    0 -2px 18px rgba(56, 189, 248, 0.22),
-    0 2px 18px rgba(168, 85, 247, 0.18);
+    0 20px 45px rgba(0, 0, 0, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.18),
+    inset 0 -1px 2px rgba(168, 85, 247, 0.12),
+    0 -2px 14px rgba(56, 189, 248, 0.14),
+    0 2px 14px rgba(168, 85, 247, 0.12);
   transform-style: preserve-3d;
   opacity: 0;
   will-change: transform, opacity, filter;
@@ -636,9 +636,9 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 
 .plate-inner-rim {
   position: absolute;
-  inset: 6px;
-  border-radius: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  inset: 7px;
+  border-radius: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
   pointer-events: none;
 }
 
@@ -646,10 +646,10 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   position: absolute;
   top: 30%;
   left: 26%;
-  width: 110px;
-  height: 110px;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.85) 0%, rgba(56, 189, 248, 0.3) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.75) 0%, rgba(56, 189, 248, 0.2) 45%, transparent 70%);
   filter: blur(18px);
   pointer-events: none;
   animation: orbPulseCyan 6s ease-in-out infinite alternate;
@@ -659,10 +659,10 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
   position: absolute;
   top: 38%;
   left: 54%;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.8) 0%, rgba(168, 85, 247, 0.25) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.7) 0%, rgba(168, 85, 247, 0.18) 45%, transparent 70%);
   filter: blur(20px);
   pointer-events: none;
   animation: orbPulseViolet 6s ease-in-out infinite alternate 1s;
@@ -671,8 +671,8 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 .plate-specular-light {
   position: absolute;
   inset: 0;
-  border-radius: 34px;
-  background: linear-gradient(125deg, transparent 32%, rgba(255, 255, 255, 0.14) 46%, transparent 60%);
+  border-radius: 40px;
+  background: linear-gradient(125deg, transparent 32%, rgba(255, 255, 255, 0.11) 46%, transparent 60%);
   pointer-events: none;
 }
 
@@ -2368,11 +2368,11 @@ html[data-theme="light"] .splash-wordmark-wrap .arriba-wordmark-img {
 @media (max-width: 1100px) {
   
   .hero-glass-scene {
-    width: 400px;
-    height: 380px;
+    width: 480px;
+    height: 450px;
     right: -40px;
-    opacity: 0.42;
-    transform: translateY(-50%) scale(0.85);
+    opacity: 0.32;
+    transform: translateY(-50%) scale(0.82);
   }
 
   .hero-actions-cluster {

@@ -288,12 +288,12 @@
     const platesArr = Array.from(plates).reverse();
     platesArr.forEach((plate) => {
       const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
-      const tx = layerIdx * 30;
+      const tx = layerIdx * 34;
       const ty = layerIdx * 18;
-      const tz = layerIdx * -42;
+      const tz = layerIdx * -46;
       plate.style.opacity = '0';
       plate.style.filter = 'blur(14px) brightness(0.15)';
-      plate.style.transform = `translate3d(${tx - 20}px, ${ty - 16}px, ${tz - 360}px) scale(0.55)`;
+      plate.style.transform = `translate3d(${tx - 25}px, ${ty - 16}px, ${tz - 380}px) scale(0.55)`;
     });
 
     function revealPlatesFromDarkDepth() {
@@ -303,10 +303,10 @@
       // Reveal back to front: Plate 6 -> Plate 1
       platesArr.forEach((plate, i) => {
         const layerIdx = parseFloat(plate.style.getPropertyValue('--layer-idx') || '0');
-        const tx = layerIdx * 30;
+        const tx = layerIdx * 34;
         const ty = layerIdx * 18;
-        const tz = layerIdx * -42;
-        const baseOpacity = 0.95 - (layerIdx * 0.08);
+        const tz = layerIdx * -46;
+        const baseOpacity = 0.72 - (layerIdx * 0.065);
 
         setTimeout(() => {
           plate.classList.add('is-plate-visible');
@@ -344,15 +344,15 @@
         const rect = heroSection.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
-        const rotX = 18 - y * 10;
-        const rotY = -14 + x * 12;
-        const rotZ = 12 + x * 3;
+        const rotX = 10 - y * 8;
+        const rotY = -8 + x * 10;
+        const rotZ = 6 + x * 2;
         cluster.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)`;
       });
 
       heroSection.addEventListener('mouseleave', () => {
         cluster.style.transition = 'transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)';
-        cluster.style.transform = 'rotateX(18deg) rotateY(-14deg) rotateZ(12deg)';
+        cluster.style.transform = 'rotateX(10deg) rotateY(-8deg) rotateZ(6deg)';
         setTimeout(() => {
           cluster.style.transition = '';
         }, 1200);
