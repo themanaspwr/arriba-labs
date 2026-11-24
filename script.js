@@ -1012,4 +1012,76 @@
       }
     });
   }
+
+  // =========================================================================
+  // NEXT-GEN INTERACTIVE CONTROLS: SPOTLIGHT TABS & HERO KINETIC CHEVRON TILT
+  // =========================================================================
+
+  // 1. Cinematic Case Spotlight Tab Switcher
+  function initSpotlightTabs() {
+    const tabs = document.querySelectorAll('.spotlight-tab');
+    if (!tabs.length) return;
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const targetId = tab.getAttribute('data-target');
+        const targetPanel = document.getElementById(targetId);
+        if (!targetPanel) return;
+
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        document.querySelectorAll('.spotlight-panel').forEach(p => {
+          p.classList.remove('active');
+        });
+
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        targetPanel.classList.add('active');
+      });
+    });
+  }
+
+  // 2. Hero Kinetic Glass Chevron Interactive Tilt
+  function initHeroKineticTilt() {
+    const hero = document.getElementById('hero');
+    const cluster = document.querySelector('.hero-glass-cluster');
+    if (!hero || !cluster) return;
+
+    let targetRotX = 11;
+    let targetRotY = -5;
+    let currentRotX = 11;
+    let currentRotY = -5;
+    let isHovering = false;
+
+    hero.addEventListener('mousemove', (e) => {
+      isHovering = true;
+      const rect = hero.getBoundingClientRect();
+      const nx = ((e.clientX - rect.left) / rect.width) - 0.5;
+      const ny = ((e.clientY - rect.top) / rect.height) - 0.5;
+
+      targetRotX = 11 + (ny * -12); // subtle vertical tilt
+      targetRotY = -5 + (nx * 14);  // subtle horizontal tilt
+    });
+
+    hero.addEventListener('mouseleave', () => {
+      isHovering = false;
+      targetRotX = 11;
+      targetRotY = -5;
+    });
+
+    function tiltLoop() {
+      currentRotX += (targetRotX - currentRotX) * 0.08;
+      currentRotY += (targetRotY - currentRotY) * 0.08;
+      
+      cluster.style.transform = `rotateX(${currentRotX.toFixed(2)}deg) rotateY(${currentRotY.toFixed(2)}deg)`;
+      requestAnimationFrame(tiltLoop);
+    }
+    requestAnimationFrame(tiltLoop);
+  }
+
+  // Initialize both controls
+  initSpotlightTabs();
+  initHeroKineticTilt();
 })();
