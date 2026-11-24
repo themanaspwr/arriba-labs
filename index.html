@@ -310,11 +310,15 @@
 
       <!-- Completely Right-Aligned Rolling Half-Wheel -->
       <div class="expertise-wheel-stage" id="expertise-wheel-stage" aria-label="Industries we serve wheel">
-        <div class="wheel-pointer-notch" aria-hidden="true"></div>
+        <div class="wheel-pointer-notch" id="wheel-pointer-notch" aria-hidden="true"></div>
+        <div class="wheel-active-slot" aria-hidden="true"></div>
         <div class="expertise-wheel-rotor" id="expertise-wheel-rotor">
+          <div class="wheel-ticks" aria-hidden="true"></div>
           <div class="wheel-ring wheel-ring--outer" aria-hidden="true"></div>
           <div class="wheel-ring wheel-ring--inner" aria-hidden="true"></div>
-          <div class="wheel-hub" aria-hidden="true"></div>
+          <div class="wheel-hub" aria-hidden="true">
+            <div class="wheel-hub-core"></div>
+          </div>
           <!-- 12 industry spokes populated & rotated cleanly via script.js -->
         </div>
       </div>

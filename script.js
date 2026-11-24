@@ -757,6 +757,7 @@
      -------------------------------------------------------------------------- */
   const wheelRotor = document.getElementById('expertise-wheel-rotor');
   const wheelStage = document.getElementById('expertise-wheel-stage');
+  const pointerNotch = document.getElementById('wheel-pointer-notch');
   const counterEl = document.getElementById('expertise-counter');
   const activeLabelEl = document.getElementById('expertise-active-label');
 
@@ -819,7 +820,19 @@
         counterEl.textContent = `${String(activeIdx + 1).padStart(2, '0')} / ${String(COUNT).padStart(2, '0')}`;
       }
       if (activeLabelEl) {
-        activeLabelEl.textContent = INDUSTRIES[activeIdx];
+        if (!instant) {
+          activeLabelEl.classList.add('is-updating');
+          setTimeout(() => {
+            activeLabelEl.textContent = INDUSTRIES[activeIdx];
+            activeLabelEl.classList.remove('is-updating');
+          }, 150);
+        } else {
+          activeLabelEl.textContent = INDUSTRIES[activeIdx];
+        }
+      }
+      if (pointerNotch && !instant) {
+        pointerNotch.classList.add('is-clicking');
+        setTimeout(() => pointerNotch.classList.remove('is-clicking'), 240);
       }
     }
 
