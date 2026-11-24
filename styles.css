@@ -5,8 +5,8 @@
 
 :root {
   /* Light-First Archival Print Palette */
-  --paper: #f2efe9;
-  --paper-alt: #e7e2d8;
+  --paper: #f6f4f8;
+  --paper-alt: rgba(255, 255, 255, 0.46);
   --ink: #141413;
   --ink-muted: #33322d;
   --ink-faint: #4d4b44;
@@ -70,10 +70,22 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--paper);
+  background-color: #f6f4f8;
+  background-image:
+    radial-gradient(ellipse 68% 48% at 10% 10%, rgba(117, 58, 93, 0.17) 0%, rgba(117, 58, 93, 0) 68%),
+    radial-gradient(ellipse 62% 46% at 30% 42%, rgba(122, 66, 107, 0.13) 0%, rgba(122, 66, 107, 0) 68%),
+    radial-gradient(ellipse 65% 50% at 54% 24%, rgba(106, 69, 147, 0.12) 0%, rgba(106, 69, 147, 0) 70%),
+    radial-gradient(ellipse 66% 50% at 88% 12%, rgba(82, 123, 201, 0.19) 0%, rgba(82, 123, 201, 0) 68%),
+    radial-gradient(ellipse 64% 52% at 76% 68%, rgba(87, 96, 180, 0.14) 0%, rgba(87, 96, 180, 0) 68%),
+    linear-gradient(120deg, rgba(117, 58, 93, 0.10) 0%, rgba(122, 66, 107, 0.08) 26%, rgba(106, 69, 147, 0.08) 50%, rgba(87, 96, 180, 0.09) 74%, rgba(82, 123, 201, 0.12) 100%);
   color: var(--ink);
   line-height: 1.55;
   overflow-x: hidden;
+}
+
+html[data-theme="dark"] body {
+  background-color: var(--paper);
+  background-image: none;
 }
 
 img, svg {
@@ -135,8 +147,14 @@ section[id] {
   position: sticky;
   top: 0;
   z-index: 200;
-  background-color: var(--paper);
+  background-color: rgba(246, 244, 248, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--rule);
+}
+
+html[data-theme="dark"] .masthead {
+  background-color: rgba(18, 18, 16, 0.88);
 }
 
 .masthead-inner {
@@ -341,6 +359,62 @@ section[id] {
   letter-spacing: -0.01em;
   position: relative;
   display: inline-block;
+}
+
+/* Specular Light Shine Sweep across "creative performance" (c -> e) */
+.shine-phrase {
+  display: inline-block;
+  color: var(--ink);
+  background-image: linear-gradient(
+    110deg,
+    var(--ink) 0%,
+    var(--ink) 38%,
+    #7a426b 45%,
+    #ffffff 50%,
+    #527bc9 55%,
+    var(--ink) 62%,
+    var(--ink) 100%
+  );
+  background-size: 260% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding-right: 0.06em;
+  animation: creativeShineSweep 4.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.15s infinite;
+}
+
+html[data-theme="dark"] .shine-phrase {
+  background-image: linear-gradient(
+    110deg,
+    var(--ink) 0%,
+    var(--ink) 38%,
+    #b774a6 45%,
+    #ffffff 50%,
+    #7ca6f7 55%,
+    var(--ink) 62%,
+    var(--ink) 100%
+  );
+}
+
+@keyframes creativeShineSweep {
+  0% {
+    background-position: 100% 0;
+  }
+  38% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 0% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shine-phrase {
+    animation: none;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
 }
 
 .headline-underline-svg {
