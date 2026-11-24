@@ -1055,20 +1055,34 @@
         const y2 = rows[i + 1].offsetTop + rows[i + 1].offsetHeight * 0.52;
         const dy = y2 - y1;
 
-        let dPath = '';
-        let dHead = '';
+        const xTip = isLeft ? -edgeGap : W + edgeGap;
+        const cx = isLeft ? xTip - curveDepth : xTip + curveDepth;
+        const c1y = y1 + dy * 0.14;
+        const c2y = y2 - dy * 0.14;
 
-        if (isLeft) {
-          const x = -edgeGap;
-          const cx = x - curveDepth;
-          dPath = `M ${x} ${y1} C ${cx} ${y1 + dy * 0.14}, ${cx} ${y2 - dy * 0.14}, ${x} ${y2}`;
-          dHead = `M ${x - 8} ${y2 - 5.5} L ${x + 1} ${y2} L ${x - 8} ${y2 + 5.5}`;
-        } else {
-          const x = W + edgeGap;
-          const cx = x + curveDepth;
-          dPath = `M ${x} ${y1} C ${cx} ${y1 + dy * 0.14}, ${cx} ${y2 - dy * 0.14}, ${x} ${y2}`;
-          dHead = `M ${x + 8} ${y2 - 5.5} L ${x - 1} ${y2} L ${x + 8} ${y2 + 5.5}`;
-        }
+        // Exact cubic Bezier arrival tangent angle at (xTip, y2) is direction (P3 - C2)
+        const angle = Math.atan2(y2 - c2y, xTip - cx);
+        const cosA = Math.cos(angle);
+        const sinA = Math.sin(angle);
+
+        // Stop the dotted curve 7px before the arrowhead tip so no dot overlaps the wings
+        const endX = xTip - cosA * 7;
+        const endY = y2 - sinA * 7;
+        const dPath = `M ${xTip} ${y1} C ${cx} ${c1y}, ${cx} ${c2y}, ${endX.toFixed(2)} ${endY.toFixed(2)}`;
+
+        // Sleek filled arrowhead dart aligned dead-center with the curve's arrival tangent
+        const headLen = 10;
+        const headHalfW = 4.6;
+        const notchBack = 7.2;
+        const bx = xTip - cosA * headLen;
+        const by = y2 - sinA * headLen;
+        const lx = bx - sinA * headHalfW;
+        const ly = by + cosA * headHalfW;
+        const rx = bx + sinA * headHalfW;
+        const ry = by - cosA * headHalfW;
+        const nx = xTip - cosA * notchBack;
+        const ny = y2 - sinA * notchBack;
+        const dHead = `M ${xTip.toFixed(2)} ${y2.toFixed(2)} L ${lx.toFixed(2)} ${ly.toFixed(2)} L ${nx.toFixed(2)} ${ny.toFixed(2)} L ${rx.toFixed(2)} ${ry.toFixed(2)} Z`;
 
         // Mask path that smoothly reveals dots one-by-one from start to end
         const maskId = `audit-arrow-mask-${i}`;

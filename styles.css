@@ -1329,16 +1329,13 @@ html[data-theme="dark"] .brick--cream {
 }
 
 .audit-arrow-head {
-  fill: none;
-  stroke: var(--vermilion);
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  fill: var(--vermilion);
+  stroke: none;
   opacity: 0;
   transform-box: fill-box;
   transform-origin: center;
-  transform: scale(0.5);
-  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.22, 1.4, 0.36, 1);
+  transform: scale(0.4);
+  transition: opacity 0.24s ease, transform 0.28s cubic-bezier(0.22, 1.4, 0.36, 1);
 }
 
 .audit-arrow-head.is-visible {
