@@ -108,8 +108,8 @@ button {
 
 .mono {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -161,11 +161,11 @@ section[id] {
 }
 
 .masthead-descriptor {
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink-muted);
   padding-left: 14px;
   border-left: 1px solid var(--rule);
 }
@@ -514,20 +514,18 @@ section[id] {
 }
 
 .ledger-desc {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 500;
   color: var(--ink-muted);
   text-align: right;
 }
 
 /* ==========================================================================
-   BAND 02 — VERIFIED CASE STUDIES (MAGAZINE FEATURE SPREAD — NO CARDS)
+   BAND 02 — VERIFIED CASE STUDIES (IMMERSIVE EDITORIAL FEATURE)
    ========================================================================== */
 .cases-band {
-  padding: clamp(72px, 9vw, 128px) 0;
-  border-bottom: 1px solid var(--rule);
+  padding: clamp(72px, 9vw, 124px) 0 clamp(48px, 6vw, 80px);
 }
 
 .band-header {
@@ -581,14 +579,15 @@ section[id] {
   letter-spacing: -0.04em;
 }
 
-/* Feature Spread 01 — Fizzy Goblet (Tonal Paper Plate) */
+/* Feature Spread 01 — Fizzy Goblet (Immersive Stone Plate) */
 .case-feature-spread {
   background: var(--paper-alt);
-  padding: clamp(32px, 5vw, 64px);
+  border-left: 4px solid var(--cobalt);
+  padding: clamp(36px, 5.5vw, 68px);
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: clamp(32px, 5vw, 72px);
-  margin-bottom: clamp(48px, 6vw, 72px);
+  margin-bottom: clamp(56px, 7vw, 84px);
   align-items: start;
   position: relative;
   overflow: hidden;
@@ -664,17 +663,18 @@ html[data-theme="dark"] .case-logo {
 }
 
 .case-editorial-copy h4 {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--ink-faint);
   margin-bottom: 10px;
 }
 
 .case-editorial-copy p {
-  font-size: 1.04rem;
-  line-height: 1.65;
+  font-size: 1.06rem;
+  line-height: 1.66;
   color: var(--ink);
   margin-bottom: 28px;
 }
@@ -690,9 +690,9 @@ html[data-theme="dark"] .case-logo {
 .case-editorial-copy li {
   padding-left: 18px;
   position: relative;
-  font-size: 0.96rem;
+  font-size: 1rem;
   color: var(--ink-muted);
-  line-height: 1.6;
+  line-height: 1.62;
 }
 
 .case-editorial-copy li::before {
@@ -744,51 +744,51 @@ html[data-theme="dark"] .case-logo {
 }
 
 .case-inline-stats span {
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
   color: var(--ink-muted);
 }
 
 /* ==========================================================================
-   BAND 03 — CLIENT SPECIMEN WALL (QUIET MUSEUM GRID — NO NOISY MARQUEE)
+   BAND 03 — CLIENT SPECIMEN WALL (QUIET, COMPACT GALLERY PAUSE)
    ========================================================================== */
 .roster-band {
-  padding: clamp(64px, 8vw, 108px) 0;
-  border-bottom: 1px solid var(--rule);
+  padding: clamp(56px, 7vw, 88px) 0 clamp(72px, 9vw, 112px);
 }
 
 .roster-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 40px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--rule);
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.roster-caption {
+  font-size: 0.94rem;
+  font-weight: 500;
+  color: var(--ink-muted);
 }
 
 .specimen-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 36px 28px;
+  gap: 38px 32px;
   align-items: center;
-  margin-bottom: 56px;
+  margin-bottom: 52px;
 }
 
 .specimen-cell {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 52px;
+  height: 54px;
 }
 
 .specimen-logo {
-  max-height: 40px;
-  max-width: 126px;
+  max-height: 42px;
+  max-width: 132px;
   width: auto;
   object-fit: contain;
-  opacity: 0.96;
+  opacity: 0.98;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
@@ -797,33 +797,33 @@ html[data-theme="dark"] .case-logo {
   transform: translateY(-2px);
 }
 
-.specimen-logo.logo--mono-white {
+.specimen-logo.logo--mono-white,
+.partner-open-item img.logo--mono-white {
   filter: brightness(0);
 }
 
-html[data-theme="dark"] .specimen-logo.logo--mono-white {
+html[data-theme="dark"] .specimen-logo.logo--mono-white,
+html[data-theme="dark"] .partner-open-item img.logo--mono-white {
   filter: none;
 }
 
 .industries-colophon {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
   padding-top: 28px;
-  border-top: 1px solid var(--rule);
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 24px;
-  align-items: baseline;
 }
 
 .industries-colophon p {
-  font-size: 0.96rem;
-  line-height: 1.75;
+  font-size: 0.98rem;
+  line-height: 1.85;
   color: var(--ink-muted);
 }
 
 .industries-colophon i {
   font-style: normal;
   color: var(--ink-faint);
-  margin: 0 8px;
+  margin: 0 9px;
 }
 
 /* ==========================================================================
@@ -847,105 +847,89 @@ html[data-theme="dark"] .specimen-logo.logo--mono-white {
 
 .cap-engines-layout {
   display: grid;
-  grid-template-columns: 360px 1fr;
-  gap: clamp(36px, 5vw, 84px);
-  padding-top: 44px;
-  border-top: 1px solid var(--band-dark-rule);
+  grid-template-columns: 300px 1fr;
+  gap: clamp(36px, 5vw, 76px);
+  padding-top: 32px;
 }
 
 .cap-engine-intro h3 {
-  font-size: 1.75rem;
+  font-size: 1.85rem;
   font-weight: 700;
   letter-spacing: -0.03em;
-  margin: 12px 0 14px;
+  margin: 8px 0 14px;
 }
 
 .cap-engine-intro p {
-  font-size: 0.94rem;
+  font-size: 0.98rem;
   line-height: 1.65;
   color: var(--band-dark-muted);
 }
 
 .cap-services-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px 52px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 36px;
   align-items: start;
 }
 
 .cap-service-entry {
-  padding-top: 18px;
-  border-top: 1px solid var(--band-dark-rule);
   position: relative;
-  transition: border-color 0.25s ease;
-}
-
-.cap-service-entry:nth-child(even) {
-  margin-top: 24px;
-}
-
-.cap-service-entry:hover {
-  border-top-color: var(--band-dark-ink);
 }
 
 .cap-service-head {
   display: flex;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 8px;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
 }
 
 .cap-service-num {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  color: var(--band-dark-muted);
-  transition: color 0.2s ease;
-}
-
-.cap-service-entry:hover .cap-service-num {
+  font-size: 0.78rem;
   color: var(--vermilion);
 }
 
-.cap-creative-lead-quote {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: clamp(1.5rem, 2.3vw, 2rem);
-  line-height: 1.25;
-  color: var(--band-dark-ink);
-  margin-bottom: 14px;
-}
-
 .cap-service-entry h4 {
-  font-size: 1.08rem;
+  font-size: 1.12rem;
   font-weight: 600;
   letter-spacing: -0.015em;
 }
 
 .cap-service-entry p {
-  font-size: 0.88rem;
-  line-height: 1.6;
+  font-size: 0.94rem;
+  line-height: 1.62;
   color: var(--band-dark-muted);
 }
 
+.cap-creative-lead-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  line-height: 1.24;
+  color: var(--band-dark-ink);
+  margin-bottom: 14px;
+}
+
 .cap-creative-strip {
-  margin-top: 64px;
-  padding-top: 44px;
-  border-top: 1px solid var(--band-dark-rule);
+  margin-top: 68px;
+  padding: clamp(32px, 4.5vw, 52px);
+  background: rgba(244, 241, 235, 0.045);
+  border-left: 3px solid var(--vermilion);
   display: grid;
-  grid-template-columns: 360px 1fr;
-  gap: clamp(36px, 5vw, 84px);
+  grid-template-columns: 300px 1fr;
+  gap: clamp(32px, 5vw, 72px);
   align-items: baseline;
 }
 
 .cap-creative-strip h3 {
-  font-size: 1.75rem;
+  font-size: 1.85rem;
   font-weight: 700;
   letter-spacing: -0.03em;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .cap-creative-body p {
-  font-size: 1.12rem;
+  font-size: 1.08rem;
   line-height: 1.65;
   color: var(--band-dark-ink);
   max-width: 680px;
@@ -953,26 +937,35 @@ html[data-theme="dark"] .specimen-logo.logo--mono-white {
 }
 
 .cap-creative-tags {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  font-weight: 500;
   color: var(--band-dark-muted);
 }
 
 /* ==========================================================================
-   BAND 05 — PRE-ONBOARDING AUDIT (ASYMMETRIC EDITORIAL LEDGER ROWS)
+   BAND 05 — PRE-ONBOARDING AUDIT (FOCUSED CENTERED EXECUTIVE BRIEFING)
    ========================================================================== */
 .audit-band {
-  padding: clamp(72px, 9vw, 128px) 0;
-  border-bottom: 1px solid var(--rule);
+  padding: clamp(80px, 10vw, 136px) 0 clamp(64px, 8vw, 104px);
 }
 
-.audit-split {
-  display: grid;
-  grid-template-columns: 360px 1fr;
-  gap: clamp(36px, 5vw, 84px);
-  align-items: start;
+.audit-briefing {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.audit-briefing-head {
+  margin-bottom: 48px;
+}
+
+.audit-heading-serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 5vw, 4.2rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  margin-bottom: 16px;
 }
 
 .audit-rows {
@@ -981,7 +974,7 @@ html[data-theme="dark"] .specimen-logo.logo--mono-white {
 
 .audit-row {
   display: grid;
-  grid-template-columns: 72px 220px 1fr;
+  grid-template-columns: 64px 230px 1fr;
   gap: 24px;
   padding: 24px 0;
   border-bottom: 1px solid var(--rule);
@@ -991,60 +984,60 @@ html[data-theme="dark"] .specimen-logo.logo--mono-white {
 .audit-row-num {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 2.2rem;
+  font-size: 2.1rem;
   line-height: 1;
   color: var(--ink);
 }
 
 .audit-row-title {
-  font-size: 1.08rem;
+  font-size: 1.12rem;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
 .audit-row-items {
-  font-size: 0.92rem;
+  font-size: 0.98rem;
   color: var(--ink-muted);
-  line-height: 1.6;
+  line-height: 1.62;
 }
 
 /* ==========================================================================
-   BAND 06 — THE ARRIBA STANDARD (PULL-QUOTE & PRINT CONTRAST LEDGER)
+   BAND 06 — THE ARRIBA STANDARD (CENTERED EDITORIAL PEAK + LEDGER)
    ========================================================================== */
 .standard-band {
-  padding: clamp(72px, 9vw, 128px) 0;
-  border-bottom: 1px solid var(--rule);
+  padding: clamp(88px, 11vw, 148px) 0 clamp(72px, 9vw, 120px);
+  background: var(--paper-alt);
 }
 
 .pull-quote-wrap {
+  max-width: 960px;
+  margin: 0 auto clamp(56px, 7vw, 84px);
+  text-align: center;
   position: relative;
-  padding-left: clamp(0px, 5vw, 72px);
-  margin: 22px 0 clamp(48px, 6vw, 76px);
 }
 
 .pull-quote-glyph {
-  position: absolute;
-  left: 0;
-  top: -0.18em;
+  display: block;
   font-family: var(--font-serif);
-  font-size: clamp(4.5rem, 8vw, 7.5rem);
-  line-height: 1;
+  font-size: clamp(4rem, 6vw, 5.5rem);
+  line-height: 0.65;
   color: var(--vermilion);
-  opacity: 0.32;
+  opacity: 0.55;
+  margin-bottom: 12px;
   user-select: none;
-  pointer-events: none;
 }
 
 .pull-quote {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: clamp(2rem, 4.3vw, 3.7rem);
-  line-height: 1.15;
+  font-size: clamp(2rem, 4vw, 3.45rem);
+  line-height: 1.18;
   color: var(--ink);
-  max-width: 980px;
 }
 
 .standard-table {
+  max-width: 1120px;
+  margin: 0 auto;
   border-top: 2px solid var(--ink);
 }
 
@@ -1052,120 +1045,109 @@ html[data-theme="dark"] .specimen-logo.logo--mono-white {
   display: grid;
   grid-template-columns: 180px 1fr 1.15fr;
   gap: 32px;
-  padding: 24px 0;
+  padding: 24px 12px;
   border-bottom: 1px solid var(--rule);
   align-items: baseline;
-  transition: background-color 0.2s ease, padding-left 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .standard-row:not(.standard-row--head):hover {
-  background-color: var(--paper-alt);
-  padding-left: 12px;
+  background-color: var(--paper);
 }
 
 .standard-row--head {
-  padding: 14px 0;
+  padding: 16px 12px;
   color: var(--ink-faint);
 }
 
 .standard-legacy {
-  font-size: 0.94rem;
+  font-size: 0.98rem;
   color: var(--ink-faint);
   text-decoration: line-through;
 }
 
 .standard-arriba {
-  font-size: 1.02rem;
+  font-size: 1.06rem;
   font-weight: 600;
   color: var(--ink);
 }
 
 /* ==========================================================================
-   BAND 07 — PARTNER NETWORK & LEADERSHIP VOICES (ASYMMETRIC GALLERY)
+   BAND 07 — LEADERSHIP VOICES & PARTNER NETWORK (OPEN FLOW)
    ========================================================================== */
 .voices-band {
-  padding: clamp(72px, 9vw, 128px) 0;
-  border-bottom: 1px solid var(--rule);
+  padding: clamp(80px, 10vw, 132px) 0 clamp(64px, 8vw, 96px);
 }
 
-.partners-voices-split {
+.voices-spread {
   display: grid;
-  grid-template-columns: 420px 1fr;
-  gap: clamp(40px, 6vw, 96px);
-  align-items: start;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(32px, 4.5vw, 60px);
+  margin-bottom: clamp(64px, 8vw, 96px);
 }
 
-.partner-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  border-top: 1px solid var(--rule);
-  border-left: 1px solid var(--rule);
-  margin-top: 28px;
-}
-
-.partner-tile {
-  height: 92px;
-  border-right: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-}
-
-.partner-tile img {
-  max-height: 28px;
-  max-width: 112px;
-  width: auto;
-  object-fit: contain;
-  opacity: 0.78;
-}
-
-.interview-quotes {
+.voice-entry {
   display: flex;
   flex-direction: column;
-  gap: 44px;
+  justify-content: space-between;
+  gap: 24px;
 }
 
-.interview-item {
-  padding-top: 24px;
+.voice-entry:nth-child(2) {
+  padding-top: 28px;
+}
+
+.voice-entry p {
+  font-family: var(--font-serif);
+  font-size: clamp(1.36rem, 1.85vw, 1.62rem);
+  line-height: 1.44;
+  color: var(--ink);
+}
+
+.voice-meta strong {
+  display: block;
+  font-size: 0.96rem;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.voice-meta span {
+  font-size: 0.84rem;
+  color: var(--ink-muted);
+}
+
+.partner-strip-block {
+  padding-top: 44px;
   border-top: 1px solid var(--rule);
 }
 
-.interview-item:nth-child(2) {
-  padding-left: clamp(0px, 3.5vw, 48px);
-}
-
-.interview-item:nth-child(3) {
-  padding-left: clamp(0px, 1.8vw, 24px);
-}
-
-.interview-item p {
-  font-family: var(--font-serif);
-  font-size: clamp(1.32rem, 1.9vw, 1.62rem);
-  line-height: 1.42;
-  color: var(--ink);
-  margin-bottom: 14px;
-}
-
-.interview-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 18px;
-  align-items: baseline;
-}
-
-.interview-meta strong {
-  font-size: 0.88rem;
+.partner-strip-label {
+  display: block;
+  font-size: 0.86rem;
   font-weight: 600;
+  color: var(--ink-muted);
+  margin-bottom: 28px;
 }
 
-.interview-meta span {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
+.partner-row-open {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 28px;
+  align-items: center;
+}
+
+.partner-open-item {
+  display: flex;
+  align-items: center;
+  height: 44px;
+}
+
+.partner-open-item img {
+  max-height: 30px;
+  max-width: 124px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.86;
 }
 
 /* ==========================================================================
@@ -1226,10 +1208,9 @@ html[data-theme="dark"] .specimen-logo.logo--mono-white {
 }
 
 .field label {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
   color: var(--ink-muted);
 }
 
@@ -1239,9 +1220,9 @@ html[data-theme="dark"] .specimen-logo.logo--mono-white {
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--rule-strong);
-  padding: 10px 0;
+  padding: 12px 0;
   font-family: var(--font-sans);
-  font-size: 0.98rem;
+  font-size: 1.04rem;
   color: var(--ink);
   outline: none;
   border-radius: 0;
@@ -1472,10 +1453,18 @@ html[data-theme="dark"] .specimen-logo.logo--mono-white {
   .case-pair-spread,
   .cap-engines-layout,
   .cap-creative-strip,
-  .audit-split,
-  .partners-voices-split,
+  .voices-spread,
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+  .cap-services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .voice-entry:nth-child(2) {
+    padding-top: 0;
+  }
+  .partner-row-open {
+    grid-template-columns: repeat(2, 1fr);
   }
   .case-pair-col:last-child {
     padding-left: 0;
