@@ -1045,14 +1045,6 @@ html[data-theme="dark"] .partner-open-item img.logo--mono-white {
   z-index: 4;
 }
 
-.expertise-header-row {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-
 .expertise-left {
   max-width: 560px;
 }
@@ -1066,26 +1058,6 @@ html[data-theme="dark"] .partner-open-item img.logo--mono-white {
   margin-bottom: 14px;
 }
 
-.expertise-replay-btn {
-  padding: 10px 18px;
-  border: 1px solid var(--rule-strong);
-  background: rgba(255, 255, 255, 0.42);
-  color: var(--ink);
-  cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-}
-
-.expertise-replay-btn:hover {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
-  transform: translateY(-1px);
-}
-
-html[data-theme="dark"] .expertise-replay-btn {
-  background: rgba(255, 255, 255, 0.06);
-}
-
 /* Full-Width Contained Physics Floor Arena */
 .expertise-physics-stage {
   position: relative;
@@ -1094,7 +1066,7 @@ html[data-theme="dark"] .expertise-replay-btn {
   margin-top: 12px;
   overflow: hidden;
   overflow: clip;
-  touch-action: pan-y;
+  pointer-events: none;
 }
 
 /* Individual Rigid-Body Industry Brick */
@@ -1115,7 +1087,6 @@ html[data-theme="dark"] .expertise-replay-btn {
   white-space: nowrap;
   user-select: none;
   -webkit-user-select: none;
-  cursor: grab;
   will-change: transform;
   transform-origin: center center;
   opacity: 0;
@@ -1124,10 +1095,6 @@ html[data-theme="dark"] .expertise-replay-btn {
 
 .industry-brick.is-dropped {
   opacity: 1;
-}
-
-.industry-brick:active {
-  cursor: grabbing;
 }
 
 .industry-brick-dot {

@@ -756,7 +756,6 @@
          on each other like weighted bricks, and stay readable on the floor.
      -------------------------------------------------------------------------- */
   const brickStage = document.getElementById('expertise-physics-stage');
-  const replayBtn = document.getElementById('expertise-replay-btn');
 
   if (brickStage) {
     const INDUSTRIES = [
@@ -792,7 +791,7 @@
         brickStage.appendChild(el);
       });
     } else {
-      const { Engine, World, Bodies, Body, Events, Mouse, MouseConstraint } = window.Matter;
+      const { Engine, World, Bodies, Body, Events } = window.Matter;
 
       const engine = Engine.create({
         gravity: { x: 0, y: 1.45, scale: 0.001 }
@@ -806,7 +805,6 @@
       let rafId = null;
       let lastTs = 0;
       let quietFrames = 0;
-      let dragging = false;
 
       // Measure & build DOM bricks once so colliders match exact text dimensions
       function createDomBricks() {
@@ -868,31 +866,6 @@
         }
       });
 
-      // Mouse / touch grab-and-toss without hijacking page vertical scrolling
-      const mouse = Mouse.create(brickStage);
-      mouse.element.removeEventListener('wheel', mouse.mousewheel);
-      mouse.element.removeEventListener('mousewheel', mouse.mousewheel);
-      mouse.element.removeEventListener('DOMMouseScroll', mouse.mousewheel);
-
-      const mouseConstraint = MouseConstraint.create(engine, {
-        mouse,
-        constraint: {
-          stiffness: 0.18,
-          render: { visible: false }
-        }
-      });
-      World.add(engine.world, mouseConstraint);
-
-      Events.on(mouseConstraint, 'startdrag', () => {
-        dragging = true;
-        quietFrames = 0;
-        startLoop();
-      });
-      Events.on(mouseConstraint, 'enddrag', () => {
-        dragging = false;
-        quietFrames = 0;
-      });
-
       function syncDom() {
         for (let i = 0; i < brickEntries.length; i++) {
           const entry = brickEntries[i];
@@ -913,7 +886,7 @@
 
         // Pause RAF automatically once all dropped bricks settle on the floor (0% resting CPU)
         const allDropped = brickEntries.every((e) => e.dropped);
-        if (allDropped && !dragging) {
+        if (allDropped) {
           let maxMotion = 0;
           for (let i = 0; i < brickEntries.length; i++) {
             const b = brickEntries[i].body;
@@ -1012,13 +985,6 @@
 
       createDomBricks();
       buildWalls();
-
-      if (replayBtn) {
-        replayBtn.addEventListener('click', () => {
-          hasTriggered = true;
-          dropBricks();
-        });
-      }
 
       // Trigger first natural brick drop when #expertise scrolls into view
       const expertiseSection = document.getElementById('expertise') || brickStage;
