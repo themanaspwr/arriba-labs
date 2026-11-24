@@ -948,6 +948,36 @@ html[data-theme="dark"] .case-logo {
   margin-bottom: 52px;
 }
 
+/* 6-Column Independent Mechanical Roller Mode (No Machine / No Lever) */
+.specimen-grid.is-reel-mode {
+  gap: 16px 24px;
+  padding: 20px 0;
+}
+
+.logo-reel-window {
+  height: 92px;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 80%, transparent 100%);
+}
+
+.logo-reel-strip {
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.logo-reel-slot {
+  height: 92px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+}
+
 .specimen-cell {
   display: flex;
   align-items: center;

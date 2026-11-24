@@ -543,4 +543,162 @@
 
     rafId = requestAnimationFrame(stepFrame);
   }
+
+  // 9. 6-Column Independent Lucky-Draw Roller Animation for Client Logos (No Machine / No Lever)
+  const reelGrid = document.getElementById('client-reel-grid');
+  if (reelGrid && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const sourceImgs = Array.from(reelGrid.querySelectorAll('img.specimen-logo'));
+    if (sourceImgs.length >= 6) {
+      const catalog = sourceImgs.map((img) => ({
+        alt: img.alt || '',
+        lightSrc: img.getAttribute('data-light-src') || img.getAttribute('src'),
+        darkSrc: img.getAttribute('data-dark-src') || img.getAttribute('src'),
+        hasDual: img.hasAttribute('data-light-src') && img.hasAttribute('data-dark-src'),
+        monoWhite: img.classList.contains('logo--mono-white')
+      }));
+
+      const COLS = 6;
+      const SLOT_H = 92;
+      const reels = [];
+      let isVisible = false;
+      let isHovered = false;
+      let cycleTimer = null;
+
+      function createLogoSlot(item) {
+        const slot = document.createElement('div');
+        slot.className = 'logo-reel-slot';
+        const img = document.createElement('img');
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        img.src = isDark ? item.darkSrc : item.lightSrc;
+        img.alt = item.alt;
+        img.className = 'specimen-logo' + (item.monoWhite ? ' logo--mono-white' : '');
+        if (item.hasDual) {
+          img.setAttribute('data-light-src', item.lightSrc);
+          img.setAttribute('data-dark-src', item.darkSrc);
+        }
+        slot.appendChild(img);
+        return slot;
+      }
+
+      // Build 6 clean vertical roller columns
+      reelGrid.innerHTML = '';
+      reelGrid.classList.add('is-reel-mode');
+
+      for (let c = 0; c < COLS; c++) {
+        const win = document.createElement('div');
+        win.className = 'logo-reel-window';
+        const strip = document.createElement('div');
+        strip.className = 'logo-reel-strip';
+        strip.appendChild(createLogoSlot(catalog[c]));
+        win.appendChild(strip);
+        reelGrid.appendChild(win);
+        reels.push({ strip, currentIdx: c, spinning: false });
+      }
+
+      // Pick 6 unique random target indices (different from each column's current logo)
+      function pickTargets() {
+        const pool = catalog.map((_, idx) => idx);
+        for (let i = pool.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [pool[i], pool[j]] = [pool[j], pool[i]];
+        }
+        const chosen = [];
+        for (let c = 0; c < COLS; c++) {
+          const pickPos = pool.findIndex((idx) => idx !== reels[c].currentIdx && !chosen.includes(idx));
+          const idx = pickPos >= 0 ? pool.splice(pickPos, 1)[0] : pool.pop();
+          chosen.push(idx);
+        }
+        return chosen;
+      }
+
+      function spinReel(colIdx, targetIdx, startDelay, durationMs, extraSpins) {
+        const reel = reels[colIdx];
+        if (reel.spinning) return;
+        reel.spinning = true;
+
+        setTimeout(() => {
+          const strip = reel.strip;
+          const currentItem = catalog[reel.currentIdx];
+          const targetItem = catalog[targetIdx];
+
+          // Build strip: [current, ...random passing logos..., target]
+          strip.style.transition = 'none';
+          strip.style.transform = 'translate3d(0, 0, 0)';
+          strip.innerHTML = '';
+          strip.appendChild(createLogoSlot(currentItem));
+
+          for (let s = 0; s < extraSpins; s++) {
+            const randIdx = Math.floor(Math.random() * catalog.length);
+            strip.appendChild(createLogoSlot(catalog[randIdx]));
+          }
+          strip.appendChild(createLogoSlot(targetItem));
+
+          // Force layout flush before applying smooth mechanical deceleration
+          void strip.offsetHeight;
+
+          const totalSteps = extraSpins + 1;
+          strip.style.transition = `transform ${durationMs}ms cubic-bezier(0.15, 1.03, 0.28, 1)`;
+          strip.style.transform = `translate3d(0, -${totalSteps * SLOT_H}px, 0)`;
+
+          setTimeout(() => {
+            // Settle cleanly onto target logo so DOM stays minimal
+            strip.style.transition = 'none';
+            strip.innerHTML = '';
+            strip.appendChild(createLogoSlot(targetItem));
+            strip.style.transform = 'translate3d(0, 0, 0)';
+            reel.currentIdx = targetIdx;
+            reel.spinning = false;
+          }, durationMs + 60);
+        }, startDelay);
+      }
+
+      function triggerSpinCycle() {
+        if (!isVisible || isHovered) {
+          scheduleNext(1500);
+          return;
+        }
+        const targets = pickTargets();
+        let maxFinish = 0;
+
+        for (let c = 0; c < COLS; c++) {
+          const startDelay = c * 130 + Math.floor(Math.random() * 70);
+          const extraSpins = 5 + c + Math.floor(Math.random() * 3);
+          const durationMs = 1350 + c * 220 + Math.floor(Math.random() * 240);
+          maxFinish = Math.max(maxFinish, startDelay + durationMs);
+          spinReel(c, targets[c], startDelay, durationMs, extraSpins);
+        }
+
+        // Hold cleanly on the 6 landed logos for 3.2s before spinning again
+        scheduleNext(maxFinish + 3200);
+      }
+
+      function scheduleNext(ms) {
+        if (cycleTimer) clearTimeout(cycleTimer);
+        cycleTimer = setTimeout(triggerSpinCycle, ms);
+      }
+
+      reelGrid.addEventListener('mouseenter', () => { isHovered = true; });
+      reelGrid.addEventListener('mouseleave', () => { isHovered = false; });
+
+      if ('IntersectionObserver' in window) {
+        const reelObserver = new IntersectionObserver(
+          (entries) => {
+            const wasVisible = isVisible;
+            isVisible = entries[0].isIntersecting;
+            if (isVisible && !wasVisible) {
+              scheduleNext(350);
+            } else if (!isVisible && cycleTimer) {
+              clearTimeout(cycleTimer);
+              cycleTimer = null;
+            }
+          },
+          { threshold: 0.15 }
+        );
+        reelObserver.observe(reelGrid);
+      } else {
+        isVisible = true;
+        scheduleNext(800);
+      }
+    }
+  }
 })();
