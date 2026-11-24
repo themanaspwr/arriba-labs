@@ -437,7 +437,7 @@ html[data-theme="dark"] .shine-phrase {
 
 .cover-headline-indent {
   display: inline-block;
-  padding-left: clamp(0px, 6.5vw, 108px);
+  padding-left: 0;
 }
 
 /* Studio Press Stamp Frame (Columns 1-3) */
