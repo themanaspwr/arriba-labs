@@ -1078,7 +1078,7 @@ html[data-theme="dark"] .partner-open-item img.logo--mono-white {
   align-items: center;
   gap: 10px;
   padding: 15px 24px;
-  border-radius: 10px;
+  border-radius: 2px;
   font-family: var(--font-sans);
   font-size: 1.02rem;
   font-weight: 700;
@@ -1105,52 +1105,46 @@ html[data-theme="dark"] .partner-open-item img.logo--mono-white {
   opacity: 0.85;
 }
 
-/* Curated Arriba Editorial Brick Colorways */
+/* Flat Editorial Rectangle Brick Colorways (Zero Extra Shadow / Bevel) */
 .brick--ink {
   background: #141318;
   color: #f7f5fa;
-  border: 1.5px solid #2b2936;
-  box-shadow: 0 5px 0 #07060a, 0 12px 24px rgba(15, 13, 24, 0.22);
+  border: 1px solid #2b2936;
 }
 .brick--ink .industry-brick-dot { background: #e86c5d; }
 
 .brick--plum {
   background: #753a5d;
   color: #ffffff;
-  border: 1.5px solid #8c4a71;
-  box-shadow: 0 5px 0 #4d223c, 0 12px 24px rgba(77, 34, 60, 0.22);
+  border: 1px solid #8c4a71;
 }
 .brick--plum .industry-brick-dot { background: #f6c9dc; }
 
 .brick--violet {
   background: #6a4593;
   color: #ffffff;
-  border: 1.5px solid #825aad;
-  box-shadow: 0 5px 0 #452966, 0 12px 24px rgba(69, 41, 102, 0.22);
+  border: 1px solid #825aad;
 }
 .brick--violet .industry-brick-dot { background: #dfd1fa; }
 
 .brick--cobalt {
   background: #4e6fc2;
   color: #ffffff;
-  border: 1.5px solid #6887d4;
-  box-shadow: 0 5px 0 #314a8a, 0 12px 24px rgba(49, 74, 138, 0.22);
+  border: 1px solid #6887d4;
 }
 .brick--cobalt .industry-brick-dot { background: #d6e4ff; }
 
 .brick--cream {
   background: #ffffff;
   color: #141318;
-  border: 1.5px solid rgba(106, 69, 147, 0.28);
-  box-shadow: 0 5px 0 rgba(106, 69, 147, 0.22), 0 12px 24px rgba(68, 44, 102, 0.12);
+  border: 1px solid rgba(106, 69, 147, 0.28);
 }
 .brick--cream .industry-brick-dot { background: #c8372d; }
 
 .brick--vermilion {
   background: #c8372d;
   color: #ffffff;
-  border: 1.5px solid #dd5046;
-  box-shadow: 0 5px 0 #8a2019, 0 12px 24px rgba(138, 32, 25, 0.22);
+  border: 1px solid #dd5046;
 }
 .brick--vermilion .industry-brick-dot { background: #ffd8d4; }
 
@@ -1158,14 +1152,12 @@ html[data-theme="dark"] .brick--ink {
   background: #f2f0f7;
   color: #121117;
   border-color: #ffffff;
-  box-shadow: 0 5px 0 #a9a2ba, 0 12px 26px rgba(0, 0, 0, 0.45);
 }
 
 html[data-theme="dark"] .brick--cream {
   background: #23202e;
   color: #f4f2f9;
   border-color: rgba(165, 140, 230, 0.36);
-  box-shadow: 0 5px 0 #110f18, 0 12px 26px rgba(0, 0, 0, 0.45);
 }
 
 /* ==========================================================================
@@ -1866,7 +1858,7 @@ html[data-theme="dark"] .partner-open-item:hover {
     padding: 10px 14px;
     font-size: 0.80rem;
     gap: 7px;
-    border-radius: 8px;
+    border-radius: 2px;
   }
   .industry-brick-dot {
     width: 6px;

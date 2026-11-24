@@ -832,7 +832,7 @@
         const H = brickStage.clientHeight;
         const sidePad = Math.max(14, Math.min(48, Math.round(W * 0.032)));
 
-        const floor = Bodies.rectangle(W / 2, H + WALL_T / 2 - 6, W + WALL_T * 2, WALL_T, {
+        const floor = Bodies.rectangle(W / 2, H + WALL_T / 2 - 2, W + WALL_T * 2, WALL_T, {
           isStatic: true,
           friction: 0.75,
           restitution: 0.15
@@ -957,7 +957,7 @@
             const spawnY = -entry.h - 14 - Math.random() * 34;
 
             const body = Bodies.rectangle(spawnX, spawnY, entry.w, entry.h, {
-              chamfer: { radius: 8 },
+              chamfer: { radius: 2 },
               restitution: 0.24,
               friction: 0.62,
               frictionStatic: 0.72,
