@@ -1770,11 +1770,17 @@ html[data-theme="dark"] .partner-open-item:hover {
   z-index: 180;
   max-width: 400px;
   padding: 18px 20px;
-  background: var(--paper-alt);
+  background: rgba(250, 248, 252, 0.97);
   border: 1px solid var(--rule-strong);
+  box-shadow: 0 12px 32px rgba(20, 16, 32, 0.14);
   display: none;
   flex-direction: column;
   gap: 12px;
+}
+
+html[data-theme="dark"] .cookie-notice {
+  background: rgba(20, 20, 25, 0.97);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
 }
 
 .cookie-notice.is-visible {
