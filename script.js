@@ -751,151 +751,310 @@
   }
 
   /* --------------------------------------------------------------------------
-     10. OUR EXPERTISE — RIGHT-ALIGNED ROLLING HALF-WHEEL INDUSTRY DIAL
-         12 industries arranged radially (30deg apart); rolls continuously
-         and stops for >1.3s on every industry at the 9 o'clock notch.
+     10. OUR EXPERTISE — RIGID-BODY FALLING INDUSTRY BRICKS (MATTER.JS)
+         12 industry blocks drop naturally inside #expertise, collide & tumble
+         on each other like weighted bricks, and stay readable on the floor.
      -------------------------------------------------------------------------- */
-  const wheelRotor = document.getElementById('expertise-wheel-rotor');
-  const wheelStage = document.getElementById('expertise-wheel-stage');
-  const pointerNotch = document.getElementById('wheel-pointer-notch');
-  const counterEl = document.getElementById('expertise-counter');
-  const activeLabelEl = document.getElementById('expertise-active-label');
+  const brickStage = document.getElementById('expertise-physics-stage');
+  const replayBtn = document.getElementById('expertise-replay-btn');
 
-  if (wheelRotor && wheelStage) {
+  if (brickStage) {
     const INDUSTRIES = [
-      'Kids Clothing',
-      'FMCG',
-      'Footwear',
-      'Fashion & Apparel',
-      'Beauty & Personal Care',
-      'Home Decor & Luxury Living',
-      'Real Estate',
-      'Artisan & Handcrafted Goods',
-      'Consumer Electronics & Audio',
-      'Jewellery & Accessories',
-      'Health & Wellness',
-      'Global Non-Profits'
+      { name: 'Kids Clothing', theme: 'brick--cream' },
+      { name: 'FMCG', theme: 'brick--vermilion' },
+      { name: 'Footwear', theme: 'brick--ink' },
+      { name: 'Fashion & Apparel', theme: 'brick--plum' },
+      { name: 'Beauty & Personal Care', theme: 'brick--violet' },
+      { name: 'Home Decor & Luxury Living', theme: 'brick--cream' },
+      { name: 'Real Estate', theme: 'brick--cobalt' },
+      { name: 'Artisan & Handcrafted Goods', theme: 'brick--plum' },
+      { name: 'Consumer Electronics & Audio', theme: 'brick--ink' },
+      { name: 'Jewellery & Accessories', theme: 'brick--violet' },
+      { name: 'Health & Wellness', theme: 'brick--cobalt' },
+      { name: 'Global Non-Profits', theme: 'brick--vermilion' }
     ];
 
-    const COUNT = INDUSTRIES.length;
-    const STEP_DEG = 360 / COUNT; // 30deg per industry
-    const STEP_INTERVAL_MS = 2100; // 720ms roll + ~1.38s stationary stop (>= 1s)
-    const reduceMotionWheel =
+    const reduceMotionBricks =
       window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const spokes = [];
-    let currentStep = 0; // monotonic step counter for seamless infinite rotation
-    let wheelTimer = null;
-    let wheelVisible = false;
-    let wheelHovered = false;
-
-    function activeIndexFromStep(step) {
-      return ((step % COUNT) + COUNT) % COUNT;
-    }
-
-    function applyStep(step, instant) {
-      currentStep = step;
-      const activeIdx = activeIndexFromStep(currentStep);
-
-      if (instant) {
-        wheelRotor.style.transition = 'none';
-      } else {
-        wheelRotor.style.transition = '';
-      }
-
-      wheelRotor.style.transform = `rotate(${-currentStep * STEP_DEG}deg)`;
-
-      if (instant) {
-        void wheelRotor.offsetHeight;
-        wheelRotor.style.transition = '';
-      }
-
-      spokes.forEach((btn, idx) => {
-        const isActive = idx === activeIdx;
-        btn.classList.toggle('is-active', isActive);
-        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+    if (reduceMotionBricks || typeof window.Matter === 'undefined') {
+      // Static readable fallback for reduced-motion or missing engine
+      brickStage.style.display = 'flex';
+      brickStage.style.flexWrap = 'wrap';
+      brickStage.style.alignContent = 'flex-end';
+      brickStage.style.gap = '12px';
+      brickStage.style.padding = '24px clamp(20px, 3.6vw, 48px) 32px';
+      INDUSTRIES.forEach((item) => {
+        const el = document.createElement('div');
+        el.className = `industry-brick ${item.theme} is-dropped`;
+        el.style.position = 'relative';
+        el.innerHTML = `<span class="industry-brick-dot" aria-hidden="true"></span><span>${item.name}</span>`;
+        brickStage.appendChild(el);
       });
-
-      if (counterEl) {
-        counterEl.textContent = `${String(activeIdx + 1).padStart(2, '0')} / ${String(COUNT).padStart(2, '0')}`;
-      }
-      if (activeLabelEl) {
-        if (!instant) {
-          activeLabelEl.classList.add('is-updating');
-          setTimeout(() => {
-            activeLabelEl.textContent = INDUSTRIES[activeIdx];
-            activeLabelEl.classList.remove('is-updating');
-          }, 150);
-        } else {
-          activeLabelEl.textContent = INDUSTRIES[activeIdx];
-        }
-      }
-      if (pointerNotch && !instant) {
-        pointerNotch.classList.add('is-clicking');
-        setTimeout(() => pointerNotch.classList.remove('is-clicking'), 240);
-      }
-    }
-
-    function scheduleWheelTick(delayMs) {
-      if (wheelTimer) clearTimeout(wheelTimer);
-      if (reduceMotionWheel) return;
-      wheelTimer = setTimeout(() => {
-        if (wheelVisible && !wheelHovered) {
-          applyStep(currentStep + 1, false);
-        }
-        scheduleWheelTick(STEP_INTERVAL_MS);
-      }, delayMs);
-    }
-
-    // Populate the 12 radial spokes around the wheel
-    INDUSTRIES.forEach((name, idx) => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'wheel-spoke';
-      btn.style.setProperty('--deg', `${idx * STEP_DEG}deg`);
-      btn.setAttribute('aria-label', name);
-
-      const label = document.createElement('span');
-      label.className = 'wheel-spoke-label';
-      label.textContent = name;
-      btn.appendChild(label);
-
-      btn.addEventListener('click', () => {
-        const curIdx = activeIndexFromStep(currentStep);
-        let delta = (idx - curIdx + COUNT) % COUNT;
-        if (delta > COUNT / 2) delta -= COUNT;
-        applyStep(currentStep + delta, false);
-        scheduleWheelTick(STEP_INTERVAL_MS + 600);
-      });
-
-      wheelRotor.appendChild(btn);
-      spokes.push(btn);
-    });
-
-    applyStep(0, true);
-
-    wheelStage.addEventListener('mouseenter', () => { wheelHovered = true; });
-    wheelStage.addEventListener('mouseleave', () => { wheelHovered = false; });
-
-    if ('IntersectionObserver' in window) {
-      const expertiseSection = document.getElementById('expertise') || wheelStage;
-      const wheelObserver = new IntersectionObserver(
-        (entries) => {
-          const wasVisible = wheelVisible;
-          wheelVisible = entries[0].isIntersecting;
-          if (wheelVisible && !wasVisible) {
-            scheduleWheelTick(1350);
-          } else if (!wheelVisible && wheelTimer) {
-            clearTimeout(wheelTimer);
-            wheelTimer = null;
-          }
-        },
-        { threshold: 0.15 }
-      );
-      wheelObserver.observe(expertiseSection);
     } else {
-      wheelVisible = true;
-      scheduleWheelTick(1350);
+      const { Engine, World, Bodies, Body, Events, Mouse, MouseConstraint } = window.Matter;
+
+      const engine = Engine.create({
+        gravity: { x: 0, y: 1.45, scale: 0.001 }
+      });
+
+      const WALL_T = 120;
+      let walls = [];
+      let brickEntries = []; // { el, body, w, h, dropped }
+      let dropTimeouts = [];
+      let hasTriggered = false;
+      let rafId = null;
+      let lastTs = 0;
+      let quietFrames = 0;
+      let dragging = false;
+
+      // Measure & build DOM bricks once so colliders match exact text dimensions
+      function createDomBricks() {
+        brickStage.innerHTML = '';
+        brickEntries = INDUSTRIES.map((item) => {
+          const el = document.createElement('div');
+          el.className = `industry-brick ${item.theme}`;
+          el.innerHTML = `<span class="industry-brick-dot" aria-hidden="true"></span><span>${item.name}</span>`;
+          brickStage.appendChild(el);
+          return {
+            el,
+            body: null,
+            w: el.offsetWidth,
+            h: el.offsetHeight,
+            dropped: false
+          };
+        });
+      }
+
+      function buildWalls() {
+        if (walls.length) {
+          World.remove(engine.world, walls);
+        }
+        const W = brickStage.clientWidth;
+        const H = brickStage.clientHeight;
+        const sidePad = Math.max(14, Math.min(48, Math.round(W * 0.032)));
+
+        const floor = Bodies.rectangle(W / 2, H + WALL_T / 2 - 6, W + WALL_T * 2, WALL_T, {
+          isStatic: true,
+          friction: 0.75,
+          restitution: 0.15
+        });
+        const leftWall = Bodies.rectangle(sidePad - WALL_T / 2, H / 2 - 200, WALL_T, H + 900, {
+          isStatic: true,
+          friction: 0.4,
+          restitution: 0.25
+        });
+        const rightWall = Bodies.rectangle(W - sidePad + WALL_T / 2, H / 2 - 200, WALL_T, H + 900, {
+          isStatic: true,
+          friction: 0.4,
+          restitution: 0.25
+        });
+
+        walls = [floor, leftWall, rightWall];
+        World.add(engine.world, walls);
+      }
+
+      // Gentle readability guard: allow natural tilting/tumbling up to ~54deg, never upside-down
+      Events.on(engine, 'beforeUpdate', () => {
+        const MAX_TILT = 0.94; // ~54 deg
+        for (let i = 0; i < brickEntries.length; i++) {
+          const b = brickEntries[i].body;
+          if (!b) continue;
+          if (b.angle > MAX_TILT) {
+            Body.setAngularVelocity(b, b.angularVelocity * 0.72 - 0.032);
+          } else if (b.angle < -MAX_TILT) {
+            Body.setAngularVelocity(b, b.angularVelocity * 0.72 + 0.032);
+          }
+        }
+      });
+
+      // Mouse / touch grab-and-toss without hijacking page vertical scrolling
+      const mouse = Mouse.create(brickStage);
+      mouse.element.removeEventListener('wheel', mouse.mousewheel);
+      mouse.element.removeEventListener('mousewheel', mouse.mousewheel);
+      mouse.element.removeEventListener('DOMMouseScroll', mouse.mousewheel);
+
+      const mouseConstraint = MouseConstraint.create(engine, {
+        mouse,
+        constraint: {
+          stiffness: 0.18,
+          render: { visible: false }
+        }
+      });
+      World.add(engine.world, mouseConstraint);
+
+      Events.on(mouseConstraint, 'startdrag', () => {
+        dragging = true;
+        quietFrames = 0;
+        startLoop();
+      });
+      Events.on(mouseConstraint, 'enddrag', () => {
+        dragging = false;
+        quietFrames = 0;
+      });
+
+      function syncDom() {
+        for (let i = 0; i < brickEntries.length; i++) {
+          const entry = brickEntries[i];
+          if (!entry.body || !entry.dropped) continue;
+          const x = entry.body.position.x - entry.w / 2;
+          const y = entry.body.position.y - entry.h / 2;
+          entry.el.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) rotate(${entry.body.angle.toFixed(4)}rad)`;
+        }
+      }
+
+      function stepPhysics(ts) {
+        if (!lastTs) lastTs = ts;
+        const dt = Math.min(24, Math.max(8, ts - lastTs));
+        lastTs = ts;
+
+        Engine.update(engine, dt);
+        syncDom();
+
+        // Pause RAF automatically once all dropped bricks settle on the floor (0% resting CPU)
+        const allDropped = brickEntries.every((e) => e.dropped);
+        if (allDropped && !dragging) {
+          let maxMotion = 0;
+          for (let i = 0; i < brickEntries.length; i++) {
+            const b = brickEntries[i].body;
+            if (!b) continue;
+            maxMotion = Math.max(maxMotion, b.speed, Math.abs(b.angularVelocity) * 18);
+          }
+          if (maxMotion < 0.12) {
+            quietFrames++;
+          } else {
+            quietFrames = 0;
+          }
+          if (quietFrames > 75) {
+            rafId = null;
+            lastTs = 0;
+            return;
+          }
+        }
+
+        rafId = requestAnimationFrame(stepPhysics);
+      }
+
+      function startLoop() {
+        if (!rafId) {
+          lastTs = 0;
+          rafId = requestAnimationFrame(stepPhysics);
+        }
+      }
+
+      function dropBricks() {
+        // Clear any pending staggered drops & old rigid bodies
+        dropTimeouts.forEach((id) => clearTimeout(id));
+        dropTimeouts = [];
+
+        brickEntries.forEach((entry) => {
+          if (entry.body) {
+            World.remove(engine.world, entry.body);
+            entry.body = null;
+          }
+          entry.dropped = false;
+          entry.el.classList.remove('is-dropped');
+          entry.w = entry.el.offsetWidth;
+          entry.h = entry.el.offsetHeight;
+        });
+
+        buildWalls();
+        quietFrames = 0;
+        startLoop();
+
+        const W = brickStage.clientWidth;
+        const sidePad = Math.max(20, Math.min(64, Math.round(W * 0.04)));
+
+        // Shuffle drop order so every drop builds a brand-new natural brick pile
+        const order = brickEntries.map((_, i) => i);
+        for (let i = order.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [order[i], order[j]] = [order[j], order[i]];
+        }
+
+        order.forEach((entryIdx, seq) => {
+          const delay = seq * 115 + Math.floor(Math.random() * 55);
+          const tid = setTimeout(() => {
+            const entry = brickEntries[entryIdx];
+            const minX = sidePad + entry.w / 2 + 8;
+            const maxX = Math.max(minX + 10, W - sidePad - entry.w / 2 - 8);
+            // Spread across horizontal lanes with natural jitter so they pile across the whole floor
+            const laneFrac = ((seq % 4) + 0.18 + Math.random() * 0.64) / 4;
+            const spawnX = Math.min(maxX, Math.max(minX, minX + laneFrac * (maxX - minX)));
+            const spawnY = -entry.h - 14 - Math.random() * 34;
+
+            const body = Bodies.rectangle(spawnX, spawnY, entry.w, entry.h, {
+              chamfer: { radius: 8 },
+              restitution: 0.24,
+              friction: 0.62,
+              frictionStatic: 0.72,
+              frictionAir: 0.011,
+              density: 0.0024
+            });
+
+            Body.setAngle(body, (Math.random() - 0.5) * 0.42);
+            Body.setVelocity(body, {
+              x: (Math.random() - 0.5) * 2.2,
+              y: 1.5 + Math.random() * 1.5
+            });
+            Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.055);
+
+            entry.body = body;
+            entry.dropped = true;
+            World.add(engine.world, body);
+            entry.el.classList.add('is-dropped');
+            quietFrames = 0;
+            startLoop();
+          }, delay);
+          dropTimeouts.push(tid);
+        });
+      }
+
+      createDomBricks();
+      buildWalls();
+
+      if (replayBtn) {
+        replayBtn.addEventListener('click', () => {
+          hasTriggered = true;
+          dropBricks();
+        });
+      }
+
+      // Trigger first natural brick drop when #expertise scrolls into view
+      const expertiseSection = document.getElementById('expertise') || brickStage;
+      if ('IntersectionObserver' in window) {
+        const brickObserver = new IntersectionObserver(
+          (entries) => {
+            if (entries[0].isIntersecting && !hasTriggered) {
+              hasTriggered = true;
+              dropBricks();
+            }
+          },
+          { threshold: 0.2 }
+        );
+        brickObserver.observe(expertiseSection);
+      } else {
+        hasTriggered = true;
+        dropBricks();
+      }
+
+      // Rebuild bounds cleanly if viewport width changes significantly
+      let resizeTimer = null;
+      let lastWidth = brickStage.clientWidth;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          const newW = brickStage.clientWidth;
+          if (Math.abs(newW - lastWidth) > 36) {
+            lastWidth = newW;
+            if (hasTriggered) {
+              dropBricks();
+            } else {
+              buildWalls();
+            }
+          }
+        }, 220);
+      });
     }
   }
 })();

@@ -293,34 +293,25 @@
       </div>
     </section>
 
-    <!-- ==================== BAND 03B: OUR EXPERTISE (RIGHT-ALIGNED HALF-WHEEL DIAL) ==================== -->
+    <!-- ==================== BAND 03B: OUR EXPERTISE (FALLING INDUSTRY BRICKS PHYSICS) ==================== -->
     <section class="expertise-band" id="expertise">
-      <div class="wrap expertise-layout">
-        <div class="expertise-left">
-          <h2 class="expertise-heading">Our<br>Expertise</h2>
-          <p class="band-header-right" data-typewriter>
-            Deep category playbooks engineered across twelve high-velocity consumer, retail, and global verticals.
-          </p>
-          <div class="expertise-active-readout">
-            <span class="mono" id="expertise-counter">01 / 12</span>
-            <span class="expertise-active-name" id="expertise-active-label">Kids Clothing</span>
+      <div class="wrap expertise-header-wrap">
+        <div class="expertise-header-row">
+          <div class="expertise-left">
+            <h2 class="expertise-heading">Our Expertise</h2>
+            <p class="band-header-right" data-typewriter>
+              Deep category playbooks engineered across twelve high-velocity consumer, retail, and global verticals.
+            </p>
           </div>
+          <button type="button" class="expertise-replay-btn mono" id="expertise-replay-btn" aria-label="Drop industry blocks again">
+            Drop Again &#8635;
+          </button>
         </div>
       </div>
 
-      <!-- Completely Right-Aligned Rolling Half-Wheel -->
-      <div class="expertise-wheel-stage" id="expertise-wheel-stage" aria-label="Industries we serve wheel">
-        <div class="wheel-pointer-notch" id="wheel-pointer-notch" aria-hidden="true"></div>
-        <div class="wheel-active-slot" aria-hidden="true"></div>
-        <div class="expertise-wheel-rotor" id="expertise-wheel-rotor">
-          <div class="wheel-ticks" aria-hidden="true"></div>
-          <div class="wheel-ring wheel-ring--outer" aria-hidden="true"></div>
-          <div class="wheel-ring wheel-ring--inner" aria-hidden="true"></div>
-          <div class="wheel-hub" aria-hidden="true">
-            <div class="wheel-hub-core"></div>
-          </div>
-          <!-- 12 industry spokes populated & rotated cleanly via script.js -->
-        </div>
+      <!-- Full-Section Rigid-Body Falling Brick Arena (Contained Strictly to This Section) -->
+      <div class="expertise-physics-stage" id="expertise-physics-stage" aria-label="Interactive falling industry blocks">
+        <!-- 12 rigid-body industry blocks dropped & stacked naturally on the floor via Matter.js -->
       </div>
     </section>
 
@@ -698,7 +689,8 @@
     </div>
   </div>
 
-  <!-- Pure Zero-Lag Vanilla Script (No Lenis, No Scroll Hijacking) -->
+  <!-- Self-Hosted Matter.js (2D Rigid-Body Brick Physics) + Zero-Lag Vanilla Script -->
+  <script defer src="vendor/matter.min.js"></script>
   <script defer src="script.js"></script>
 </body>
 </html>
