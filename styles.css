@@ -501,9 +501,9 @@ html[data-theme="dark"] .shine-phrase {
 }
 
 .cover-thesis-col {
-  grid-column: 4 / 9;
-  padding-left: clamp(16px, 2.5vw, 36px);
-  border-left: 1px solid var(--rule);
+  grid-column: 1 / 7;
+  padding-left: 0;
+  border-left: none;
 }
 
 .cover-thesis {
@@ -512,7 +512,7 @@ html[data-theme="dark"] .shine-phrase {
   color: var(--ink);
   font-weight: 400;
   margin-bottom: 32px;
-  max-width: 520px;
+  max-width: 560px;
 }
 
 .cover-actions {
@@ -562,7 +562,7 @@ html[data-theme="dark"] .shine-phrase {
 
 /* Right-Column Vertical Financial Ledger */
 .cover-ledger-col {
-  grid-column: 9 / 13;
+  grid-column: 8 / 13;
   border-top: 2px solid var(--ink);
 }
 
