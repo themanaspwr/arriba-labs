@@ -575,7 +575,6 @@
       const reels = [];
       let isVisible = false;
       let isHovered = false;
-      let cycleTimer = null;
 
       function createLogoSlot(item) {
         const slot = document.createElement('div');
@@ -593,7 +592,7 @@
         return slot;
       }
 
-      // Build 6 clean vertical roller columns
+      // Build 6 independent vertical roller columns (alternating UP / DOWN directions)
       reelGrid.innerHTML = '';
       reelGrid.classList.add('is-reel-mode');
 
@@ -605,89 +604,126 @@
         strip.appendChild(createLogoSlot(catalog[c]));
         win.appendChild(strip);
         reelGrid.appendChild(win);
-        reels.push({ strip, currentIdx: c, spinning: false });
+        reels.push({
+          strip,
+          currentIdx: c,
+          targetIdx: c,
+          dir: c % 2 === 0 ? 'up' : 'down',
+          spinning: false,
+          timer: null
+        });
       }
 
-      // Pick 6 unique random target indices (different from each column's current logo)
-      function pickTargets() {
-        const pool = catalog.map((_, idx) => idx);
-        for (let i = pool.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [pool[i], pool[j]] = [pool[j], pool[i]];
+      // Pick a random logo not currently shown or targeted by any of the 6 columns
+      function pickUniqueTarget(colIdx) {
+        const used = new Set();
+        reels.forEach((r) => {
+          used.add(r.currentIdx);
+          used.add(r.targetIdx);
+        });
+        const available = [];
+        for (let i = 0; i < catalog.length; i++) {
+          if (!used.has(i)) available.push(i);
         }
-        const chosen = [];
-        for (let c = 0; c < COLS; c++) {
-          const pickPos = pool.findIndex((idx) => idx !== reels[c].currentIdx && !chosen.includes(idx));
-          const idx = pickPos >= 0 ? pool.splice(pickPos, 1)[0] : pool.pop();
-          chosen.push(idx);
+        if (available.length > 0) {
+          return available[Math.floor(Math.random() * available.length)];
         }
-        return chosen;
+        // Fallback if catalog <= COLS
+        return (reels[colIdx].currentIdx + 1) % catalog.length;
       }
 
-      function spinReel(colIdx, targetIdx, startDelay, durationMs, extraSpins) {
+      function spinSingleReel(colIdx) {
         const reel = reels[colIdx];
-        if (reel.spinning) return;
+        if (!isVisible || isHovered || reel.spinning) {
+          scheduleReel(colIdx, 900 + Math.floor(Math.random() * 700));
+          return;
+        }
+
+        const targetIdx = pickUniqueTarget(colIdx);
+        const extraSpins = 4 + Math.floor(Math.random() * 5); // 4-8 passing logos
+        const durationMs = 1150 + Math.floor(Math.random() * 850); // 1.15s - 2.0s independent speed
+        const totalSteps = extraSpins + 1;
+        const movingDown = reel.dir === 'down';
+
         reel.spinning = true;
+        reel.targetIdx = targetIdx;
 
-        setTimeout(() => {
-          const strip = reel.strip;
-          const currentItem = catalog[reel.currentIdx];
-          const targetItem = catalog[targetIdx];
+        const strip = reel.strip;
+        const currentItem = catalog[reel.currentIdx];
+        const targetItem = catalog[targetIdx];
 
-          // Build strip: [current, ...random passing logos..., target]
-          strip.style.transition = 'none';
-          strip.style.transform = 'translate3d(0, 0, 0)';
-          strip.innerHTML = '';
+        strip.style.transition = 'none';
+        strip.innerHTML = '';
+
+        if (movingDown) {
+          // Moving DOWN: [target, ...random passing logos..., current]
+          // Start positioned at bottom (showing current), animate down to 0 (showing target)
+          strip.appendChild(createLogoSlot(targetItem));
+          for (let s = 0; s < extraSpins; s++) {
+            const randIdx = Math.floor(Math.random() * catalog.length);
+            strip.appendChild(createLogoSlot(catalog[randIdx]));
+          }
           strip.appendChild(createLogoSlot(currentItem));
+          strip.style.transform = `translate3d(0, -${totalSteps * SLOT_H}px, 0)`;
 
+          void strip.offsetHeight;
+
+          strip.style.transition = `transform ${durationMs}ms cubic-bezier(0.15, 1.03, 0.28, 1)`;
+          strip.style.transform = 'translate3d(0, 0, 0)';
+        } else {
+          // Moving UP: [current, ...random passing logos..., target]
+          // Start positioned at 0 (showing current), animate up to bottom (showing target)
+          strip.appendChild(createLogoSlot(currentItem));
           for (let s = 0; s < extraSpins; s++) {
             const randIdx = Math.floor(Math.random() * catalog.length);
             strip.appendChild(createLogoSlot(catalog[randIdx]));
           }
           strip.appendChild(createLogoSlot(targetItem));
+          strip.style.transform = 'translate3d(0, 0, 0)';
 
-          // Force layout flush before applying smooth mechanical deceleration
           void strip.offsetHeight;
 
-          const totalSteps = extraSpins + 1;
           strip.style.transition = `transform ${durationMs}ms cubic-bezier(0.15, 1.03, 0.28, 1)`;
           strip.style.transform = `translate3d(0, -${totalSteps * SLOT_H}px, 0)`;
+        }
 
-          setTimeout(() => {
-            // Settle cleanly onto target logo so DOM stays minimal
-            strip.style.transition = 'none';
-            strip.innerHTML = '';
-            strip.appendChild(createLogoSlot(targetItem));
-            strip.style.transform = 'translate3d(0, 0, 0)';
-            reel.currentIdx = targetIdx;
-            reel.spinning = false;
-          }, durationMs + 60);
-        }, startDelay);
+        setTimeout(() => {
+          // Settle cleanly onto target logo so DOM stays minimal
+          strip.style.transition = 'none';
+          strip.innerHTML = '';
+          strip.appendChild(createLogoSlot(targetItem));
+          strip.style.transform = 'translate3d(0, 0, 0)';
+          reel.currentIdx = targetIdx;
+          reel.spinning = false;
+
+          // Independent dwell before this column's next spin (1.8s - 3.6s)
+          if (isVisible) {
+            scheduleReel(colIdx, 1800 + Math.floor(Math.random() * 1800));
+          }
+        }, durationMs + 60);
       }
 
-      function triggerSpinCycle() {
-        if (!isVisible || isHovered) {
-          scheduleNext(1500);
-          return;
-        }
-        const targets = pickTargets();
-        let maxFinish = 0;
+      function scheduleReel(colIdx, delayMs) {
+        const reel = reels[colIdx];
+        if (reel.timer) clearTimeout(reel.timer);
+        reel.timer = setTimeout(() => spinSingleReel(colIdx), delayMs);
+      }
 
+      function startAllReels() {
         for (let c = 0; c < COLS; c++) {
-          const startDelay = c * 130 + Math.floor(Math.random() * 70);
-          const extraSpins = 5 + c + Math.floor(Math.random() * 3);
-          const durationMs = 1350 + c * 220 + Math.floor(Math.random() * 240);
-          maxFinish = Math.max(maxFinish, startDelay + durationMs);
-          spinReel(c, targets[c], startDelay, durationMs, extraSpins);
+          // Staggered independent start times so every column rolls on its own rhythm
+          const initialDelay = 250 + c * 260 + Math.floor(Math.random() * 450);
+          scheduleReel(c, initialDelay);
         }
-
-        // Hold cleanly on the 6 landed logos for 3.2s before spinning again
-        scheduleNext(maxFinish + 3200);
       }
 
-      function scheduleNext(ms) {
-        if (cycleTimer) clearTimeout(cycleTimer);
-        cycleTimer = setTimeout(triggerSpinCycle, ms);
+      function stopAllReels() {
+        reels.forEach((reel) => {
+          if (reel.timer) {
+            clearTimeout(reel.timer);
+            reel.timer = null;
+          }
+        });
       }
 
       reelGrid.addEventListener('mouseenter', () => { isHovered = true; });
@@ -699,10 +735,9 @@
             const wasVisible = isVisible;
             isVisible = entries[0].isIntersecting;
             if (isVisible && !wasVisible) {
-              scheduleNext(350);
-            } else if (!isVisible && cycleTimer) {
-              clearTimeout(cycleTimer);
-              cycleTimer = null;
+              startAllReels();
+            } else if (!isVisible) {
+              stopAllReels();
             }
           },
           { threshold: 0.15 }
@@ -710,7 +745,7 @@
         reelObserver.observe(reelGrid);
       } else {
         isVisible = true;
-        scheduleNext(800);
+        startAllReels();
       }
     }
   }
