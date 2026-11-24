@@ -714,4 +714,140 @@
       }
     }
   }
+
+  /* --------------------------------------------------------------------------
+     10. OUR EXPERTISE — RIGHT-ALIGNED ROLLING HALF-WHEEL INDUSTRY DIAL
+         12 industries arranged radially (30deg apart); rolls continuously
+         and stops for >1.3s on every industry at the 9 o'clock notch.
+     -------------------------------------------------------------------------- */
+  const wheelRotor = document.getElementById('expertise-wheel-rotor');
+  const wheelStage = document.getElementById('expertise-wheel-stage');
+  const counterEl = document.getElementById('expertise-counter');
+  const activeLabelEl = document.getElementById('expertise-active-label');
+
+  if (wheelRotor && wheelStage) {
+    const INDUSTRIES = [
+      'Kids Clothing',
+      'FMCG',
+      'Footwear',
+      'Fashion & Apparel',
+      'Beauty & Personal Care',
+      'Home Decor & Luxury Living',
+      'Real Estate',
+      'Artisan & Handcrafted Goods',
+      'Consumer Electronics & Audio',
+      'Jewellery & Accessories',
+      'Health & Wellness',
+      'Global Non-Profits'
+    ];
+
+    const COUNT = INDUSTRIES.length;
+    const STEP_DEG = 360 / COUNT; // 30deg per industry
+    const STEP_INTERVAL_MS = 2100; // 720ms roll + ~1.38s stationary stop (>= 1s)
+    const reduceMotionWheel =
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const spokes = [];
+    let currentStep = 0; // monotonic step counter for seamless infinite rotation
+    let wheelTimer = null;
+    let wheelVisible = false;
+    let wheelHovered = false;
+
+    function activeIndexFromStep(step) {
+      return ((step % COUNT) + COUNT) % COUNT;
+    }
+
+    function applyStep(step, instant) {
+      currentStep = step;
+      const activeIdx = activeIndexFromStep(currentStep);
+
+      if (instant) {
+        wheelRotor.style.transition = 'none';
+      } else {
+        wheelRotor.style.transition = '';
+      }
+
+      wheelRotor.style.transform = `rotate(${-currentStep * STEP_DEG}deg)`;
+
+      if (instant) {
+        void wheelRotor.offsetHeight;
+        wheelRotor.style.transition = '';
+      }
+
+      spokes.forEach((btn, idx) => {
+        const isActive = idx === activeIdx;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      if (counterEl) {
+        counterEl.textContent = `${String(activeIdx + 1).padStart(2, '0')} / ${String(COUNT).padStart(2, '0')}`;
+      }
+      if (activeLabelEl) {
+        activeLabelEl.textContent = INDUSTRIES[activeIdx];
+      }
+    }
+
+    function scheduleWheelTick(delayMs) {
+      if (wheelTimer) clearTimeout(wheelTimer);
+      if (reduceMotionWheel) return;
+      wheelTimer = setTimeout(() => {
+        if (wheelVisible && !wheelHovered) {
+          applyStep(currentStep + 1, false);
+        }
+        scheduleWheelTick(STEP_INTERVAL_MS);
+      }, delayMs);
+    }
+
+    // Populate the 12 radial spokes around the wheel
+    INDUSTRIES.forEach((name, idx) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'wheel-spoke';
+      btn.style.setProperty('--deg', `${idx * STEP_DEG}deg`);
+      btn.setAttribute('aria-label', name);
+
+      const label = document.createElement('span');
+      label.className = 'wheel-spoke-label';
+      label.textContent = name;
+      btn.appendChild(label);
+
+      btn.addEventListener('click', () => {
+        const curIdx = activeIndexFromStep(currentStep);
+        let delta = (idx - curIdx + COUNT) % COUNT;
+        if (delta > COUNT / 2) delta -= COUNT;
+        applyStep(currentStep + delta, false);
+        scheduleWheelTick(STEP_INTERVAL_MS + 600);
+      });
+
+      wheelRotor.appendChild(btn);
+      spokes.push(btn);
+    });
+
+    applyStep(0, true);
+
+    wheelStage.addEventListener('mouseenter', () => { wheelHovered = true; });
+    wheelStage.addEventListener('mouseleave', () => { wheelHovered = false; });
+
+    if ('IntersectionObserver' in window) {
+      const expertiseSection = document.getElementById('expertise') || wheelStage;
+      const wheelObserver = new IntersectionObserver(
+        (entries) => {
+          const wasVisible = wheelVisible;
+          wheelVisible = entries[0].isIntersecting;
+          if (wheelVisible && !wasVisible) {
+            scheduleWheelTick(1350);
+          } else if (!wheelVisible && wheelTimer) {
+            clearTimeout(wheelTimer);
+            wheelTimer = null;
+          }
+        },
+        { threshold: 0.15 }
+      );
+      wheelObserver.observe(expertiseSection);
+    } else {
+      wheelVisible = true;
+      scheduleWheelTick(1350);
+    }
+  }
 })();

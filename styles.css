@@ -1029,6 +1029,189 @@ html[data-theme="dark"] .partner-open-item img.logo--mono-white {
 }
 
 /* ==========================================================================
+   BAND 03B — OUR EXPERTISE (RIGHT-ALIGNED ROLLING HALF-WHEEL DIAL)
+   ========================================================================== */
+.expertise-band {
+  --wheel-size: 800px;
+  position: relative;
+  overflow: hidden;
+  overflow: clip;
+  min-height: calc(var(--wheel-size) + 72px);
+  padding: clamp(64px, 7vw, 96px) 0;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--rule);
+}
+
+.expertise-layout {
+  position: relative;
+  z-index: 3;
+}
+
+.expertise-left {
+  max-width: 480px;
+}
+
+.expertise-heading {
+  font-size: clamp(3.2rem, 6.2vw, 5.6rem);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.048em;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+
+.expertise-active-readout {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule-strong);
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+}
+
+.expertise-active-readout .mono {
+  color: var(--vermilion);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.expertise-active-name {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.45rem, 2.1vw, 1.9rem);
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+/* Right-Aligned Half-Wheel Container */
+.expertise-wheel-stage {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(var(--wheel-size) * 0.54);
+  height: var(--wheel-size);
+  overflow: hidden;
+  overflow: clip;
+  z-index: 2;
+}
+
+/* Precision Pointer Notch at 9 o'clock (Active Stop Indicator) */
+.wheel-pointer-notch {
+  position: absolute;
+  left: calc(var(--wheel-size) * 0.04 - 16px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid var(--vermilion);
+  z-index: 6;
+}
+
+/* Rotating Circular Wheel Centered Flush on Right Edge */
+.expertise-wheel-rotor {
+  position: absolute;
+  top: 0;
+  right: calc(var(--wheel-size) * -0.5);
+  width: var(--wheel-size);
+  height: var(--wheel-size);
+  border-radius: 50%;
+  background: var(--paper-alt);
+  border: 1.5px solid var(--rule-strong);
+  will-change: transform;
+  transition: transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wheel-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.wheel-ring--outer {
+  inset: 14px;
+  border: 1px dashed var(--rule);
+}
+
+.wheel-ring--inner {
+  inset: calc(var(--wheel-size) * 0.41);
+  border: 1px solid var(--rule-strong);
+}
+
+.wheel-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--wheel-size) * 0.12);
+  height: calc(var(--wheel-size) * 0.12);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--cobalt);
+  z-index: 4;
+}
+
+/* Individual Industry Spokes Radiating Left from Wheel Center */
+.wheel-spoke {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  width: calc(var(--wheel-size) * 0.5);
+  height: 44px;
+  transform-origin: 100% 50%;
+  transform: translateY(-50%) rotate(var(--deg, 0deg));
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 calc(var(--wheel-size) * 0.085) 0 34px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.wheel-spoke::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  width: 14px;
+  height: 1.5px;
+  background: var(--rule-strong);
+  transform: translateY(-50%);
+  transition: background-color 0.3s ease, width 0.3s ease;
+}
+
+.wheel-spoke-label {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  letter-spacing: -0.015em;
+  transition: color 0.35s ease, font-size 0.35s ease, font-weight 0.35s ease, opacity 0.35s ease;
+  opacity: 0.62;
+}
+
+.wheel-spoke:hover .wheel-spoke-label {
+  opacity: 0.95;
+  color: var(--ink);
+}
+
+.wheel-spoke.is-active::before {
+  background: var(--vermilion);
+  width: 20px;
+}
+
+.wheel-spoke.is-active .wheel-spoke-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ink);
+  opacity: 1;
+}
+
+/* ==========================================================================
    BAND 04 — CAPABILITIES (INVERTED DEEP CHARCOAL EXHIBITION BAND)
    All services immediately visible & scannable — nothing hidden!
    ========================================================================== */
@@ -1709,9 +1892,53 @@ html[data-theme="dark"] .partner-open-item:hover {
   .colophon-grid {
     grid-template-columns: 1fr 1fr;
   }
+  .expertise-band {
+    --wheel-size: 640px;
+    min-height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+    padding: clamp(64px, 8vw, 96px) 0 48px;
+  }
+  .expertise-left {
+    max-width: 600px;
+  }
+  .expertise-wheel-stage {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    align-self: flex-end;
+    margin-top: 12px;
+  }
+  .wheel-spoke-label {
+    font-size: 0.86rem;
+  }
+  .wheel-spoke.is-active .wheel-spoke-label {
+    font-size: 0.98rem;
+  }
 }
 
 @media (max-width: 720px) {
+  .expertise-band {
+    --wheel-size: 540px;
+  }
+  .wheel-spoke {
+    padding: 0 calc(var(--wheel-size) * 0.08) 0 26px;
+  }
+  .wheel-spoke::before {
+    left: 8px;
+    width: 10px;
+  }
+  .wheel-spoke.is-active::before {
+    width: 14px;
+  }
+  .wheel-spoke-label {
+    font-size: 0.76rem;
+  }
+  .wheel-spoke.is-active .wheel-spoke-label {
+    font-size: 0.86rem;
+  }
   .cap-services-grid,
   .print-form-row,
   .colophon-grid {
