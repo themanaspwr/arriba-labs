@@ -571,7 +571,7 @@
       }));
 
       const COLS = 6;
-      const SLOT_H = 92;
+      const SLOT_H = 124;
       const reels = [];
       let isVisible = false;
       let isHovered = false;
