@@ -593,43 +593,27 @@
       }
 
       // Build 6 independent vertical roller columns (alternating UP / DOWN directions)
+      // Each column owns strictly its own 3 logos (c, c+6, c+12) so duplicates across columns are impossible
       reelGrid.innerHTML = '';
       reelGrid.classList.add('is-reel-mode');
 
       for (let c = 0; c < COLS; c++) {
+        const colItems = catalog.filter((_, idx) => idx % COLS === c);
         const win = document.createElement('div');
         win.className = 'logo-reel-window';
         const strip = document.createElement('div');
         strip.className = 'logo-reel-strip';
-        strip.appendChild(createLogoSlot(catalog[c]));
+        strip.appendChild(createLogoSlot(colItems[0]));
         win.appendChild(strip);
         reelGrid.appendChild(win);
         reels.push({
           strip,
-          currentIdx: c,
-          targetIdx: c,
+          items: colItems,
+          currentIdx: 0,
           dir: c % 2 === 0 ? 'up' : 'down',
           spinning: false,
           timer: null
         });
-      }
-
-      // Pick a random logo not currently shown or targeted by any of the 6 columns
-      function pickUniqueTarget(colIdx) {
-        const used = new Set();
-        reels.forEach((r) => {
-          used.add(r.currentIdx);
-          used.add(r.targetIdx);
-        });
-        const available = [];
-        for (let i = 0; i < catalog.length; i++) {
-          if (!used.has(i)) available.push(i);
-        }
-        if (available.length > 0) {
-          return available[Math.floor(Math.random() * available.length)];
-        }
-        // Fallback if catalog <= COLS
-        return (reels[colIdx].currentIdx + 1) % catalog.length;
       }
 
       function spinSingleReel(colIdx) {
@@ -639,31 +623,36 @@
           return;
         }
 
-        const targetIdx = pickUniqueTarget(colIdx);
-        const extraSpins = 4 + Math.floor(Math.random() * 5); // 4-8 passing logos
-        const durationMs = 1150 + Math.floor(Math.random() * 850); // 1.15s - 2.0s independent speed
-        const totalSteps = extraSpins + 1;
+        const count = reel.items.length; // 3 logos dedicated to this column
+        // Pick one of the other 2 logos in this column
+        const stepOffset = 1 + Math.floor(Math.random() * Math.max(1, count - 1));
+        const targetIdx = (reel.currentIdx + stepOffset) % count;
+
+        // Spin 1-2 full loops through this column's own 3 logos before landing on targetIdx
+        const fullLoops = 1 + Math.floor(Math.random() * 2);
+        const totalSteps = fullLoops * count + stepOffset;
+        const durationMs = 1150 + Math.floor(Math.random() * 750);
         const movingDown = reel.dir === 'down';
 
         reel.spinning = true;
-        reel.targetIdx = targetIdx;
 
         const strip = reel.strip;
-        const currentItem = catalog[reel.currentIdx];
-        const targetItem = catalog[targetIdx];
+        const targetItem = reel.items[targetIdx];
+
+        // Sequence of logos from currentIdx -> targetIdx strictly within this column's 3 logos
+        const seq = [];
+        for (let s = 0; s <= totalSteps; s++) {
+          seq.push(reel.items[(reel.currentIdx + s) % count]);
+        }
 
         strip.style.transition = 'none';
         strip.innerHTML = '';
 
         if (movingDown) {
-          // Moving DOWN: [target, ...random passing logos..., current]
-          // Start positioned at bottom (showing current), animate down to 0 (showing target)
-          strip.appendChild(createLogoSlot(targetItem));
-          for (let s = 0; s < extraSpins; s++) {
-            const randIdx = Math.floor(Math.random() * catalog.length);
-            strip.appendChild(createLogoSlot(catalog[randIdx]));
+          // Moving DOWN: reverse so target is at top (index 0) and current is at bottom (index totalSteps)
+          for (let s = seq.length - 1; s >= 0; s--) {
+            strip.appendChild(createLogoSlot(seq[s]));
           }
-          strip.appendChild(createLogoSlot(currentItem));
           strip.style.transform = `translate3d(0, -${totalSteps * SLOT_H}px, 0)`;
 
           void strip.offsetHeight;
@@ -671,14 +660,10 @@
           strip.style.transition = `transform ${durationMs}ms cubic-bezier(0.15, 1.03, 0.28, 1)`;
           strip.style.transform = 'translate3d(0, 0, 0)';
         } else {
-          // Moving UP: [current, ...random passing logos..., target]
-          // Start positioned at 0 (showing current), animate up to bottom (showing target)
-          strip.appendChild(createLogoSlot(currentItem));
-          for (let s = 0; s < extraSpins; s++) {
-            const randIdx = Math.floor(Math.random() * catalog.length);
-            strip.appendChild(createLogoSlot(catalog[randIdx]));
+          // Moving UP: current at top (index 0), target at bottom (index totalSteps)
+          for (let s = 0; s < seq.length; s++) {
+            strip.appendChild(createLogoSlot(seq[s]));
           }
-          strip.appendChild(createLogoSlot(targetItem));
           strip.style.transform = 'translate3d(0, 0, 0)';
 
           void strip.offsetHeight;
