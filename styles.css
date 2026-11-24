@@ -1430,7 +1430,7 @@ html[data-theme="dark"] .partner-open-item:hover {
    COLOPHON FOOTER (QUIET SWISS PRINT CLOSING)
    ========================================================================== */
 .colophon-footer {
-  padding: 56px 0 40px;
+  padding: 56px 0 96px;
 }
 
 .colophon-grid {
@@ -1508,6 +1508,7 @@ html[data-theme="dark"] .partner-open-item:hover {
   flex-wrap: wrap;
   gap: 12px;
   padding-top: 24px;
+  padding-right: 150px;
   color: var(--ink-faint);
 }
 
