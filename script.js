@@ -830,41 +830,27 @@
         }
         const W = brickStage.clientWidth;
         const H = brickStage.clientHeight;
-        const sidePad = Math.max(14, Math.min(48, Math.round(W * 0.032)));
 
+        // Flush edge-to-edge boundaries (zero invisible side padding)
         const floor = Bodies.rectangle(W / 2, H + WALL_T / 2 - 2, W + WALL_T * 2, WALL_T, {
           isStatic: true,
-          friction: 0.75,
-          restitution: 0.15
+          friction: 0.45,
+          restitution: 0.14
         });
-        const leftWall = Bodies.rectangle(sidePad - WALL_T / 2, H / 2 - 200, WALL_T, H + 900, {
+        const leftWall = Bodies.rectangle(-WALL_T / 2, H / 2 - 200, WALL_T, H + 900, {
           isStatic: true,
-          friction: 0.4,
-          restitution: 0.25
+          friction: 0.15,
+          restitution: 0.22
         });
-        const rightWall = Bodies.rectangle(W - sidePad + WALL_T / 2, H / 2 - 200, WALL_T, H + 900, {
+        const rightWall = Bodies.rectangle(W + WALL_T / 2, H / 2 - 200, WALL_T, H + 900, {
           isStatic: true,
-          friction: 0.4,
-          restitution: 0.25
+          friction: 0.15,
+          restitution: 0.22
         });
 
         walls = [floor, leftWall, rightWall];
         World.add(engine.world, walls);
       }
-
-      // Gentle readability guard: allow natural tilting/tumbling up to ~54deg, never upside-down
-      Events.on(engine, 'beforeUpdate', () => {
-        const MAX_TILT = 0.94; // ~54 deg
-        for (let i = 0; i < brickEntries.length; i++) {
-          const b = brickEntries[i].body;
-          if (!b) continue;
-          if (b.angle > MAX_TILT) {
-            Body.setAngularVelocity(b, b.angularVelocity * 0.72 - 0.032);
-          } else if (b.angle < -MAX_TILT) {
-            Body.setAngularVelocity(b, b.angularVelocity * 0.72 + 0.032);
-          }
-        }
-      });
 
       function syncDom() {
         for (let i = 0; i < brickEntries.length; i++) {
@@ -936,9 +922,8 @@
         startLoop();
 
         const W = brickStage.clientWidth;
-        const sidePad = Math.max(20, Math.min(64, Math.round(W * 0.04)));
 
-        // Shuffle drop order so every drop builds a brand-new natural brick pile
+        // Shuffle drop order so every drop spreads naturally across the whole section
         const order = brickEntries.map((_, i) => i);
         for (let i = order.length - 1; i > 0; i--) {
           const j = Math.floor(Math.random() * (i + 1));
@@ -946,31 +931,30 @@
         }
 
         order.forEach((entryIdx, seq) => {
-          const delay = seq * 115 + Math.floor(Math.random() * 55);
+          const delay = seq * 110 + Math.floor(Math.random() * 60);
           const tid = setTimeout(() => {
             const entry = brickEntries[entryIdx];
-            const minX = sidePad + entry.w / 2 + 8;
-            const maxX = Math.max(minX + 10, W - sidePad - entry.w / 2 - 8);
-            // Spread across horizontal lanes with natural jitter so they pile across the whole floor
-            const laneFrac = ((seq % 4) + 0.18 + Math.random() * 0.64) / 4;
-            const spawnX = Math.min(maxX, Math.max(minX, minX + laneFrac * (maxX - minX)));
-            const spawnY = -entry.h - 14 - Math.random() * 34;
+            const minX = entry.w / 2 + 6;
+            const maxX = Math.max(minX + 4, W - entry.w / 2 - 6);
+            // Pure random X spread across the entire section width
+            const spawnX = minX + Math.random() * (maxX - minX);
+            const spawnY = -entry.h - 14 - Math.random() * 40;
 
             const body = Bodies.rectangle(spawnX, spawnY, entry.w, entry.h, {
               chamfer: { radius: 2 },
-              restitution: 0.24,
-              friction: 0.62,
-              frictionStatic: 0.72,
-              frictionAir: 0.011,
-              density: 0.0024
+              restitution: 0.22,
+              friction: 0.24,
+              frictionStatic: 0.30,
+              frictionAir: 0.008,
+              density: 0.0028
             });
 
-            Body.setAngle(body, (Math.random() - 0.5) * 0.42);
+            Body.setAngle(body, (Math.random() - 0.5) * 0.36);
             Body.setVelocity(body, {
-              x: (Math.random() - 0.5) * 2.2,
+              x: (Math.random() - 0.5) * 2.4,
               y: 1.5 + Math.random() * 1.5
             });
-            Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.055);
+            Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.045);
 
             entry.body = body;
             entry.dropped = true;
