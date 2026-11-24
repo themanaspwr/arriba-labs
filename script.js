@@ -363,53 +363,19 @@
       return el;
     }
 
-    // 3 Curated Bauhaus / Swiss Geometric Formations
-    // Ordered strictly top-to-bottom / connected-edge so each shape unfolds ONE BY ONE
-    const FORMATIONS = [
-      // Formation 0: Diagonal Bauhaus Cascade (mirrors reference video one-by-one build)
-      [
-        { c: 0, r: 0, shape: 'square', fill: 'hatch-v-plum', origin: 'left center', enter: 'scale(0.05, 1)' },
-        { c: 1, r: 0, shape: 'tri-bl', fill: 'hatch-v-plum', origin: 'left bottom', enter: 'scale(0.05, 1)' },
-        { c: 1, r: 1, shape: 'square', fill: 'white', origin: 'center top', enter: 'scale(1, 0.05)' },
-        { c: 2, r: 1, shape: 'circle', fill: 'hatch-v-cobalt', origin: 'left center', enter: 'scale(0.1)' },
-        { c: 1, r: 2, shape: 'tri-tr', fill: 'cobalt', origin: 'center top', enter: 'scale(1, 0.05)' },
-        { c: 0, r: 2, shape: 'arc-br', fill: 'vermilion', origin: 'right bottom', enter: 'scale(0.05)' },
-        { c: 2, r: 2, shape: 'tri-tl', fill: 'violet', origin: 'left top', enter: 'scale(0.05, 1)' },
-        { c: 3, r: 2, shape: 'tri-br', fill: 'plum', origin: 'right bottom', enter: 'scale(0.05)' },
-        { c: 1, r: 3, shape: 'arc-tr', fill: 'hatch-h-violet', origin: 'right top', enter: 'scale(1, 0.05)' },
-        { c: 2, r: 3, shape: 'semi-top', fill: 'white', origin: 'center bottom', enter: 'scale(1, 0.05)' },
-        { c: 3, r: 3, shape: 'tri-bl', fill: 'hatch-d-cobalt', origin: 'left top', enter: 'scale(0.05, 1)' }
-      ],
-      // Formation 1: Ascending Arriba Peak (one-by-one connected build)
-      [
-        { c: 1, r: 0, shape: 'tri-br', fill: 'plum', origin: 'right bottom', enter: 'scale(0.05)' },
-        { c: 2, r: 0, shape: 'tri-bl', fill: 'cobalt', origin: 'left bottom', enter: 'scale(0.05)' },
-        { c: 1, r: 1, shape: 'square', fill: 'white', origin: 'center top', enter: 'scale(1, 0.05)' },
-        { c: 0, r: 1, shape: 'arc-br', fill: 'hatch-v-cobalt', origin: 'right bottom', enter: 'scale(0.05, 1)' },
-        { c: 2, r: 1, shape: 'square', fill: 'hatch-h-violet', origin: 'left center', enter: 'scale(0.05, 1)' },
-        { c: 3, r: 1, shape: 'circle', fill: 'vermilion', origin: 'left center', enter: 'scale(0.1)' },
-        { c: 0, r: 2, shape: 'tri-br', fill: 'violet', origin: 'center top', enter: 'scale(1, 0.05)' },
-        { c: 1, r: 2, shape: 'circle', fill: 'hatch-v-plum', origin: 'center top', enter: 'scale(0.1)' },
-        { c: 2, r: 2, shape: 'tri-tl', fill: 'cobalt', origin: 'center top', enter: 'scale(1, 0.05)' },
-        { c: 3, r: 2, shape: 'semi-left', fill: 'white', origin: 'right center', enter: 'scale(0.05, 1)' },
-        { c: 1, r: 3, shape: 'semi-top', fill: 'hatch-d-cobalt', origin: 'center bottom', enter: 'scale(1, 0.05)' },
-        { c: 2, r: 3, shape: 'tri-bl', fill: 'plum', origin: 'left top', enter: 'scale(0.05, 1)' }
-      ],
-      // Formation 2: Swiss Editorial Pinwheel (one-by-one connected build)
-      [
-        { c: 1, r: 0, shape: 'circle', fill: 'hatch-v-cobalt', origin: 'center', enter: 'scale(0.1)' },
-        { c: 2, r: 0, shape: 'arc-bl', fill: 'white', origin: 'left bottom', enter: 'scale(0.05)' },
-        { c: 3, r: 0, shape: 'tri-bl', fill: 'vermilion', origin: 'left bottom', enter: 'scale(0.05, 1)' },
-        { c: 2, r: 1, shape: 'square', fill: 'hatch-v-plum', origin: 'center top', enter: 'scale(1, 0.05)' },
-        { c: 1, r: 1, shape: 'arc-br', fill: 'violet', origin: 'right bottom', enter: 'scale(0.05)' },
-        { c: 0, r: 1, shape: 'tri-tr', fill: 'plum', origin: 'right top', enter: 'scale(0.05, 1)' },
-        { c: 0, r: 2, shape: 'semi-right', fill: 'white', origin: 'left center', enter: 'scale(0.05, 1)' },
-        { c: 1, r: 2, shape: 'square', fill: 'cobalt', origin: 'center top', enter: 'scale(1, 0.05)' },
-        { c: 2, r: 2, shape: 'arc-tl', fill: 'hatch-d-cobalt', origin: 'left top', enter: 'scale(0.05)' },
-        { c: 3, r: 2, shape: 'tri-tl', fill: 'hatch-h-violet', origin: 'left top', enter: 'scale(0.05, 1)' },
-        { c: 1, r: 3, shape: 'tri-tr', fill: 'hatch-v-plum', origin: 'center top', enter: 'scale(1, 0.05)' },
-        { c: 2, r: 3, shape: 'circle', fill: 'plum', origin: 'center top', enter: 'scale(0.1)' }
-      ]
+    // Curated Diagonal Bauhaus Cascade (mirrors reference video silhouette & one-by-one build)
+    const FORMATION = [
+      { c: 0, r: 0, shape: 'square', fill: 'hatch-v-plum', origin: 'left center', enter: 'scale(0.05, 1)' },
+      { c: 1, r: 0, shape: 'tri-bl', fill: 'hatch-v-plum', origin: 'left bottom', enter: 'scale(0.05, 1)' },
+      { c: 1, r: 1, shape: 'square', fill: 'white', origin: 'center top', enter: 'scale(1, 0.05)' },
+      { c: 2, r: 1, shape: 'circle', fill: 'hatch-v-cobalt', origin: 'left center', enter: 'scale(0.1)' },
+      { c: 1, r: 2, shape: 'tri-tr', fill: 'cobalt', origin: 'center top', enter: 'scale(1, 0.05)' },
+      { c: 0, r: 2, shape: 'arc-br', fill: 'vermilion', origin: 'right bottom', enter: 'scale(0.05)' },
+      { c: 2, r: 2, shape: 'tri-tl', fill: 'violet', origin: 'left top', enter: 'scale(0.05, 1)' },
+      { c: 3, r: 2, shape: 'tri-br', fill: 'plum', origin: 'right bottom', enter: 'scale(0.05)' },
+      { c: 1, r: 3, shape: 'arc-tr', fill: 'hatch-h-violet', origin: 'right top', enter: 'scale(1, 0.05)' },
+      { c: 2, r: 3, shape: 'semi-top', fill: 'white', origin: 'center bottom', enter: 'scale(1, 0.05)' },
+      { c: 3, r: 3, shape: 'tri-bl', fill: 'hatch-d-cobalt', origin: 'left top', enter: 'scale(0.05, 1)' }
     ];
 
     bauhausSvg.innerHTML = '';
@@ -417,87 +383,26 @@
     const layer = document.createElementNS(SVG_NS, 'g');
     bauhausSvg.appendChild(layer);
 
-    let formationIdx = 0;
-    let bhTimers = [];
-    let bhVisible = true;
+    const els = FORMATION.map((t) => {
+      const el = buildShapeEl(t);
+      el.style.transformOrigin = t.origin || 'center';
+      if (reduceMotionHero) {
+        el.classList.add('is-in');
+      } else {
+        el.style.transform = t.enter || 'scale(0.05)';
+      }
+      layer.appendChild(el);
+      return el;
+    });
 
-    function clearBhTimers() {
-      bhTimers.forEach((id) => clearTimeout(id));
-      bhTimers = [];
-    }
-
-    function playFormation(idx) {
-      clearBhTimers();
-      layer.innerHTML = '';
-
-      const tiles = FORMATIONS[idx % FORMATIONS.length];
-      const els = tiles.map((t) => {
-        const el = buildShapeEl(t);
-        el.style.transformOrigin = t.origin || 'center';
-        if (reduceMotionHero) {
-          el.classList.add('is-in');
-        } else {
-          el.style.transform = t.enter || 'scale(0.05)';
-        }
-        layer.appendChild(el);
-        return { el, enter: t.enter || 'scale(0.05)' };
-      });
-
-      if (reduceMotionHero) return;
-
-      // Form strictly ONE BY ONE (255ms per shape so each shape visibly unfolds in sequence)
+    if (!reduceMotionHero) {
+      // Form strictly ONE BY ONE once, then stay constant
       const STEP_MS = 255;
-      els.forEach((item, i) => {
-        const tid = setTimeout(() => {
-          item.el.classList.add('is-in');
+      els.forEach((el, i) => {
+        setTimeout(() => {
+          el.classList.add('is-in');
         }, 120 + i * STEP_MS);
-        bhTimers.push(tid);
       });
-
-      // Hold the completed composition cleanly, then fold away quickly & build the next one
-      const enterDoneMs = 120 + els.length * STEP_MS + 380;
-      const holdMs = 2200;
-
-      const tExit = setTimeout(() => {
-        if (!bhVisible) return;
-        els.forEach((item, i) => {
-          const tid = setTimeout(() => {
-            item.el.classList.remove('is-in');
-            item.el.classList.add('is-out');
-            item.el.style.transform = item.enter;
-          }, i * 38);
-          bhTimers.push(tid);
-        });
-
-        const nextDelay = els.length * 38 + 420;
-        const tNext = setTimeout(() => {
-          if (!bhVisible) return;
-          formationIdx = (formationIdx + 1) % FORMATIONS.length;
-          playFormation(formationIdx);
-        }, nextDelay);
-        bhTimers.push(tNext);
-      }, enterDoneMs + holdMs);
-
-      bhTimers.push(tExit);
-    }
-
-    playFormation(0);
-
-    if ('IntersectionObserver' in window && !reduceMotionHero) {
-      const heroSec = bauhausStage.closest('.cover-band') || bauhausStage;
-      const bhObserver = new IntersectionObserver(
-        (entries) => {
-          const wasVisible = bhVisible;
-          bhVisible = entries[0].isIntersecting;
-          if (bhVisible && !wasVisible) {
-            playFormation(formationIdx);
-          } else if (!bhVisible) {
-            clearBhTimers();
-          }
-        },
-        { threshold: 0.1 }
-      );
-      bhObserver.observe(heroSec);
     }
   }
 
