@@ -363,51 +363,52 @@
       return el;
     }
 
-    // 3 Curated Bauhaus / Swiss Geometric Formations (mirrors reference video silhouette & rhythm)
+    // 3 Curated Bauhaus / Swiss Geometric Formations
+    // Ordered strictly top-to-bottom / connected-edge so each shape unfolds ONE BY ONE
     const FORMATIONS = [
-      // Formation 0: Diagonal Bauhaus Cascade
+      // Formation 0: Diagonal Bauhaus Cascade (mirrors reference video one-by-one build)
       [
-        { c: 0, r: 0, shape: 'square', fill: 'hatch-v-plum', enter: 'translate(-26px, 0) scale(0.76)' },
-        { c: 1, r: 0, shape: 'tri-bl', fill: 'hatch-v-plum', enter: 'translate(0, -24px) scale(0.72)' },
-        { c: 1, r: 1, shape: 'square', fill: 'white', enter: 'scale(0.55) rotate(-18deg)' },
-        { c: 2, r: 1, shape: 'circle', fill: 'hatch-v-cobalt', enter: 'translate(24px, -14px) scale(0.5)' },
-        { c: 1, r: 2, shape: 'tri-tr', fill: 'cobalt', enter: 'translate(-20px, 16px) scale(0.7)' },
-        { c: 2, r: 2, shape: 'tri-tl', fill: 'violet', enter: 'translate(18px, -16px) scale(0.7)' },
-        { c: 3, r: 2, shape: 'tri-br', fill: 'plum', enter: 'translate(26px, 0) scale(0.72)' },
-        { c: 1, r: 3, shape: 'arc-tr', fill: 'hatch-h-violet', enter: 'translate(0, 26px) rotate(45deg) scale(0.65)' },
-        { c: 2, r: 3, shape: 'semi-top', fill: 'white', enter: 'translate(0, 24px) scale(0.65)' },
-        { c: 3, r: 3, shape: 'tri-bl', fill: 'hatch-d-cobalt', enter: 'translate(22px, 22px) scale(0.72)' },
-        { c: 0, r: 2, shape: 'arc-br', fill: 'vermilion', enter: 'translate(-22px, 16px) scale(0.55)' }
+        { c: 0, r: 0, shape: 'square', fill: 'hatch-v-plum', origin: 'left center', enter: 'scale(0.05, 1)' },
+        { c: 1, r: 0, shape: 'tri-bl', fill: 'hatch-v-plum', origin: 'left bottom', enter: 'scale(0.05, 1)' },
+        { c: 1, r: 1, shape: 'square', fill: 'white', origin: 'center top', enter: 'scale(1, 0.05)' },
+        { c: 2, r: 1, shape: 'circle', fill: 'hatch-v-cobalt', origin: 'left center', enter: 'scale(0.1)' },
+        { c: 1, r: 2, shape: 'tri-tr', fill: 'cobalt', origin: 'center top', enter: 'scale(1, 0.05)' },
+        { c: 0, r: 2, shape: 'arc-br', fill: 'vermilion', origin: 'right bottom', enter: 'scale(0.05)' },
+        { c: 2, r: 2, shape: 'tri-tl', fill: 'violet', origin: 'left top', enter: 'scale(0.05, 1)' },
+        { c: 3, r: 2, shape: 'tri-br', fill: 'plum', origin: 'right bottom', enter: 'scale(0.05)' },
+        { c: 1, r: 3, shape: 'arc-tr', fill: 'hatch-h-violet', origin: 'right top', enter: 'scale(1, 0.05)' },
+        { c: 2, r: 3, shape: 'semi-top', fill: 'white', origin: 'center bottom', enter: 'scale(1, 0.05)' },
+        { c: 3, r: 3, shape: 'tri-bl', fill: 'hatch-d-cobalt', origin: 'left top', enter: 'scale(0.05, 1)' }
       ],
-      // Formation 1: Ascending Arriba Peak
+      // Formation 1: Ascending Arriba Peak (one-by-one connected build)
       [
-        { c: 1, r: 0, shape: 'tri-br', fill: 'plum', enter: 'translate(-18px, -22px) scale(0.7)' },
-        { c: 2, r: 0, shape: 'tri-bl', fill: 'cobalt', enter: 'translate(18px, -22px) scale(0.7)' },
-        { c: 0, r: 1, shape: 'arc-br', fill: 'hatch-v-cobalt', enter: 'translate(-24px, 0) scale(0.7)' },
-        { c: 1, r: 1, shape: 'square', fill: 'white', enter: 'scale(0.58) rotate(14deg)' },
-        { c: 2, r: 1, shape: 'square', fill: 'hatch-h-violet', enter: 'translate(22px, 0) scale(0.74)' },
-        { c: 3, r: 1, shape: 'circle', fill: 'vermilion', enter: 'translate(24px, -12px) scale(0.45)' },
-        { c: 0, r: 2, shape: 'tri-br', fill: 'violet', enter: 'translate(-24px, 18px) scale(0.7)' },
-        { c: 1, r: 2, shape: 'circle', fill: 'hatch-v-plum', enter: 'scale(0.5)' },
-        { c: 2, r: 2, shape: 'tri-tl', fill: 'cobalt', enter: 'translate(16px, 16px) scale(0.7)' },
-        { c: 3, r: 2, shape: 'semi-left', fill: 'white', enter: 'translate(26px, 0) scale(0.68)' },
-        { c: 1, r: 3, shape: 'semi-top', fill: 'hatch-d-cobalt', enter: 'translate(0, 24px) scale(0.68)' },
-        { c: 2, r: 3, shape: 'tri-bl', fill: 'plum', enter: 'translate(18px, 24px) scale(0.7)' }
+        { c: 1, r: 0, shape: 'tri-br', fill: 'plum', origin: 'right bottom', enter: 'scale(0.05)' },
+        { c: 2, r: 0, shape: 'tri-bl', fill: 'cobalt', origin: 'left bottom', enter: 'scale(0.05)' },
+        { c: 1, r: 1, shape: 'square', fill: 'white', origin: 'center top', enter: 'scale(1, 0.05)' },
+        { c: 0, r: 1, shape: 'arc-br', fill: 'hatch-v-cobalt', origin: 'right bottom', enter: 'scale(0.05, 1)' },
+        { c: 2, r: 1, shape: 'square', fill: 'hatch-h-violet', origin: 'left center', enter: 'scale(0.05, 1)' },
+        { c: 3, r: 1, shape: 'circle', fill: 'vermilion', origin: 'left center', enter: 'scale(0.1)' },
+        { c: 0, r: 2, shape: 'tri-br', fill: 'violet', origin: 'center top', enter: 'scale(1, 0.05)' },
+        { c: 1, r: 2, shape: 'circle', fill: 'hatch-v-plum', origin: 'center top', enter: 'scale(0.1)' },
+        { c: 2, r: 2, shape: 'tri-tl', fill: 'cobalt', origin: 'center top', enter: 'scale(1, 0.05)' },
+        { c: 3, r: 2, shape: 'semi-left', fill: 'white', origin: 'right center', enter: 'scale(0.05, 1)' },
+        { c: 1, r: 3, shape: 'semi-top', fill: 'hatch-d-cobalt', origin: 'center bottom', enter: 'scale(1, 0.05)' },
+        { c: 2, r: 3, shape: 'tri-bl', fill: 'plum', origin: 'left top', enter: 'scale(0.05, 1)' }
       ],
-      // Formation 2: Swiss Editorial Pinwheel
+      // Formation 2: Swiss Editorial Pinwheel (one-by-one connected build)
       [
-        { c: 1, r: 0, shape: 'circle', fill: 'hatch-v-cobalt', enter: 'translate(0, -26px) scale(0.5)' },
-        { c: 2, r: 0, shape: 'arc-bl', fill: 'white', enter: 'translate(20px, -20px) rotate(-35deg) scale(0.65)' },
-        { c: 3, r: 0, shape: 'tri-bl', fill: 'vermilion', enter: 'translate(24px, -16px) scale(0.65)' },
-        { c: 0, r: 1, shape: 'tri-tr', fill: 'plum', enter: 'translate(-26px, 0) scale(0.72)' },
-        { c: 1, r: 1, shape: 'arc-br', fill: 'violet', enter: 'scale(0.6) rotate(-45deg)' },
-        { c: 2, r: 1, shape: 'square', fill: 'hatch-v-plum', enter: 'translate(18px, 0) scale(0.74)' },
-        { c: 0, r: 2, shape: 'semi-right', fill: 'white', enter: 'translate(-26px, 10px) scale(0.68)' },
-        { c: 1, r: 2, shape: 'square', fill: 'cobalt', enter: 'scale(0.58) rotate(16deg)' },
-        { c: 2, r: 2, shape: 'arc-tl', fill: 'hatch-d-cobalt', enter: 'translate(20px, 16px) scale(0.68)' },
-        { c: 3, r: 2, shape: 'tri-tl', fill: 'hatch-h-violet', enter: 'translate(24px, 0) scale(0.72)' },
-        { c: 1, r: 3, shape: 'tri-tr', fill: 'hatch-v-plum', enter: 'translate(-12px, 24px) scale(0.7)' },
-        { c: 2, r: 3, shape: 'circle', fill: 'plum', enter: 'translate(0, 26px) scale(0.5)' }
+        { c: 1, r: 0, shape: 'circle', fill: 'hatch-v-cobalt', origin: 'center', enter: 'scale(0.1)' },
+        { c: 2, r: 0, shape: 'arc-bl', fill: 'white', origin: 'left bottom', enter: 'scale(0.05)' },
+        { c: 3, r: 0, shape: 'tri-bl', fill: 'vermilion', origin: 'left bottom', enter: 'scale(0.05, 1)' },
+        { c: 2, r: 1, shape: 'square', fill: 'hatch-v-plum', origin: 'center top', enter: 'scale(1, 0.05)' },
+        { c: 1, r: 1, shape: 'arc-br', fill: 'violet', origin: 'right bottom', enter: 'scale(0.05)' },
+        { c: 0, r: 1, shape: 'tri-tr', fill: 'plum', origin: 'right top', enter: 'scale(0.05, 1)' },
+        { c: 0, r: 2, shape: 'semi-right', fill: 'white', origin: 'left center', enter: 'scale(0.05, 1)' },
+        { c: 1, r: 2, shape: 'square', fill: 'cobalt', origin: 'center top', enter: 'scale(1, 0.05)' },
+        { c: 2, r: 2, shape: 'arc-tl', fill: 'hatch-d-cobalt', origin: 'left top', enter: 'scale(0.05)' },
+        { c: 3, r: 2, shape: 'tri-tl', fill: 'hatch-h-violet', origin: 'left top', enter: 'scale(0.05, 1)' },
+        { c: 1, r: 3, shape: 'tri-tr', fill: 'hatch-v-plum', origin: 'center top', enter: 'scale(1, 0.05)' },
+        { c: 2, r: 3, shape: 'circle', fill: 'plum', origin: 'center top', enter: 'scale(0.1)' }
       ]
     ];
 
@@ -432,28 +433,30 @@
       const tiles = FORMATIONS[idx % FORMATIONS.length];
       const els = tiles.map((t) => {
         const el = buildShapeEl(t);
+        el.style.transformOrigin = t.origin || 'center';
         if (reduceMotionHero) {
           el.classList.add('is-in');
         } else {
-          el.style.transform = t.enter || 'scale(0.65)';
+          el.style.transform = t.enter || 'scale(0.05)';
         }
         layer.appendChild(el);
-        return { el, enter: t.enter || 'scale(0.65)' };
+        return { el, enter: t.enter || 'scale(0.05)' };
       });
 
       if (reduceMotionHero) return;
 
-      // Cascade tiles smoothly into place
+      // Form strictly ONE BY ONE (255ms per shape so each shape visibly unfolds in sequence)
+      const STEP_MS = 255;
       els.forEach((item, i) => {
         const tid = setTimeout(() => {
           item.el.classList.add('is-in');
-        }, 60 + i * 62);
+        }, 120 + i * STEP_MS);
         bhTimers.push(tid);
       });
 
-      // Hold the completed composition, then fold out & morph into next formation
-      const enterDoneMs = 60 + els.length * 62 + 680;
-      const holdMs = 2400;
+      // Hold the completed composition cleanly, then fold away quickly & build the next one
+      const enterDoneMs = 120 + els.length * STEP_MS + 380;
+      const holdMs = 2200;
 
       const tExit = setTimeout(() => {
         if (!bhVisible) return;
@@ -462,11 +465,11 @@
             item.el.classList.remove('is-in');
             item.el.classList.add('is-out');
             item.el.style.transform = item.enter;
-          }, i * 42);
+          }, i * 38);
           bhTimers.push(tid);
         });
 
-        const nextDelay = els.length * 42 + 520;
+        const nextDelay = els.length * 38 + 420;
         const tNext = setTimeout(() => {
           if (!bhVisible) return;
           formationIdx = (formationIdx + 1) % FORMATIONS.length;
