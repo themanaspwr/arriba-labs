@@ -653,6 +653,80 @@ html[data-theme="dark"] .shine-phrase {
   letter-spacing: -0.04em;
 }
 
+/* 3 Vertical Case Study Cards in a Single Line (Same Architectural Plate Style) */
+.cases-row-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.case-plate-card {
+  background: var(--paper-alt);
+  border-left: 4px solid var(--cobalt);
+  padding: 32px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-left-color 0.25s ease;
+}
+
+.case-plate-card:hover {
+  transform: translateY(-3px);
+}
+
+.case-card-name {
+  font-size: 1.24rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.case-card-cat {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  margin-top: 3px;
+}
+
+.case-card-footer {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+  font-size: 0.74rem;
+  color: var(--ink-faint);
+}
+
+.case-plate-card .case-inline-stats {
+  margin: 22px 0;
+  padding: 18px 0;
+  gap: 18px 24px;
+}
+
+.case-plate-card .case-inline-stats strong {
+  font-size: clamp(2.1rem, 2.8vw, 2.7rem);
+}
+
+.case-plate-card .case-editorial-copy p {
+  font-size: 0.98rem;
+  margin-bottom: 18px;
+}
+
+.case-plate-card .case-editorial-copy ul {
+  margin-bottom: 22px;
+}
+
+.case-plate-card .case-editorial-copy li {
+  font-size: 0.94rem;
+}
+
+.case-plate-card .case-trajectory-art {
+  width: 220px;
+  right: -18px;
+  bottom: -18px;
+}
+
 /* Feature Spread 01 — Fizzy Goblet (Immersive Stone Plate) */
 .case-feature-spread {
   background: var(--paper-alt);
@@ -1523,6 +1597,7 @@ html[data-theme="dark"] .partner-open-item img.logo--mono-white {
   .band-header-right {
     grid-column: 1 / -1;
   }
+  .cases-row-3,
   .case-feature-spread,
   .case-pair-spread,
   .cap-engines-layout,
