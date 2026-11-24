@@ -214,4 +214,67 @@
       twElements.forEach((el) => io.observe(el));
     }
   }
+
+  // 8. Hero Background Continuous Dollar Bill & Coin Rain (Pure CSS Animation, Zero Scroll Lag)
+  const rainLayer = document.getElementById('currency-rain-layer');
+  if (rainLayer && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const billSvg =
+      '<svg viewBox="0 0 64 32" aria-hidden="true">' +
+      '<rect x="1.5" y="1.5" width="61" height="29" rx="2.5"/>' +
+      '<rect x="5" y="5" width="54" height="22" rx="1.5" fill="none"/>' +
+      '<circle cx="32" cy="16" r="7.5" fill="none"/>' +
+      '<text x="32" y="20.5" text-anchor="middle" class="bill-mark">$</text>' +
+      '</svg>';
+
+    const coinSvg =
+      '<svg viewBox="0 0 28 28" aria-hidden="true">' +
+      '<circle cx="14" cy="14" r="12.5"/>' +
+      '<circle cx="14" cy="14" r="9.5" fill="none" stroke-dasharray="2 2"/>' +
+      '<text x="14" y="18.2" text-anchor="middle" class="coin-mark">$</text>' +
+      '</svg>';
+
+    // Deterministic editorial distribution across the hero width (22 items: 12 bills, 10 coins)
+    const items = [
+      { type: 'bill', x: 5,  dur: 13.5, delay: -2.0,  s: 0.92, sway: 22,  r0: -18, r1: 14,  r2: 36,  op: 0.85 },
+      { type: 'coin', x: 11, dur: 9.8,  delay: -6.4,  s: 0.95, sway: -14, r0: 0,   r1: 160, r2: 320, op: 0.90 },
+      { type: 'bill', x: 18, dur: 15.2, delay: -9.5,  s: 1.08, sway: -26, r0: 12,  r1: -16, r2: -42, op: 0.78 },
+      { type: 'coin', x: 24, dur: 11.2, delay: -1.3,  s: 0.82, sway: 18,  r0: 20,  r1: 190, r2: 360, op: 0.85 },
+      { type: 'bill', x: 31, dur: 14.0, delay: -11.2, s: 0.86, sway: 20,  r0: -24, r1: 10,  r2: 28,  op: 0.75 },
+      { type: 'coin', x: 38, dur: 10.4, delay: -4.8,  s: 1.05, sway: -16, r0: 10,  r1: -150,r2: -310,op: 0.88 },
+      { type: 'bill', x: 45, dur: 16.0, delay: -7.1,  s: 0.96, sway: 28,  r0: 15,  r1: -12, r2: -30, op: 0.72 },
+      { type: 'coin', x: 52, dur: 9.4,  delay: -8.2,  s: 0.88, sway: 14,  r0: 0,   r1: 180, r2: 360, op: 0.86 },
+      { type: 'bill', x: 58, dur: 13.8, delay: -3.5,  s: 1.12, sway: -24, r0: -14, r1: 18,  r2: 44,  op: 0.82 },
+      { type: 'coin', x: 65, dur: 11.6, delay: -10.1, s: 0.96, sway: -18, r0: 30,  r1: 210, r2: 380, op: 0.88 },
+      { type: 'bill', x: 71, dur: 14.8, delay: -5.6,  s: 0.90, sway: 24,  r0: 20,  r1: -10, r2: -34, op: 0.80 },
+      { type: 'coin', x: 77, dur: 10.2, delay: -2.4,  s: 1.08, sway: 16,  r0: 0,   r1: -170,r2: -340,op: 0.90 },
+      { type: 'bill', x: 83, dur: 12.9, delay: -8.9,  s: 1.02, sway: -22, r0: -20, r1: 12,  r2: 38,  op: 0.84 },
+      { type: 'coin', x: 89, dur: 9.6,  delay: -4.1,  s: 0.86, sway: -12, r0: 15,  r1: 185, r2: 350, op: 0.86 },
+      { type: 'bill', x: 94, dur: 15.5, delay: -12.0, s: 0.94, sway: 20,  r0: 10,  r1: -18, r2: -40, op: 0.78 },
+      { type: 'bill', x: 14, dur: 16.4, delay: -13.2, s: 0.84, sway: 25,  r0: -10, r1: 20,  r2: 42,  op: 0.74 },
+      { type: 'coin', x: 28, dur: 12.1, delay: -7.6,  s: 0.90, sway: -15, r0: 0,   r1: 170, r2: 340, op: 0.84 },
+      { type: 'bill', x: 49, dur: 14.4, delay: -0.8,  s: 1.00, sway: -20, r0: 16,  r1: -14, r2: -32, op: 0.76 },
+      { type: 'coin', x: 62, dur: 10.8, delay: -5.9,  s: 0.84, sway: 14,  r0: 25,  r1: -160,r2: -330,op: 0.85 },
+      { type: 'bill', x: 75, dur: 13.2, delay: -10.8, s: 1.06, sway: 22,  r0: -16, r1: 15,  r2: 35,  op: 0.80 },
+      { type: 'coin', x: 86, dur: 11.4, delay: -1.7,  s: 1.02, sway: -16, r0: 10,  r1: 190, r2: 370, op: 0.88 },
+      { type: 'bill', x: 91, dur: 14.6, delay: -6.3,  s: 0.88, sway: -18, r0: 18,  r1: -12, r2: -36, op: 0.78 }
+    ];
+
+    const frag = document.createDocumentFragment();
+    items.forEach((cfg) => {
+      const el = document.createElement('div');
+      el.className = `rain-item ${cfg.type === 'bill' ? 'rain-bill' : 'rain-coin'}`;
+      el.style.setProperty('--x', `${cfg.x}%`);
+      el.style.setProperty('--dur', `${cfg.dur}s`);
+      el.style.setProperty('--delay', `${cfg.delay}s`);
+      el.style.setProperty('--s', cfg.s);
+      el.style.setProperty('--sway', `${cfg.sway}px`);
+      el.style.setProperty('--r0', `${cfg.r0}deg`);
+      el.style.setProperty('--r1', `${cfg.r1}deg`);
+      el.style.setProperty('--r2', `${cfg.r2}deg`);
+      el.style.setProperty('--op', cfg.op);
+      el.innerHTML = cfg.type === 'bill' ? billSvg : coinSvg;
+      frag.appendChild(el);
+    });
+    rainLayer.appendChild(frag);
+  }
 })();
