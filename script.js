@@ -65,6 +65,11 @@
       if (p === '3bf') img.src = isDark ? 'logos/partners/3bf.svg' : 'logos/partners/3bf-light.svg';
       if (p === 'krafting') img.src = isDark ? 'logos/partners/krafting-networks.svg' : 'logos/partners/krafting-networks-light.svg';
     });
+
+    // Swap client logos with light/dark color variants
+    document.querySelectorAll('img[data-light-src][data-dark-src]').forEach((img) => {
+      img.src = isDark ? img.getAttribute('data-dark-src') : img.getAttribute('data-light-src');
+    });
   }
 
   applyTheme('light');
@@ -161,5 +166,52 @@
     const b2 = document.getElementById('cookie-accept-btn');
     if (b1) b1.addEventListener('click', () => dismiss('essential'));
     if (b2) b2.addEventListener('click', () => dismiss('all'));
+  }
+
+  // 7. Zero-Lag Typewriter Animation (IntersectionObserver — no scroll listeners)
+  const twElements = document.querySelectorAll('[data-typewriter]');
+  if (twElements.length && 'IntersectionObserver' in window) {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReduced) {
+      twElements.forEach((el) => {
+        el.dataset.fullText = el.textContent.trim().replace(/\s+/g, ' ');
+        el.textContent = '';
+      });
+
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            io.unobserve(el);
+
+            const full = el.dataset.fullText || '';
+            const textNode = document.createTextNode('');
+            const cursor = document.createElement('span');
+            cursor.className = 'typewriter-cursor';
+            cursor.setAttribute('aria-hidden', 'true');
+            el.textContent = '';
+            el.appendChild(textNode);
+            el.appendChild(cursor);
+
+            let i = 0;
+            const step = () => {
+              if (i < full.length) {
+                i += 2;
+                textNode.nodeValue = full.slice(0, i);
+                setTimeout(step, 22);
+              } else {
+                textNode.nodeValue = full;
+                setTimeout(() => cursor.remove(), 1400);
+              }
+            };
+            step();
+          });
+        },
+        { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
+      );
+
+      twElements.forEach((el) => io.observe(el));
+    }
   }
 })();
