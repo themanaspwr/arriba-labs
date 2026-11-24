@@ -1282,6 +1282,8 @@ html[data-theme="dark"] .brick--cream {
    ========================================================================== */
 .audit-band {
   padding: clamp(80px, 10vw, 136px) 0 clamp(64px, 8vw, 104px);
+  overflow: hidden;
+  overflow: clip;
 }
 
 .audit-briefing {
@@ -1303,10 +1305,50 @@ html[data-theme="dark"] .brick--cream {
 }
 
 .audit-rows {
+  position: relative;
   border-top: 2px solid var(--ink);
 }
 
+.audit-flow-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.audit-arrow-dots {
+  fill: none;
+  stroke: var(--vermilion);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1 9.5;
+}
+
+.audit-arrow-head {
+  fill: none;
+  stroke: var(--vermilion);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.5);
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.22, 1.4, 0.36, 1);
+}
+
+.audit-arrow-head.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
 .audit-row {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 64px 230px 1fr;
   gap: 24px;
@@ -1321,6 +1363,11 @@ html[data-theme="dark"] .brick--cream {
   font-size: 2.1rem;
   line-height: 1;
   color: var(--ink);
+  transition: color 0.35s ease;
+}
+
+.audit-row.is-step-active .audit-row-num {
+  color: var(--vermilion);
 }
 
 .audit-row-title {
@@ -1769,6 +1816,10 @@ html[data-theme="dark"] .partner-open-item:hover {
    RESPONSIVE LAYOUTS (LAPTOP, TABLET, MOBILE)
    ========================================================================== */
 @media (max-width: 1100px) {
+  .audit-briefing {
+    padding-left: 44px;
+    padding-right: 44px;
+  }
   .masthead-descriptor,
   .masthead-nav,
   .masthead-cta {
@@ -1851,6 +1902,10 @@ html[data-theme="dark"] .partner-open-item:hover {
 }
 
 @media (max-width: 720px) {
+  .audit-briefing {
+    padding-left: 34px;
+    padding-right: 34px;
+  }
   .expertise-physics-stage {
     height: 440px;
   }

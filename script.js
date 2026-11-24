@@ -1023,4 +1023,188 @@
       });
     }
   }
+
+  /* --------------------------------------------------------------------------
+     11. PRE-ONBOARDING AUDIT — ALTERNATING DOTTED ARROW FORMATION
+         01 -> 02 (Left), 02 -> 03 (Right), 03 -> 04 (Left), 04 -> 05 (Right)
+         Uses SVG mask reveal so dots form sequentially one by one along each
+         curved path, followed by the arrowhead landing at the next step.
+     -------------------------------------------------------------------------- */
+  const auditRowsWrap = document.getElementById('audit-rows');
+  const auditSvg = document.getElementById('audit-flow-svg');
+
+  if (auditRowsWrap && auditSvg) {
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const rows = Array.from(auditRowsWrap.querySelectorAll('.audit-row'));
+    const reduceMotionAudit =
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    let arrowSteps = [];
+    let auditTimers = [];
+    let auditVisible = false;
+
+    function clearAuditTimers() {
+      auditTimers.forEach((id) => clearTimeout(id));
+      auditTimers = [];
+    }
+
+    function buildAuditArrows() {
+      if (rows.length < 2) return;
+      const W = auditRowsWrap.clientWidth;
+      const H = auditRowsWrap.clientHeight;
+      const isMobile = window.innerWidth < 720;
+      const isNarrow = window.innerWidth < 1100;
+      const edgeGap = isMobile ? 7 : isNarrow ? 10 : 18;
+      const curveDepth = isMobile ? 16 : isNarrow ? 22 : 54;
+
+      auditSvg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      auditSvg.innerHTML = '';
+
+      const defs = document.createElementNS(SVG_NS, 'defs');
+      auditSvg.appendChild(defs);
+
+      arrowSteps = [];
+
+      for (let i = 0; i < rows.length - 1; i++) {
+        const isLeft = i % 2 === 0; // 01->02 Left, 02->03 Right, 03->04 Left, 04->05 Right
+        const y1 = rows[i].offsetTop + rows[i].offsetHeight * 0.52;
+        const y2 = rows[i + 1].offsetTop + rows[i + 1].offsetHeight * 0.52;
+        const dy = y2 - y1;
+
+        let dPath = '';
+        let dHead = '';
+
+        if (isLeft) {
+          const x = -edgeGap;
+          const cx = x - curveDepth;
+          dPath = `M ${x} ${y1} C ${cx} ${y1 + dy * 0.14}, ${cx} ${y2 - dy * 0.14}, ${x} ${y2}`;
+          dHead = `M ${x - 8} ${y2 - 5.5} L ${x + 1} ${y2} L ${x - 8} ${y2 + 5.5}`;
+        } else {
+          const x = W + edgeGap;
+          const cx = x + curveDepth;
+          dPath = `M ${x} ${y1} C ${cx} ${y1 + dy * 0.14}, ${cx} ${y2 - dy * 0.14}, ${x} ${y2}`;
+          dHead = `M ${x + 8} ${y2 - 5.5} L ${x - 1} ${y2} L ${x + 8} ${y2 + 5.5}`;
+        }
+
+        // Mask path that smoothly reveals dots one-by-one from start to end
+        const maskId = `audit-arrow-mask-${i}`;
+        const mask = document.createElementNS(SVG_NS, 'mask');
+        mask.setAttribute('id', maskId);
+        mask.setAttribute('maskUnits', 'userSpaceOnUse');
+        mask.setAttribute('x', String(-curveDepth - 40));
+        mask.setAttribute('y', '-20');
+        mask.setAttribute('width', String(W + (curveDepth + 40) * 2));
+        mask.setAttribute('height', String(H + 40));
+
+        const maskPath = document.createElementNS(SVG_NS, 'path');
+        maskPath.setAttribute('d', dPath);
+        maskPath.setAttribute('fill', 'none');
+        maskPath.setAttribute('stroke', '#ffffff');
+        maskPath.setAttribute('stroke-width', '12');
+        maskPath.setAttribute('stroke-linecap', 'round');
+        mask.appendChild(maskPath);
+        defs.appendChild(mask);
+
+        // Dotted visible stroke revealed by the mask
+        const dotsPath = document.createElementNS(SVG_NS, 'path');
+        dotsPath.setAttribute('d', dPath);
+        dotsPath.setAttribute('class', 'audit-arrow-dots');
+        dotsPath.setAttribute('mask', `url(#${maskId})`);
+        auditSvg.appendChild(dotsPath);
+
+        // Arrowhead at destination step
+        const headPath = document.createElementNS(SVG_NS, 'path');
+        headPath.setAttribute('d', dHead);
+        headPath.setAttribute('class', 'audit-arrow-head');
+        auditSvg.appendChild(headPath);
+
+        const len = Math.ceil(maskPath.getTotalLength() || 180);
+        maskPath.style.strokeDasharray = `${len} ${len}`;
+        maskPath.style.strokeDashoffset = reduceMotionAudit ? '0' : `${len}`;
+
+        if (reduceMotionAudit) {
+          headPath.classList.add('is-visible');
+        }
+
+        arrowSteps.push({ maskPath, headPath, len, targetRow: rows[i + 1] });
+      }
+    }
+
+    function resetAuditSequence() {
+      rows.forEach((r) => r.classList.remove('is-step-active'));
+      arrowSteps.forEach((step) => {
+        step.maskPath.style.transition = 'none';
+        step.maskPath.style.strokeDashoffset = `${step.len}`;
+        step.headPath.classList.remove('is-visible');
+      });
+    }
+
+    function runAuditSequence() {
+      if (reduceMotionAudit || !auditVisible) return;
+      clearAuditTimers();
+      resetAuditSequence();
+
+      // Highlight step 01 as the starting point
+      if (rows[0]) rows[0].classList.add('is-step-active');
+
+      const STEP_DRAW_MS = 820;
+      const STEP_GAP_MS = 140;
+
+      arrowSteps.forEach((step, idx) => {
+        const startMs = 180 + idx * (STEP_DRAW_MS + STEP_GAP_MS);
+
+        const tDraw = setTimeout(() => {
+          void step.maskPath.getBoundingClientRect();
+          step.maskPath.style.transition = `stroke-dashoffset ${STEP_DRAW_MS}ms cubic-bezier(0.35, 0, 0.25, 1)`;
+          step.maskPath.style.strokeDashoffset = '0';
+        }, startMs);
+
+        const tHead = setTimeout(() => {
+          step.headPath.classList.add('is-visible');
+          if (step.targetRow) step.targetRow.classList.add('is-step-active');
+        }, startMs + STEP_DRAW_MS - 90);
+
+        auditTimers.push(tDraw, tHead);
+      });
+
+      // Hold all formed arrows cleanly for 3.6s, then re-form in sequence while visible
+      const totalCycleMs = 180 + arrowSteps.length * (STEP_DRAW_MS + STEP_GAP_MS) + 3600;
+      const tLoop = setTimeout(() => {
+        if (auditVisible) runAuditSequence();
+      }, totalCycleMs);
+      auditTimers.push(tLoop);
+    }
+
+    buildAuditArrows();
+
+    const auditSection = document.getElementById('approach') || auditRowsWrap;
+    if ('IntersectionObserver' in window) {
+      const auditObserver = new IntersectionObserver(
+        (entries) => {
+          const wasVisible = auditVisible;
+          auditVisible = entries[0].isIntersecting;
+          if (auditVisible && !wasVisible) {
+            buildAuditArrows();
+            runAuditSequence();
+          } else if (!auditVisible) {
+            clearAuditTimers();
+          }
+        },
+        { threshold: 0.2 }
+      );
+      auditObserver.observe(auditSection);
+    } else {
+      auditVisible = true;
+      runAuditSequence();
+    }
+
+    let auditResizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(auditResizeTimer);
+      auditResizeTimer = setTimeout(() => {
+        buildAuditArrows();
+        if (auditVisible) runAuditSequence();
+      }, 200);
+    });
+  }
 })();
