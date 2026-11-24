@@ -37,48 +37,36 @@
   <link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#07070b">
+  <meta name="theme-color" content="#060608">
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  <!-- Google Fonts: Plus Jakarta Sans (Brand) + Instrument Serif (Editorial) + IBM Plex Mono (Index) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="editorial-body">
+<body>
 
-  <!-- Subtle Ambient Canvas & Noise -->
-  <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
-  <div class="noise-overlay" aria-hidden="true"></div>
+  <!-- Architectural Grain & Precision Cursor -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+  <div class="precision-cursor" id="precision-cursor" aria-hidden="true"></div>
 
-  <!-- Custom Cursor Follower -->
-  <div class="editorial-cursor" id="editorial-cursor" aria-hidden="true">
-    <div class="cursor-dot"></div>
-    <div class="cursor-ring"></div>
-    <div class="cursor-tag" id="cursor-tag"></div>
-  </div>
-
-
-
-  <!-- ==================== CINEMATIC SPLASH PRELOADER ==================== -->
+  <!-- ==================== SPLASH PRELOADER ==================== -->
   <div id="splash-preloader" class="splash-preloader" aria-hidden="true">
-    <div class="splash-ambient-glow" id="splash-glow"></div>
     <div class="splash-center-cluster" id="splash-cluster">
-      <!-- Reduced Size Centered Chevron Rig -->
-      <div class="splash-chevron-rig" id="splash-rig">
-        <div class="splash-chevron-layer splash-layer-top" id="splash-top">
-          <img src="images/chevron-outer.png" alt="Arriba Top Chevron" class="splash-chevron-img" width="1566" height="714">
+      <div class="splash-chevron-rig">
+        <div class="splash-chevron-layer" id="splash-top">
+          <img src="images/chevron-outer.png" alt="" class="splash-chevron-img" width="1566" height="714">
         </div>
-        <div class="splash-chevron-layer splash-layer-mid" id="splash-mid">
-          <img src="images/chevron-middle.png" alt="Arriba Middle Chevron" class="splash-chevron-img" width="1566" height="714">
+        <div class="splash-chevron-layer" id="splash-mid">
+          <img src="images/chevron-middle.png" alt="" class="splash-chevron-img" width="1566" height="714">
         </div>
-        <div class="splash-chevron-layer splash-layer-bot" id="splash-bot">
-          <img src="images/chevron-inner.png" alt="Arriba Lower Chevron" class="splash-chevron-img" width="1566" height="714">
+        <div class="splash-chevron-layer" id="splash-bot">
+          <img src="images/chevron-inner.png" alt="" class="splash-chevron-img" width="1566" height="714">
         </div>
       </div>
-      <!-- Clean "ARRIBA" Wordmark below emblem -->
       <div class="splash-wordmark-wrap" id="splash-wordmark">
         <img src="images/arriba-wordmark-gradient.png" alt="ARRIBA" class="arriba-wordmark-img" width="1361" height="334">
       </div>
@@ -94,42 +82,26 @@
 
       <nav class="header-nav" aria-label="Main Navigation">
         <a href="#clients" class="nav-link">Partnerships</a>
-        <a href="#services" class="nav-link">Engines</a>
-        <a href="#results" class="nav-link">Spotlight</a>
-        <a href="#approach" class="nav-link">Protocol</a>
-        <a href="#cadence" class="nav-link">Cadence</a>
+        <a href="#services" class="nav-link">Capabilities</a>
+        <a href="#results" class="nav-link">Case Ledger</a>
+        <a href="#approach" class="nav-link">Audit</a>
         <a href="#standard" class="nav-link">The Standard</a>
-        <a href="#partnerships" class="nav-link">Network</a>
       </nav>
 
       <div class="header-actions">
-        <button class="theme-toggle-btn magnetic-target" id="theme-toggle" aria-label="Switch to light mode" title="Switch to light mode">
-          <span class="theme-toggle-icon theme-icon-sun" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="5"></circle>
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-          </span>
-          <span class="theme-toggle-icon theme-icon-moon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-          </span>
+        <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle light and dark theme">
+          <span class="theme-dot" aria-hidden="true"></span>
+          <span id="theme-label">Light</span>
         </button>
-        <a href="#contact" class="btn btn-header-cta magnetic-target">
-          <span>Book Consultation</span>
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" class="arrow-svg">
-            <path d="M3 8h10M9 4l4 4-4 4"/>
+
+        <a href="#contact" class="btn-arch btn-arch--sm">
+          <span>Book Audit</span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 12L12 4M12 4H6M12 4V10"/>
           </svg>
         </a>
-        <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle navigation">
+
+        <button type="button" class="mobile-nav-toggle" id="mobile-toggle" aria-label="Open menu">
           <span></span>
           <span></span>
         </button>
@@ -137,1571 +109,1027 @@
     </div>
   </header>
 
-  <!-- Mobile Drawer -->
-  <div class="mobile-menu-drawer" id="mobile-drawer">
-    <div class="drawer-header">
-      <img src="images/arriba-logo-gradient.png" alt="Arriba Labs" width="130" height="38">
-      <button class="drawer-close" id="drawer-close">&times;</button>
+  <!-- Mobile Fullscreen Drawer -->
+  <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+    <div class="drawer-top">
+      <img src="images/arriba-logo-gradient.png" alt="Arriba Labs" class="brand-logo-img" width="120" height="36">
+      <button type="button" class="drawer-close" id="drawer-close">Close</button>
     </div>
-    <nav class="drawer-links">
-      <a href="#clients" class="drawer-item"><span>01</span>Partnerships</a>
-      <a href="#services" class="drawer-item"><span>02</span>The Two Engines</a>
-      <a href="#results" class="drawer-item"><span>03</span>Case Spotlight</a>
-      <a href="#approach" class="drawer-item"><span>04</span>Audit Protocol</a>
-      <a href="#cadence" class="drawer-item"><span>05</span>Weekly Cadence</a>
-      <a href="#standard" class="drawer-item"><span>06</span>The Standard</a>
-      <a href="#partnerships" class="drawer-item"><span>07</span>Partner Network</a>
-      <a href="#contact" class="drawer-item"><span>08</span>Contact</a>
+
+    <nav class="drawer-nav" aria-label="Mobile Navigation">
+      <a href="#clients" class="drawer-link"><span>01</span>Partnerships</a>
+      <a href="#services" class="drawer-link"><span>02</span>Capabilities</a>
+      <a href="#results" class="drawer-link"><span>03</span>Case Ledger</a>
+      <a href="#approach" class="drawer-link"><span>04</span>Pre-Onboarding Audit</a>
+      <a href="#standard" class="drawer-link"><span>05</span>The Standard</a>
+      <a href="#contact" class="drawer-link"><span>06</span>Consultation</a>
     </nav>
-    <div class="drawer-bottom">
-      <div class="drawer-theme-control">
-        <span class="drawer-theme-label">Theme</span>
-        <div class="drawer-theme-toggle" id="drawer-theme-toggle" role="group" aria-label="Theme selection">
-          <button type="button" class="drawer-theme-btn active" data-mode="dark">Dark</button>
-          <button type="button" class="drawer-theme-btn" data-mode="light">Light</button>
-        </div>
-      </div>
-      <a href="#contact" class="btn btn-primary btn-block drawer-action">Book Consultation</a>
-      <a href="https://wa.me/917666300895?text=Hi%20Arriba%20Labs,%20I'd%20like%20to%20discuss%20scaling%20our%20e-commerce%20brand." class="btn btn-whatsapp-drawer btn-block" target="_blank" rel="noopener noreferrer">Chat on WhatsApp</a>
+
+    <div class="drawer-footer">
+      <a href="#contact" class="btn-arch">Book Strategy Consultation</a>
+      <a href="https://wa.me/917666300895?text=Hi%20Arriba%20Labs,%20I'd%20like%20to%20discuss%20scaling%20our%20e-commerce%20brand." class="btn-arch btn-arch--ghost" target="_blank" rel="noopener noreferrer">Direct WhatsApp: +91 7666300895</a>
     </div>
   </div>
 
   <main id="main">
 
-    <!-- ==================== 1. EDITORIAL HERO ==================== -->
-    <section class="hero-editorial-section" id="hero">
-      <div class="container-editorial">
-        
-        <div class="hero-stage-layout">
-          <!-- Hero Content Block (Left Column) -->
-          <div class="hero-content-block">
-            <div class="hero-top-kicker" data-reveal>
-              <span class="kicker-tag">PERFORMANCE MARKETING STUDIO</span>
-              <span class="kicker-sep">/</span>
-              <span class="kicker-sub">EST. 2018</span>
-            </div>
+    <!-- ==================== 1. HERO: MONUMENTAL ASYMMETRIC POSTER ==================== -->
+    <section class="hero-monolith" id="hero">
+      <div class="wrap hero-stage">
+        <div class="hero-copy-col">
+          <div class="hero-meta-strip mono">
+            <span>Performance Marketing Studio</span>
+            <span class="hero-meta-line" aria-hidden="true"></span>
+            <span>Est. 2018 &middot; Pune</span>
+          </div>
 
-            <h1 class="hero-clean-title" data-reveal>
-              We scale consumer brands with creative performance and disciplined capital.
-            </h1>
+          <h1 class="hero-display-title">
+            We scale consumer<br>
+            brands with <span class="serif-italic">creative<br>
+            performance</span> and<br>
+            disciplined capital.
+          </h1>
 
-            <p class="hero-editorial-copy" data-reveal>
+          <div class="hero-sub-row">
+            <p class="hero-lead">
               Direct-to-consumer and retail growth engineered across Meta, Google, Amazon, and Quick Commerce. Over ₹120 Crore in ad spend managed for India's category leaders.
             </p>
 
-            <div class="hero-actions-cluster" data-reveal>
-              <a href="#contact" class="btn btn-primary magnetic-target">
+            <div class="hero-cta-row">
+              <a href="#contact" class="btn-arch">
                 <span>Book Strategy Consultation</span>
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" class="arrow-svg">
-                  <path d="M3 8h10M9 4l4 4-4 4"/>
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M4 12L12 4M12 4H6M12 4V10"/>
                 </svg>
               </a>
-              <a href="https://wa.me/917666300895?text=Hi%20Arriba%20Labs,%20I'd%20like%20to%20discuss%20scaling%20our%20e-commerce%20brand." class="btn btn-ghost magnetic-target" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
+              <a href="https://wa.me/917666300895?text=Hi%20Arriba%20Labs,%20I'd%20like%20to%20discuss%20scaling%20our%20e-commerce%20brand." class="btn-arch btn-arch--ghost" target="_blank" rel="noopener noreferrer">
                 <span>Direct WhatsApp</span>
               </a>
             </div>
-
-            <div class="hero-platform-trust" data-reveal>
-              <span class="trust-badge">Meta Business Partner</span>
-              <span class="trust-dot">&#8226;</span>
-              <span class="trust-badge">Google Premier Partner</span>
-              <span class="trust-dot">&#8226;</span>
-              <span class="trust-badge">Amazon Ads Partner</span>
-              <span class="trust-dot">&#8226;</span>
-              <span class="trust-badge">Quick Commerce Media</span>
-            </div>
           </div>
 
-          <!-- Ambient 3D Glass Stack (Right Column Background) -->
-          <div class="hero-glass-scene" id="hero-glass-scene" aria-hidden="true">
-            <div class="hero-glass-cluster" id="hero-glass-cluster">
-              <!-- Shared SVG Gradient & ClipPath Definitions -->
-              <svg class="triangle-glass-defs" width="0" height="0" style="position: absolute; pointer-events: none;">
-                <defs>
-                  <clipPath id="chevronClip" clipPathUnits="objectBoundingBox">
-                    <polygon points="0.4987,0 0.9981,0.9986 0.8525,0.9986 0.4987,0.4342 0.1475,0.9986 0.0013,0.9986" />
-                  </clipPath>
-                  <linearGradient id="triGlassFill" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.14" />
-                    <stop offset="30%" stop-color="#38bdf8" stop-opacity="0.08" />
-                    <stop offset="70%" stop-color="#a855f7" stop-opacity="0.09" />
-                    <stop offset="100%" stop-color="#0f172a" stop-opacity="0.55" />
-                  </linearGradient>
-                  <linearGradient id="triGlassStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="1.0" />
-                    <stop offset="25%" stop-color="#38bdf8" stop-opacity="0.95" />
-                    <stop offset="70%" stop-color="#a855f7" stop-opacity="0.75" />
-                    <stop offset="100%" stop-color="#6366f1" stop-opacity="0.45" />
-                  </linearGradient>
-                  <!-- Light theme gradients -->
-                  <linearGradient id="triGlassFillLight" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.90" />
-                    <stop offset="35%" stop-color="#7c3aed" stop-opacity="0.10" />
-                    <stop offset="70%" stop-color="#1d4ed8" stop-opacity="0.12" />
-                    <stop offset="100%" stop-color="#f8faff" stop-opacity="0.85" />
-                  </linearGradient>
-                  <linearGradient id="triGlassStrokeLight" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.95" />
-                    <stop offset="45%" stop-color="#4f46e5" stop-opacity="0.80" />
-                    <stop offset="100%" stop-color="#1d4ed8" stop-opacity="0.95" />
-                  </linearGradient>
-                </defs>
-              </svg>
-
-              <!-- Limited to 3 thick iconic chevrons (Top, Middle, Base) -->
-              <div class="glass-plate plate-3" data-layer="3" style="--layer-idx: 2;">
-                <div class="tri-glass-blur-backdrop"></div>
-                <svg class="triangle-glass-svg" viewBox="0 0 1566 714" aria-hidden="true">
-                  <path class="tri-glass-shape" d="M 781 0 L 1563 713 L 1335 713 L 781 310 L 231 713 L 2 713 Z" />
-                  <path class="tri-glass-rim" d="M 781 24 L 1528 688 L 1348 688 L 781 334 L 218 688 L 38 688 Z" />
-                </svg>
-              </div>
-              <div class="glass-plate plate-2" data-layer="2" style="--layer-idx: 1;">
-                <div class="tri-glass-blur-backdrop"></div>
-                <svg class="triangle-glass-svg" viewBox="0 0 1566 714" aria-hidden="true">
-                  <path class="tri-glass-shape" d="M 781 0 L 1563 713 L 1335 713 L 781 310 L 231 713 L 2 713 Z" />
-                  <path class="tri-glass-rim" d="M 781 24 L 1528 688 L 1348 688 L 781 334 L 218 688 L 38 688 Z" />
-                </svg>
-              </div>
-              <div class="glass-plate plate-1" data-layer="1" style="--layer-idx: 0;">
-                <div class="tri-glass-blur-backdrop"></div>
-                <svg class="triangle-glass-svg" viewBox="0 0 1566 714" aria-hidden="true">
-                  <path class="tri-glass-shape" d="M 781 0 L 1563 713 L 1335 713 L 781 310 L 231 713 L 2 713 Z" />
-                  <path class="tri-glass-rim" d="M 781 24 L 1528 688 L 1348 688 L 781 334 L 218 688 L 38 688 Z" />
-                </svg>
-                <div class="plate-glow-cyan"></div>
-                <div class="plate-glow-violet"></div>
-                <div class="plate-specular-light"></div>
-              </div>
-            </div>
+          <div class="hero-credentials mono">
+            <span>Meta Business Partner</span>
+            <span>/</span>
+            <span>Google Premier Partner</span>
+            <span>/</span>
+            <span>Amazon Ads Partner</span>
+            <span>/</span>
+            <span>Quick Commerce Media</span>
           </div>
         </div>
 
-        <!-- Architectural Stat Band -->
-          <div class="hero-stat-band" data-reveal>
-            <div class="band-cell">
-              <span class="band-num">₹120Cr<span class="stat-orange">+</span></span>
-              <span class="band-label">Ad Capital Deployed</span>
+        <!-- Sculptural Architectural Chevron Rig -->
+        <div class="hero-sculpture" aria-hidden="true">
+          <svg width="0" height="0" style="position:absolute;">
+            <defs>
+              <linearGradient id="arribaSculptureGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#7c3aed" />
+                <stop offset="50%" stop-color="#3b82f6" />
+                <stop offset="100%" stop-color="#1d4ed8" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          <div class="chevron-rig" id="hero-chevron-rig">
+            <div class="chevron-plane chevron-plane--3">
+              <svg viewBox="0 0 1566 714">
+                <path class="chevron-fill" d="M 781 0 L 1563 713 L 1335 713 L 781 310 L 231 713 L 2 713 Z" />
+                <path class="chevron-stroke" d="M 781 0 L 1563 713 L 1335 713 L 781 310 L 231 713 L 2 713 Z" />
+              </svg>
             </div>
-            <div class="band-cell">
-              <span class="band-num">3.8<span class="stat-orange">x</span></span>
-              <span class="band-label">Average Blended ROAS</span>
+            <div class="chevron-plane chevron-plane--2">
+              <svg viewBox="0 0 1566 714">
+                <path class="chevron-fill" d="M 781 0 L 1563 713 L 1335 713 L 781 310 L 231 713 L 2 713 Z" />
+                <path class="chevron-stroke" d="M 781 0 L 1563 713 L 1335 713 L 781 310 L 231 713 L 2 713 Z" />
+              </svg>
             </div>
-            <div class="band-cell">
-              <span class="band-num">150<span class="stat-orange">+</span></span>
-              <span class="band-label">Brands Accelerated</span>
-            </div>
-            <div class="band-cell">
-              <span class="band-num"><span class="band-orange-dot" aria-hidden="true"></span>Zero</span>
-              <span class="band-label">Lock-In Retainer Contracts</span>
+            <div class="chevron-plane chevron-plane--1">
+              <svg viewBox="0 0 1566 714">
+                <path class="chevron-fill" d="M 781 0 L 1563 713 L 1335 713 L 781 310 L 231 713 L 2 713 Z" />
+                <path class="chevron-stroke" d="M 781 0 L 1563 713 L 1335 713 L 781 310 L 231 713 L 2 713 Z" />
+              </svg>
             </div>
           </div>
+        </div>
+      </div>
 
+      <!-- Full-Bleed Architectural 4-Column Metric Bar -->
+      <div class="hero-ledger-bar">
+        <div class="wrap hero-ledger-grid">
+          <div class="ledger-cell">
+            <span class="ledger-num">₹120Cr<span class="accent">+</span></span>
+            <span class="ledger-label">Ad Capital Deployed</span>
+          </div>
+          <div class="ledger-cell">
+            <span class="ledger-num">3.8<span class="accent">x</span></span>
+            <span class="ledger-label">Average Blended ROAS</span>
+          </div>
+          <div class="ledger-cell">
+            <span class="ledger-num">150<span class="accent">+</span></span>
+            <span class="ledger-label">Brands Accelerated</span>
+          </div>
+          <div class="ledger-cell">
+            <span class="ledger-num">Zero</span>
+            <span class="ledger-label">Lock-In Retainer Contracts</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ==================== 2. CLIENT ROSTER ==================== -->
-    <section class="clients-section-editorial" id="clients">
-      <div class="clients-header-bar">
-        <div class="container-editorial flex-between">
-          <span class="editorial-sublabel">SELECTED CLIENT PARTNERSHIPS</span>
-          <span class="editorial-sublabel count-badge">18 VERIFIED BRANDS</span>
+    <!-- ==================== 2. SELECTED PARTNERSHIPS ==================== -->
+    <section class="section-block" id="clients">
+      <div class="wrap">
+        <div class="section-header-asym" data-reveal>
+          <div>
+            <div class="section-kicker mono">
+              <span>01</span>
+              <span>/</span>
+              <span>Selected Client Partnerships</span>
+            </div>
+            <h2 class="section-title">Trusted by category<br><span class="serif-italic">challengers &amp; icons.</span></h2>
+          </div>
+          <p class="section-intro">
+            18 verified consumer, retail, and global partnerships built on transparent attribution and compounding unit economics.
+          </p>
         </div>
       </div>
 
-      <!-- Dual Opposite-Direction Brand Logo Marquees with Hover Pause -->
-      <div class="editorial-marquee-stack">
-        <!-- Row 1: Top Marquee (Moves Left) - Brands 1 to 9 -->
-        <div class="editorial-marquee-wrap">
-          <div class="editorial-marquee-track marquee-track-left" id="client-marquee-top">
-            <div class="editorial-marquee-group">
-              <div class="client-logo-item" title="Pro Nature Organic">
-                <img src="logos/pro-nature-organic.png" alt="Pro Nature Organic" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Tiber Taber">
-                <img src="logos/tiber-taber.png" alt="Tiber Taber" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="VIYA">
-                <img src="logos/viya.svg" alt="VIYA" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Meko Studio">
-                <img src="logos/meko-studio.png" alt="Meko Studio" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="SR Store">
-                <img src="logos/sr-store.png" alt="SR Store" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="AV Store">
-                <img src="logos/av-store.png" alt="AV Store" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="TODDS Life">
-                <img src="logos/todds-life.png" alt="TODDS Life" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Anthrilo">
-                <img src="logos/anthrilo.png" alt="Anthrilo" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Beauty Garage">
-                <img src="logos/beauty-garage.svg" alt="Beauty Garage" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <!-- Second cycle inside group for ultrawide screens -->
-              <div class="client-logo-item" title="Pro Nature Organic">
-                <img src="logos/pro-nature-organic.png" alt="Pro Nature Organic" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Tiber Taber">
-                <img src="logos/tiber-taber.png" alt="Tiber Taber" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="VIYA">
-                <img src="logos/viya.svg" alt="VIYA" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Meko Studio">
-                <img src="logos/meko-studio.png" alt="Meko Studio" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="SR Store">
-                <img src="logos/sr-store.png" alt="SR Store" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="AV Store">
-                <img src="logos/av-store.png" alt="AV Store" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="TODDS Life">
-                <img src="logos/todds-life.png" alt="TODDS Life" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Anthrilo">
-                <img src="logos/anthrilo.png" alt="Anthrilo" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Beauty Garage">
-                <img src="logos/beauty-garage.svg" alt="Beauty Garage" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-            </div>
-            <!-- Seamless Duplicate Group -->
-            <div class="editorial-marquee-group" aria-hidden="true">
-              <div class="client-logo-item" title="Pro Nature Organic">
-                <img src="logos/pro-nature-organic.png" alt="Pro Nature Organic" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Tiber Taber">
-                <img src="logos/tiber-taber.png" alt="Tiber Taber" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="VIYA">
-                <img src="logos/viya.svg" alt="VIYA" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Meko Studio">
-                <img src="logos/meko-studio.png" alt="Meko Studio" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="SR Store">
-                <img src="logos/sr-store.png" alt="SR Store" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="AV Store">
-                <img src="logos/av-store.png" alt="AV Store" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="TODDS Life">
-                <img src="logos/todds-life.png" alt="TODDS Life" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Anthrilo">
-                <img src="logos/anthrilo.png" alt="Anthrilo" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Beauty Garage">
-                <img src="logos/beauty-garage.svg" alt="Beauty Garage" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Pro Nature Organic">
-                <img src="logos/pro-nature-organic.png" alt="Pro Nature Organic" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Tiber Taber">
-                <img src="logos/tiber-taber.png" alt="Tiber Taber" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="VIYA">
-                <img src="logos/viya.svg" alt="VIYA" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Meko Studio">
-                <img src="logos/meko-studio.png" alt="Meko Studio" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="SR Store">
-                <img src="logos/sr-store.png" alt="SR Store" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="AV Store">
-                <img src="logos/av-store.png" alt="AV Store" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="TODDS Life">
-                <img src="logos/todds-life.png" alt="TODDS Life" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Anthrilo">
-                <img src="logos/anthrilo.png" alt="Anthrilo" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Beauty Garage">
-                <img src="logos/beauty-garage.svg" alt="Beauty Garage" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-            </div>
+      <!-- Quiet Monochrome Logo Ribbon (All 18 Brands) -->
+      <div class="logo-ribbon" aria-label="Client brand logos">
+        <div class="logo-ribbon-track">
+          <div class="logo-ribbon-group">
+            <img src="logos/pro-nature-organic.png" alt="Pro Nature Organic" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/tiber-taber.png" alt="Tiber Taber" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/viya.svg" alt="VIYA" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/meko-studio.png" alt="Meko Studio" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/sr-store.png" alt="SR Store" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/av-store.png" alt="AV Store" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/todds-life.png" alt="TODDS Life" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/anthrilo.png" alt="Anthrilo" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/beauty-garage.svg" alt="Beauty Garage" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/fizzy-goblet.png" alt="Fizzy Goblet" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/the-india-craft-house.png" alt="The India Craft House" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/ragr.svg" alt="RAGR" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/tea1888.png" alt="Tea1888" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/nykaa-fashion.svg" alt="Nykaa Fashion" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/tata-soulfull.png" alt="Tata Soulfull" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/mora-taara.png" alt="Mora Taara" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/lashika.png" alt="Lashika" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/bombay-realty.png" alt="Bombay Realty" class="ribbon-logo-img" loading="lazy">
           </div>
-        </div>
-
-        <!-- Row 2: Bottom Marquee (Moves Right / Opposite Direction) - Brands 10 to 18 -->
-        <div class="editorial-marquee-wrap">
-          <div class="editorial-marquee-track marquee-track-right" id="client-marquee-bottom">
-            <div class="editorial-marquee-group">
-              <div class="client-logo-item" title="Fizzy Goblet">
-                <img src="logos/fizzy-goblet.png" alt="Fizzy Goblet" class="client-logo-img logo--tall logo--fizzy" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="The India Craft House">
-                <img src="logos/the-india-craft-house.png" alt="The India Craft House" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="RAGR">
-                <img src="logos/ragr.svg" alt="RAGR" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Tea1888">
-                <img src="logos/tea1888.png" alt="Tea1888" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Nykaa Fashion">
-                <img src="logos/nykaa-fashion.svg" alt="Nykaa Fashion" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Tata Soulfull">
-                <img src="logos/tata-soulfull.png" alt="Tata Soulfull" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Mora Taara">
-                <img src="logos/mora-taara.png" alt="Mora Taara" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Lashika">
-                <img src="logos/lashika.png" alt="Lashika" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Bombay Realty">
-                <img src="logos/bombay-realty.png" alt="Bombay Realty" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <!-- Second cycle inside group for ultrawide screens -->
-              <div class="client-logo-item" title="Fizzy Goblet">
-                <img src="logos/fizzy-goblet.png" alt="Fizzy Goblet" class="client-logo-img logo--tall logo--fizzy" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="The India Craft House">
-                <img src="logos/the-india-craft-house.png" alt="The India Craft House" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="RAGR">
-                <img src="logos/ragr.svg" alt="RAGR" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Tea1888">
-                <img src="logos/tea1888.png" alt="Tea1888" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Nykaa Fashion">
-                <img src="logos/nykaa-fashion.svg" alt="Nykaa Fashion" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Tata Soulfull">
-                <img src="logos/tata-soulfull.png" alt="Tata Soulfull" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Mora Taara">
-                <img src="logos/mora-taara.png" alt="Mora Taara" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Lashika">
-                <img src="logos/lashika.png" alt="Lashika" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Bombay Realty">
-                <img src="logos/bombay-realty.png" alt="Bombay Realty" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-            </div>
-            <!-- Seamless Duplicate Group -->
-            <div class="editorial-marquee-group" aria-hidden="true">
-              <div class="client-logo-item" title="Fizzy Goblet">
-                <img src="logos/fizzy-goblet.png" alt="Fizzy Goblet" class="client-logo-img logo--tall logo--fizzy" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="The India Craft House">
-                <img src="logos/the-india-craft-house.png" alt="The India Craft House" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="RAGR">
-                <img src="logos/ragr.svg" alt="RAGR" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Tea1888">
-                <img src="logos/tea1888.png" alt="Tea1888" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Nykaa Fashion">
-                <img src="logos/nykaa-fashion.svg" alt="Nykaa Fashion" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Tata Soulfull">
-                <img src="logos/tata-soulfull.png" alt="Tata Soulfull" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Mora Taara">
-                <img src="logos/mora-taara.png" alt="Mora Taara" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Lashika">
-                <img src="logos/lashika.png" alt="Lashika" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Bombay Realty">
-                <img src="logos/bombay-realty.png" alt="Bombay Realty" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Fizzy Goblet">
-                <img src="logos/fizzy-goblet.png" alt="Fizzy Goblet" class="client-logo-img logo--tall logo--fizzy" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="The India Craft House">
-                <img src="logos/the-india-craft-house.png" alt="The India Craft House" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="RAGR">
-                <img src="logos/ragr.svg" alt="RAGR" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Tea1888">
-                <img src="logos/tea1888.png" alt="Tea1888" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Nykaa Fashion">
-                <img src="logos/nykaa-fashion.svg" alt="Nykaa Fashion" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Tata Soulfull">
-                <img src="logos/tata-soulfull.png" alt="Tata Soulfull" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Mora Taara">
-                <img src="logos/mora-taara.png" alt="Mora Taara" class="client-logo-img" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Lashika">
-                <img src="logos/lashika.png" alt="Lashika" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-              <div class="client-logo-item" title="Bombay Realty">
-                <img src="logos/bombay-realty.png" alt="Bombay Realty" class="client-logo-img logo--tall" loading="eager" decoding="async">
-              </div>
-              <span class="marquee-divider">/</span>
-            </div>
+          <div class="logo-ribbon-group" aria-hidden="true">
+            <img src="logos/pro-nature-organic.png" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/tiber-taber.png" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/viya.svg" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/meko-studio.png" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/sr-store.png" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/av-store.png" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/todds-life.png" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/anthrilo.png" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/beauty-garage.svg" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/fizzy-goblet.png" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/the-india-craft-house.png" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/ragr.svg" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/tea1888.png" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/nykaa-fashion.svg" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/tata-soulfull.png" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/mora-taara.png" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/lashika.png" alt="" class="ribbon-logo-img" loading="lazy">
+            <img src="logos/bombay-realty.png" alt="" class="ribbon-logo-img" loading="lazy">
           </div>
         </div>
       </div>
 
       <!-- Spatial Editorial Brand Directory -->
-      <div class="container-editorial">
-        <div class="brand-monograph-directory" data-reveal>
-          <div class="brand-mono-row">
-            <div class="mono-col-left">
-              <span class="mono-index">01</span>
-              <span class="mono-brand-name">Fizzy Goblet</span>
-            </div>
-            <div class="mono-col-mid">
-              <span class="mono-category">Ethnic &amp; Artisanal Footwear</span>
-            </div>
-            <div class="mono-col-right">
-              <span class="mono-metric">10x Scale &#8226; 15+ Global Markets</span>
-              <svg class="mono-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-            </div>
+      <div class="wrap">
+        <div class="brand-index" data-reveal>
+          <a href="#results" class="brand-row" data-case-jump="case-fizzy">
+            <span class="brand-row-idx">01</span>
+            <span class="brand-row-name">Fizzy Goblet</span>
+            <span class="brand-row-cat">Ethnic &amp; Artisanal Footwear</span>
+            <span class="brand-row-result">10x Revenue &middot; 15+ Countries</span>
+            <span class="brand-row-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a href="#results" class="brand-row" data-case-jump="case-rotary">
+            <span class="brand-row-idx">02</span>
+            <span class="brand-row-name">Rotary International</span>
+            <span class="brand-row-cat">Global Member Rewards</span>
+            <span class="brand-row-result">+20% User Growth in India</span>
+            <span class="brand-row-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a href="#results" class="brand-row" data-case-jump="case-okhai">
+            <span class="brand-row-idx">03</span>
+            <span class="brand-row-name">Okhai</span>
+            <span class="brand-row-cat">Tata TCSRD Artisan E-Commerce</span>
+            <span class="brand-row-result">+105% Sales &middot; 97% Grant ROI</span>
+            <span class="brand-row-arrow" aria-hidden="true">↗</span>
+          </a>
+          <div class="brand-row">
+            <span class="brand-row-idx">04</span>
+            <span class="brand-row-name">Nykaa Fashion</span>
+            <span class="brand-row-cat">Beauty &amp; Couture Apparel</span>
+            <span class="brand-row-result">Full-Funnel Acquisition Engine</span>
+            <span class="brand-row-arrow" aria-hidden="true">↗</span>
           </div>
-
-          <div class="brand-mono-row">
-            <div class="mono-col-left">
-              <span class="mono-index">02</span>
-              <span class="mono-brand-name">Rotary International</span>
-            </div>
-            <div class="mono-col-mid">
-              <span class="mono-category">Global Member Rewards</span>
-            </div>
-            <div class="mono-col-right">
-              <span class="mono-metric">+20% User Surge in 3 Months</span>
-              <svg class="mono-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-            </div>
+          <div class="brand-row">
+            <span class="brand-row-idx">05</span>
+            <span class="brand-row-name">Tata Soulfull</span>
+            <span class="brand-row-cat">Healthy Snacking &amp; FMCG</span>
+            <span class="brand-row-result">Quick-Commerce &amp; Retail Velocity</span>
+            <span class="brand-row-arrow" aria-hidden="true">↗</span>
           </div>
-
-          <div class="brand-mono-row">
-            <div class="mono-col-left">
-              <span class="mono-index">03</span>
-              <span class="mono-brand-name">Okhai</span>
-            </div>
-            <div class="mono-col-mid">
-              <span class="mono-category">Tata TCSRD Women Artisan D2C</span>
-            </div>
-            <div class="mono-col-right">
-              <span class="mono-metric">+105% Sales &#8226; 97% Grant ROI</span>
-              <svg class="mono-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-            </div>
+          <div class="brand-row">
+            <span class="brand-row-idx">06</span>
+            <span class="brand-row-name">Pro Nature Organic</span>
+            <span class="brand-row-cat">Certified Organic Staples</span>
+            <span class="brand-row-result">Unit Economics &amp; Scale Engine</span>
+            <span class="brand-row-arrow" aria-hidden="true">↗</span>
           </div>
-
-          <div class="brand-mono-row">
-            <div class="mono-col-left">
-              <span class="mono-index">04</span>
-              <span class="mono-brand-name">Nykaa Fashion</span>
-            </div>
-            <div class="mono-col-mid">
-              <span class="mono-category">Beauty &amp; Couture Apparel</span>
-            </div>
-            <div class="mono-col-right">
-              <span class="mono-metric">Full-Funnel Acquisition Engine</span>
-              <svg class="mono-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-            </div>
-          </div>
-
-          <div class="brand-mono-row">
-            <div class="mono-col-left">
-              <span class="mono-index">05</span>
-              <span class="mono-brand-name">Tata Soulfull</span>
-            </div>
-            <div class="mono-col-mid">
-              <span class="mono-category">Healthy Snacking &amp; FMCG</span>
-            </div>
-            <div class="mono-col-right">
-              <span class="mono-metric">Quick-Commerce &amp; Retail Velocity</span>
-              <svg class="mono-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-            </div>
-          </div>
-
-          <div class="brand-mono-row">
-            <div class="mono-col-left">
-              <span class="mono-index">06</span>
-              <span class="mono-brand-name">Pro Nature Organic</span>
-            </div>
-            <div class="mono-col-mid">
-              <span class="mono-category">Certified Organic Staples</span>
-            </div>
-            <div class="mono-col-right">
-              <span class="mono-metric">Unit Economics &amp; Scale Engine</span>
-              <svg class="mono-arrow" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container-editorial">
-        <div class="clients-footer-bar">
-          <span class="clients-counting-note">...and counting</span>
         </div>
       </div>
     </section>
 
-    <!-- ==================== 3. SERVICES: INTERACTIVE EDITORIAL INDEX ==================== -->
-    <section class="services-editorial-section" id="services">
-      <div class="container-editorial">
-        
-        <div class="section-title-row">
-          <div class="title-col-left">
-            <h2 class="editorial-heading">What We Offer</h2>
-            <p class="title-col-right" data-typewriter>
-              We don't sell disconnected services. Every capability is synchronized into a unified capital allocation system designed to maximize your bottom-line profit.
+    <!-- ==================== 3. CAPABILITIES: ASYMMETRIC STICKY SPLIT ==================== -->
+    <section class="section-block" id="services">
+      <div class="wrap capabilities-split">
+        <div class="capabilities-sticky" data-reveal>
+          <div class="section-kicker mono">
+            <span>02</span>
+            <span>/</span>
+            <span>What We Offer</span>
+          </div>
+          <h2 class="section-title">Synchronized<br><span class="serif-italic">capital &amp; craft.</span></h2>
+          <p class="section-intro">
+            We do not sell disconnected services. Every capability operates inside a unified capital allocation system engineered to maximize your bottom-line profit.
+          </p>
+          <a href="#contact" class="btn-arch">
+            <span>Request Capability Audit</span>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M4 12L12 4M12 4H6M12 4V10"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="capabilities-ledger" data-reveal>
+          <!-- Engine 01: Arriba Performance -->
+          <div class="engine-group">
+            <div class="engine-group-head">
+              <h3 class="engine-group-title">Arriba Performance</h3>
+              <span class="mono">Engine 01 / Media &amp; Scale</span>
+            </div>
+            <p class="engine-group-desc">
+              Disciplined capital deployment, full-funnel media buying, algorithmic bidding, and unit-economic growth engineering across Meta, Google, Amazon, and Quick Commerce.
+            </p>
+
+            <div class="service-item is-open">
+              <button type="button" class="service-trigger" aria-expanded="true">
+                <span class="service-num">01</span>
+                <span class="service-name">Strategy &amp; Planning</span>
+                <span class="service-plus">+</span>
+              </button>
+              <div class="service-body">
+                <div class="service-body-inner">
+                  <div class="service-body-content">
+                    <span class="service-tagline">Data-backed roadmaps aligned to unit economics</span>
+                    <p class="service-desc">Comprehensive account and customer cohort audits. We build the financial model and liquidity allocation before a single rupee of ad budget is deployed.</p>
+                    <div class="service-tags">
+                      <span>Unit Economics Audit</span>
+                      <span>&middot;</span>
+                      <span>Channel Allocation</span>
+                      <span>&middot;</span>
+                      <span>P&amp;L Modeling</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="service-item">
+              <button type="button" class="service-trigger" aria-expanded="false">
+                <span class="service-num">02</span>
+                <span class="service-name">Search Engine Marketing</span>
+                <span class="service-plus">+</span>
+              </button>
+              <div class="service-body">
+                <div class="service-body-inner">
+                  <div class="service-body-content">
+                    <span class="service-tagline">High-intent Google Search, Shopping &amp; Performance Max</span>
+                    <p class="service-desc">Capturing buyers at the micro-second of high purchase intent. Optimized strictly for gross margin and incremental new customer acquisition.</p>
+                    <div class="service-tags">
+                      <span>Google Ads</span>
+                      <span>&middot;</span>
+                      <span>Shopping Campaigns</span>
+                      <span>&middot;</span>
+                      <span>Performance Max</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="service-item">
+              <button type="button" class="service-trigger" aria-expanded="false">
+                <span class="service-num">03</span>
+                <span class="service-name">Search Engine Optimization</span>
+                <span class="service-plus">+</span>
+              </button>
+              <div class="service-body">
+                <div class="service-body-inner">
+                  <div class="service-body-content">
+                    <span class="service-tagline">Compounding organic revenue that reduces paid dependency</span>
+                    <p class="service-desc">Technical architecture audits, high-intent product schema, content optimization, and digital authority building that compounds month over month.</p>
+                    <div class="service-tags">
+                      <span>Technical SEO</span>
+                      <span>&middot;</span>
+                      <span>On-Page Architecture</span>
+                      <span>&middot;</span>
+                      <span>Rank Domination</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="service-item">
+              <button type="button" class="service-trigger" aria-expanded="false">
+                <span class="service-num">04</span>
+                <span class="service-name">Pay Per Click</span>
+                <span class="service-plus">+</span>
+              </button>
+              <div class="service-body">
+                <div class="service-body-inner">
+                  <div class="service-body-content">
+                    <span class="service-tagline">Conversion-focused PPC across search and social</span>
+                    <p class="service-desc">Relentless negative keyword hygiene, auction insights conquest, automated bidding rules, and disciplined quality score engineering.</p>
+                    <div class="service-tags">
+                      <span>Bid Management</span>
+                      <span>&middot;</span>
+                      <span>Quality Score Hygiene</span>
+                      <span>&middot;</span>
+                      <span>Competitor Conquest</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="service-item">
+              <button type="button" class="service-trigger" aria-expanded="false">
+                <span class="service-num">05</span>
+                <span class="service-name">Lead Generation &amp; Remarketing</span>
+                <span class="service-plus">+</span>
+              </button>
+              <div class="service-body">
+                <div class="service-body-inner">
+                  <div class="service-body-content">
+                    <span class="service-tagline">High-intent acquisition funnels &amp; LTV reactivation</span>
+                    <p class="service-desc">Sub-second landing pages, dynamic product ads, cart abandonment workflows, and suppression of recent converters to protect acquisition margins.</p>
+                    <div class="service-tags">
+                      <span>Custom Landers</span>
+                      <span>&middot;</span>
+                      <span>Audience Suppression</span>
+                      <span>&middot;</span>
+                      <span>LTV Reactivation</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="service-item">
+              <button type="button" class="service-trigger" aria-expanded="false">
+                <span class="service-num">06</span>
+                <span class="service-name">E-Commerce &amp; Quick Commerce</span>
+                <span class="service-plus">+</span>
+              </button>
+              <div class="service-body">
+                <div class="service-body-inner">
+                  <div class="service-body-content">
+                    <span class="service-tagline">Blinkit, Zepto, Instamart &amp; Amazon ad infrastructure</span>
+                    <p class="service-desc">Dominating search grid real estate, sponsored brand placements, and dark-store routing for India's 10-minute delivery consumer wave.</p>
+                    <div class="service-tags">
+                      <span>Blinkit &amp; Zepto Ads</span>
+                      <span>&middot;</span>
+                      <span>Amazon Sponsored Ads</span>
+                      <span>&middot;</span>
+                      <span>Dark Store Routing</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="service-item">
+              <button type="button" class="service-trigger" aria-expanded="false">
+                <span class="service-num">07</span>
+                <span class="service-name">Social Media Marketing</span>
+                <span class="service-plus">+</span>
+              </button>
+              <div class="service-body">
+                <div class="service-body-inner">
+                  <div class="service-body-content">
+                    <span class="service-tagline">Full-funnel Meta, Instagram, YouTube &amp; LinkedIn scale</span>
+                    <p class="service-desc">High-spend Meta Advantage+ structures, retargeting exclusion models, dynamic product catalog ads, and incrementality lift testing.</p>
+                    <div class="service-tags">
+                      <span>Meta Ads</span>
+                      <span>&middot;</span>
+                      <span>Advantage+ Shopping</span>
+                      <span>&middot;</span>
+                      <span>Incrementality Testing</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Engine 02: Arriba Creative -->
+          <div class="engine-group">
+            <div class="engine-group-head">
+              <h3 class="engine-group-title">Arriba Creative</h3>
+              <span class="mono">Engine 02 / Content &amp; Conversion</span>
+            </div>
+            <p class="engine-group-desc">
+              High-velocity creative testing studio. Direct-response UGC, motion design, founder-led storytelling, and storefront conversion architecture built to stop the scroll and lower acquisition costs.
             </p>
           </div>
         </div>
-
-        <!-- Minimalist Spatial Columns: The Two Engines -->
-        <div class="engines-spatial-grid" data-reveal>
-          <div class="engine-column">
-            <div class="engine-header">
-              <span class="engine-code">[ ENGINE 01 // CAPITAL ALLOCATION ]</span>
-              <h3 class="engine-title">Arriba Performance</h3>
-            </div>
-            <p class="engine-lead">
-              Disciplined media buying, algorithmic bidding, and contribution-margin growth engineering across Meta, Google, Amazon, and Quick Commerce.
-            </p>
-            <div class="engine-specs">
-              <div class="spec-line">
-                <span class="spec-num">01</span>
-                <div>
-                  <strong>Financial &amp; Unit Economics Modeling:</strong>
-                  <span>Auditing repeat cohort retention and contribution margin before a single rupee of ad budget is scaled.</span>
-                </div>
-              </div>
-              <div class="spec-line">
-                <span class="spec-num">02</span>
-                <div>
-                  <strong>Real-Time Quick Commerce Routing:</strong>
-                  <span>Dynamic geolocation routing converting Meta ad impressions directly into 10-minute Blinkit and Zepto checkout flows.</span>
-                </div>
-              </div>
-              <div class="spec-line">
-                <span class="spec-num">03</span>
-                <div>
-                  <strong>Auction Conquest &amp; Bid Protection:</strong>
-                  <span>Disciplined bid caps, negative keyword hygiene, and multi-touch attribution to eradicate wasted ad capital.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="engine-column">
-            <div class="engine-header">
-              <span class="engine-code">[ ENGINE 02 // CREATIVE LAB ]</span>
-              <h3 class="engine-title">Arriba Creative</h3>
-            </div>
-            <p class="engine-lead">
-              High-velocity direct-response creative testing. Motion design, artisanal UGC, and conversion architecture engineered to stop the scroll and lower CAC.
-            </p>
-            <div class="engine-specs">
-              <div class="spec-line">
-                <span class="spec-num">01</span>
-                <div>
-                  <strong>Structured Hook Hypotheses:</strong>
-                  <span>4-6 distinct creative angles tested weekly to systematically discover breakout customer acquisition hooks.</span>
-                </div>
-              </div>
-              <div class="spec-line">
-                <span class="spec-num">02</span>
-                <div>
-                  <strong>High-Resolution Direct Response:</strong>
-                  <span>Macro craftsmanship cuts, founder narratives, and side-by-side comparison proof tests that convert instantly.</span>
-                </div>
-              </div>
-              <div class="spec-line">
-                <span class="spec-num">03</span>
-                <div>
-                  <strong>Storefront Friction Removal:</strong>
-                  <span>Speed optimization, landing collection restructuring, and mobile checkout UX engineered for maximum conversion rate.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- ==================== 4. CINEMATIC CASE SPOTLIGHT ==================== -->
-    <section class="spotlight-editorial-section" id="results">
-      <div class="container-editorial">
-        
-        <div class="section-title-row">
-          <div class="title-col-left" data-reveal>
-            <div class="technical-meta-tag">[ VERIFIED LEDGER // DIRECT ACCOUNT AUDITS ]</div>
-            <h2 class="editorial-heading">Case Spotlight</h2>
-            <p class="title-col-right" data-typewriter>
-              Audited directly from client payment gateways and ad accounts. Zero vanity impressions.
-            </p>
+    <!-- ==================== 4. CASE LEDGER: FULL-BLEED EDITORIAL SPREAD ==================== -->
+    <section class="section-block" id="results">
+      <div class="wrap">
+        <div class="section-header-asym" data-reveal>
+          <div>
+            <div class="section-kicker mono">
+              <span>03</span>
+              <span>/</span>
+              <span>Verified Case Ledger</span>
+            </div>
+            <h2 class="section-title">Proof audited from<br><span class="serif-italic">live ad accounts.</span></h2>
           </div>
+          <p class="section-intro">
+            Verified directly from client ad accounts and payment gateways. No vanity impressions or inflated platform reporting.
+          </p>
         </div>
 
-        <!-- Interactive Case Switcher -->
-        <div class="spotlight-switcher" role="tablist" data-reveal>
-          <button class="spotlight-tab active" data-target="case-fizzy" role="tab" aria-selected="true">
-            <span class="tab-index">01</span>
-            <span class="tab-name">Fizzy Goblet</span>
-            <span class="tab-metric">10x Revenue</span>
+        <!-- Architectural 3-Column Tab Selector (Zero Pills) -->
+        <div class="case-tabs" role="tablist" data-reveal>
+          <button type="button" class="case-tab is-active" data-case-tab="case-fizzy" role="tab" aria-selected="true">
+            <span class="case-tab-sub">Case 01 / Footwear</span>
+            <span class="case-tab-title">Fizzy Goblet</span>
           </button>
-          <button class="spotlight-tab" data-target="case-rotary" role="tab" aria-selected="false">
-            <span class="tab-index">02</span>
-            <span class="tab-name">Rotary Intl</span>
-            <span class="tab-metric">+20% User Surge</span>
+          <button type="button" class="case-tab" data-case-tab="case-rotary" role="tab" aria-selected="false">
+            <span class="case-tab-sub">Case 02 / Global Rewards</span>
+            <span class="case-tab-title">Rotary International</span>
           </button>
-          <button class="spotlight-tab" data-target="case-okhai" role="tab" aria-selected="false">
-            <span class="tab-index">03</span>
-            <span class="tab-name">Tata Okhai</span>
-            <span class="tab-metric">+105% E-Com Sales</span>
+          <button type="button" class="case-tab" data-case-tab="case-okhai" role="tab" aria-selected="false">
+            <span class="case-tab-sub">Case 03 / Artisan D2C</span>
+            <span class="case-tab-title">Okhai (Tata TCSRD)</span>
           </button>
         </div>
 
-        <!-- Spotlight Stage Display -->
-        <div class="spotlight-stage" data-reveal>
-          
-          <!-- Panel 01: Fizzy Goblet -->
-          <div class="spotlight-panel active" id="case-fizzy">
-            <div class="spotlight-hero-col">
-              <div class="spotlight-brand-badge">
-                <img src="logos/fizzy-goblet.png" alt="Fizzy Goblet" class="spotlight-logo">
-                <div>
-                  <h3 class="spotlight-title">Fizzy Goblet</h3>
-                  <span class="spotlight-sub">Ethnic &amp; Artisanal Luxury Footwear</span>
-                </div>
-              </div>
-
-              <div class="spotlight-metrics-hero">
-                <div class="big-metric-item">
-                  <span class="big-metric-num">10<span class="stat-orange">x &#8593;</span></span>
-                  <span class="big-metric-label">Revenue Expansion Over 6-Year Long Partnership</span>
-                </div>
-                <div class="big-metric-item">
-                  <span class="big-metric-num">15<span class="stat-orange">+ &#8593;</span></span>
-                  <span class="big-metric-label">International Countries Tapped Across Diaspora</span>
-                </div>
+        <!-- Case Panel 01: Fizzy Goblet -->
+        <div class="case-panel is-active" id="case-fizzy" role="tabpanel">
+          <div>
+            <div class="case-brand-lockup">
+              <img src="logos/fizzy-goblet.png" alt="Fizzy Goblet" class="case-logo-mark" loading="lazy">
+              <div>
+                <h3 style="font-size:1.5rem; font-weight:700; letter-spacing:-0.02em;">Fizzy Goblet</h3>
+                <span class="mono" style="color:var(--ink-muted);">Ethnic &amp; Traditional Footwear</span>
               </div>
             </div>
 
-            <div class="spotlight-narrative-col">
-              <div class="narrative-block">
-                <span class="narrative-tag">[ THE BOTTLENECK ]</span>
-                <p class="narrative-text">Facing low domestic sales growth and inconsistent volume in traditional Indian metro audiences. Typical studio bridal shoe imagery suffered rapid creative fatigue.</p>
+            <div class="case-stats-editorial">
+              <div>
+                <span class="case-big-num">10<span class="serif-italic">x</span></span>
+                <span class="case-big-label">Revenue Expansion (6-Yr Journey)</span>
               </div>
-
-              <div class="narrative-block">
-                <span class="narrative-tag">[ THE TACTICAL FIX ]</span>
-                <ul class="narrative-bullets">
-                  <li><span class="protocol-dot"></span>Replaced static poses with 4K artisan macro-cuts proving 62 hours of handmade needlework per pair.</li>
-                  <li><span class="protocol-dot"></span>Engineered localized multi-currency campaigns targeting NRI bridal wedding seasons globally.</li>
-                </ul>
-              </div>
-
-              <div class="narrative-footer">
-                <span class="verified-tag">&#10003; VERIFIED VIA SHOPIFY + META AD ACCOUNT</span>
+              <div>
+                <span class="case-big-num">15<span class="serif-italic">+</span></span>
+                <span class="case-big-label">Global Markets Penetrated</span>
               </div>
             </div>
           </div>
 
-          <!-- Panel 02: Rotary International -->
-          <div class="spotlight-panel" id="case-rotary">
-            <div class="spotlight-hero-col">
-              <div class="spotlight-brand-badge">
-                <img src="logos/rotary-international.svg" alt="Rotary International" class="spotlight-logo">
-                <div>
-                  <h3 class="spotlight-title">Rotary International</h3>
-                  <span class="spotlight-sub">Global Member Benefit &amp; Fundraising Program</span>
-                </div>
-              </div>
-
-              <div class="spotlight-metrics-hero">
-                <div class="big-metric-item">
-                  <span class="big-metric-num">20<span class="stat-orange">% &#8593;</span></span>
-                  <span class="big-metric-label">Active Logged-in User Growth in India</span>
-                </div>
-                <div class="big-metric-item">
-                  <span class="big-metric-num">18<span class="stat-orange">% &#8593;</span></span>
-                  <span class="big-metric-label">Member Acquisition Across Southeast Asia</span>
-                </div>
-              </div>
+          <div class="case-story-col">
+            <div class="case-story-block">
+              <h4>Objective</h4>
+              <p>Cater to a niche market of Juttis and ethnic-traditional footwear while reversing low growth and inconsistent domestic sales, and penetrating global markets across the diaspora.</p>
             </div>
-
-            <div class="spotlight-narrative-col">
-              <div class="narrative-block">
-                <span class="narrative-tag">[ THE BOTTLENECK ]</span>
-                <p class="narrative-text">Low awareness among existing Rotarians regarding the Global Rewards program, resulting in underutilized member benefits and sluggish vendor participation.</p>
-              </div>
-
-              <div class="narrative-block">
-                <span class="narrative-tag">[ THE TACTICAL FIX ]</span>
-                <ul class="narrative-bullets">
-                  <li><span class="protocol-dot"></span>Multi-lingual awareness campaigns communicating direct financial rewards for community fundraising.</li>
-                  <li><span class="protocol-dot"></span>Segmented communication funnels converting passive members into weekly active logged-in users.</li>
-                </ul>
-              </div>
-
-              <div class="narrative-footer">
-                <span class="verified-tag">&#10003; VERIFIED VIA GLOBAL MEMBER PORTAL</span>
-              </div>
+            <div class="case-story-block">
+              <h4>Initiatives</h4>
+              <ul class="case-story-list">
+                <li>Built new audiences to grow sales in the Indian market over a 6-year partnership while strictly maintaining ROI.</li>
+                <li>Scaled into global markets, tapping into 15+ countries with localized campaign structures.</li>
+              </ul>
+            </div>
+            <div class="case-verified-line">
+              Successful Result: Increased Profitability &middot; Verified via Client Ad Accounts
             </div>
           </div>
-
-          <!-- Panel 03: Tata Okhai -->
-          <div class="spotlight-panel" id="case-okhai">
-            <div class="spotlight-hero-col">
-              <div class="spotlight-brand-badge">
-                <img src="logos/okhai.svg" alt="Okhai" class="spotlight-logo">
-                <div>
-                  <h3 class="spotlight-title">Okhai</h3>
-                  <span class="spotlight-sub">Tata Chemicals Society for Rural Development (TCSRD)</span>
-                </div>
-              </div>
-
-              <div class="spotlight-metrics-hero">
-                <div class="big-metric-item">
-                  <span class="big-metric-num">105<span class="stat-orange">% &#8593;</span></span>
-                  <span class="big-metric-label">E-Commerce Store Sales Growth in 6 Months</span>
-                </div>
-                <div class="big-metric-item">
-                  <span class="big-metric-num">97<span class="stat-orange">%</span></span>
-                  <span class="big-metric-label">Effective Utilization of Google Ad Grants</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="spotlight-narrative-col">
-              <div class="narrative-block">
-                <span class="narrative-tag">[ THE BOTTLENECK ]</span>
-                <p class="narrative-text">Artisan-made handcrafted products struggling with high cost-per-click and low organic visibility against commercial fashion fast-retailers.</p>
-              </div>
-
-              <div class="narrative-block">
-                <span class="narrative-tag">[ THE TACTICAL FIX ]</span>
-                <ul class="narrative-bullets">
-                  <li><span class="protocol-dot"></span>Cleaned 400+ wasteful broad search queries and funneled grant budget into conscious gifting keywords.</li>
-                  <li><span class="protocol-dot"></span>Streamlined storefront checkout paths linking directly to artisan empowerment stories.</li>
-                </ul>
-              </div>
-
-              <div class="narrative-footer">
-                <span class="verified-tag">&#10003; VERIFIED VIA GOOGLE ADS + STORE GATEWAY</span>
-              </div>
-            </div>
-          </div>
-
         </div>
 
+        <!-- Case Panel 02: Rotary International -->
+        <div class="case-panel" id="case-rotary" role="tabpanel">
+          <div>
+            <div class="case-brand-lockup">
+              <img src="logos/rotary-international.svg" alt="Rotary International" class="case-logo-mark" loading="lazy">
+              <div>
+                <h3 style="font-size:1.5rem; font-weight:700; letter-spacing:-0.02em;">Rotary International</h3>
+                <span class="mono" style="color:var(--ink-muted);">Global Member Rewards</span>
+              </div>
+            </div>
+
+            <div class="case-stats-editorial">
+              <div>
+                <span class="case-big-num">20<span class="serif-italic">%</span></span>
+                <span class="case-big-label">User Growth &middot; India</span>
+              </div>
+              <div>
+                <span class="case-big-num">18<span class="serif-italic">%</span></span>
+                <span class="case-big-label">User Growth &middot; Philippines</span>
+              </div>
+              <div>
+                <span class="case-big-num">15<span class="serif-italic">%</span></span>
+                <span class="case-big-label">User Growth &middot; Taiwan</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-story-col">
+            <div class="case-story-block">
+              <h4>Objective</h4>
+              <p>Reach out to Rotarians and drive awareness of the Rotary Global Rewards program, a member benefit initiative aimed at raising funds for Rotary International.</p>
+            </div>
+            <div class="case-story-block">
+              <h4>Initiatives</h4>
+              <ul class="case-story-list">
+                <li>Improved program awareness across regional Rotarian chapters.</li>
+                <li>Increased sign-ups of active logged-in members across key APAC markets.</li>
+                <li>Generated higher transaction volume for affiliated partner vendors.</li>
+              </ul>
+            </div>
+            <div class="case-verified-line">
+              Successful Result: Multi-Region User Growth &middot; Verified via Member Portal
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Panel 03: Okhai -->
+        <div class="case-panel" id="case-okhai" role="tabpanel">
+          <div>
+            <div class="case-brand-lockup">
+              <img src="logos/okhai.svg" alt="Okhai" class="case-logo-mark" loading="lazy">
+              <div>
+                <h3 style="font-size:1.5rem; font-weight:700; letter-spacing:-0.02em;">Okhai</h3>
+                <span class="mono" style="color:var(--ink-muted);">Artisan E-Commerce &amp; Impact</span>
+              </div>
+            </div>
+
+            <div class="case-stats-editorial">
+              <div>
+                <span class="case-big-num">105<span class="serif-italic">%</span></span>
+                <span class="case-big-label">Sales Growth in 6 Months</span>
+              </div>
+              <div>
+                <span class="case-big-num">97<span class="serif-italic">%</span></span>
+                <span class="case-big-label">Google Ad Grants Utilized</span>
+              </div>
+              <div>
+                <span class="case-big-num">60<span class="serif-italic">%</span></span>
+                <span class="case-big-label">Website Traffic Lift</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-story-col">
+            <div class="case-story-block">
+              <h4>Objective</h4>
+              <p>Okhai.org is part of Tata Chemicals Society for Rural Development (TCSRD), advocating for rural women empowerment through handcrafted artisan apparel.</p>
+            </div>
+            <div class="case-story-block">
+              <h4>Initiatives</h4>
+              <ul class="case-story-list">
+                <li>Partnered to scale e-commerce store sales of products handcrafted by women artisans.</li>
+                <li>Engineered high-intent Google Ad Grants search architecture with rigorous keyword hygiene.</li>
+              </ul>
+            </div>
+            <div class="case-verified-line">
+              Results Delivered: Increase in Traffic &amp; Sales &middot; Verified via Store Gateway
+            </div>
+          </div>
+        </div>
+
+        <!-- Industries Editorial Line (Zero Pills) -->
+        <div class="industries-editorial" data-reveal>
+          <span class="mono" style="color:var(--ink-subtle);">Industries Served</span>
+          <p class="industries-prose">
+            Kids Clothing <span>/</span> FMCG <span>/</span> Footwear <span>/</span> Fashion &amp; Apparel <span>/</span> Beauty &amp; Personal Care <span>/</span> Home Decor &amp; Luxury Living <span>/</span> Real Estate <span>/</span> Artisan &amp; Handcrafted Goods <span>/</span> Consumer Electronics &amp; Audio <span>/</span> Jewellery &amp; Accessories <span>/</span> Health &amp; Wellness <span>/</span> Global Non-Profits
+          </p>
+        </div>
       </div>
     </section>
 
-        <!-- Industries We Work With Slow Marquee -->
-        <div class="industries-band" data-reveal>
-          <div class="industries-band-header">
-            <h3 class="industries-band-title">Industries We Work With</h3>
-          </div>
-
-          <div class="industries-marquee-wrap">
-            <div class="industries-marquee-track">
-              <div class="industries-marquee-group">
-                <span class="industry-pill"><span class="industry-dot"></span>Kids Clothing</span>
-                <span class="industry-pill"><span class="industry-dot"></span>FMCG</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Footwear</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Fashion &amp; Apparel</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Beauty &amp; Personal Care</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Home Decor &amp; Luxury Living</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Real Estate</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Artisan &amp; Handcrafted Goods</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Consumer Electronics &amp; Audio</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Jewellery &amp; Accessories</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Health &amp; Wellness</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Global Non-Profits</span>
-              </div>
-              <div class="industries-marquee-group" aria-hidden="true">
-                <span class="industry-pill"><span class="industry-dot"></span>Kids Clothing</span>
-                <span class="industry-pill"><span class="industry-dot"></span>FMCG</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Footwear</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Fashion &amp; Apparel</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Beauty &amp; Personal Care</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Home Decor &amp; Luxury Living</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Real Estate</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Artisan &amp; Handcrafted Goods</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Consumer Electronics &amp; Audio</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Jewellery &amp; Accessories</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Health &amp; Wellness</span>
-                <span class="industry-pill"><span class="industry-dot"></span>Global Non-Profits</span>
-              </div>
+    <!-- ==================== 5. PRE-ONBOARDING AUDIT: 5-COLUMN RIBBON ==================== -->
+    <section class="section-block" id="approach">
+      <div class="wrap">
+        <div class="section-header-asym" data-reveal>
+          <div>
+            <div class="section-kicker mono">
+              <span>04</span>
+              <span>/</span>
+              <span>Pre-Onboarding Audit</span>
             </div>
+            <h2 class="section-title">360-degree diagnostic<br><span class="serif-italic">before day one.</span></h2>
           </div>
+          <p class="section-intro">
+            Every engagement begins with a deep diagnostic across your brand, storefront, ad platforms, competitors, and category benchmarks.
+          </p>
         </div>
 
-      </div>
-    </section>
-
-    <!-- ==================== 5. PRE-ONBOARDING AUDIT ==================== -->
-    <section class="protocol-editorial-section" id="approach">
-      <div class="container-editorial">
-        
-        <div class="section-title-row">
-          <div class="title-col-left" data-reveal>
-            <h2 class="editorial-heading">Pre-Onboarding Audit</h2>
-            <p class="title-col-right" data-typewriter>
-              Every engagement begins with a comprehensive 360-degree diagnostic across your brand, storefront, ad platforms, competitors, and category trends.
-            </p>
-          </div>
-        </div>
-
-        <div class="protocol-track" id="protocol-track">
-          
-          <!-- Step 01 (Constant Foundation) -->
-          <div class="protocol-card" data-step="1">
-            <div class="protocol-card-header">
-              <span class="protocol-step-num">01</span>
-              <span class="protocol-timeline">STEP 01</span>
+        <div class="audit-ribbon" data-reveal>
+          <div class="audit-col">
+            <div>
+              <span class="audit-num">01</span>
+              <h3 class="audit-title">Account Access</h3>
             </div>
-            <h3 class="protocol-heading">Account Access</h3>
-            <ul class="protocol-list">
-              <li><span class="protocol-dot"></span>Brand Understanding &amp; Review</li>
-              <li><span class="protocol-dot"></span>Ad Account &amp; Pixel Access</li>
-              <li><span class="protocol-dot"></span>Unit Economics Baseline</li>
+            <ul class="audit-list">
+              <li>Brand Understanding &amp; Review</li>
+              <li>Ad Account &amp; Pixel Access</li>
+              <li>Unit Economics Baseline</li>
             </ul>
           </div>
 
-          <!-- Connector 1 -> 2 -->
-          <div class="protocol-connector" data-connector="1" aria-hidden="true">
-            <div class="connector-track">
-              <svg class="connector-arrow" width="24" height="20" viewBox="0 0 28 24" fill="none">
-                <path class="arrow-stem" d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path class="arrow-tip" d="M15 6L21 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+          <div class="audit-col">
+            <div>
+              <span class="audit-num">02</span>
+              <h3 class="audit-title">Website SEO Audit</h3>
             </div>
-          </div>
-
-          <!-- Step 02 -->
-          <div class="protocol-card" data-step="2">
-            <div class="protocol-card-header">
-              <span class="protocol-step-num">02</span>
-              <span class="protocol-timeline">STEP 02</span>
-            </div>
-            <h3 class="protocol-heading">Website SEO Audit</h3>
-            <ul class="protocol-list">
-              <li><span class="protocol-dot"></span>Search Results &amp; Visibility</li>
-              <li><span class="protocol-dot"></span>Digital Presence Analysis</li>
-              <li><span class="protocol-dot"></span>Storefront Speed &amp; UX Check</li>
+            <ul class="audit-list">
+              <li>Search Results &amp; Visibility</li>
+              <li>Digital Presence Analysis</li>
+              <li>Storefront Speed &amp; UX Check</li>
             </ul>
           </div>
 
-          <!-- Connector 2 -> 3 -->
-          <div class="protocol-connector" data-connector="2" aria-hidden="true">
-            <div class="connector-track">
-              <svg class="connector-arrow" width="24" height="20" viewBox="0 0 28 24" fill="none">
-                <path class="arrow-stem" d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path class="arrow-tip" d="M15 6L21 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+          <div class="audit-col">
+            <div>
+              <span class="audit-num">03</span>
+              <h3 class="audit-title">Platform-wise Audit</h3>
             </div>
-          </div>
-
-          <!-- Step 03 -->
-          <div class="protocol-card" data-step="3">
-            <div class="protocol-card-header">
-              <span class="protocol-step-num">03</span>
-              <span class="protocol-timeline">STEP 03</span>
-            </div>
-            <h3 class="protocol-heading">Platform-wise Audit</h3>
-            <ul class="protocol-list">
-              <li><span class="protocol-dot"></span>Meta &amp; Google Ads Structure</li>
-              <li><span class="protocol-dot"></span>GA4 &amp; Attribution Check</li>
-              <li><span class="protocol-dot"></span>Spend Leakage &amp; ROAS Study</li>
+            <ul class="audit-list">
+              <li>Meta &amp; Google Ads Structure</li>
+              <li>GA4 &amp; Attribution Check</li>
+              <li>Spend Leakage &amp; ROAS Study</li>
             </ul>
           </div>
 
-          <!-- Connector 3 -> 4 -->
-          <div class="protocol-connector" data-connector="3" aria-hidden="true">
-            <div class="connector-track">
-              <svg class="connector-arrow" width="24" height="20" viewBox="0 0 28 24" fill="none">
-                <path class="arrow-stem" d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path class="arrow-tip" d="M15 6L21 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+          <div class="audit-col">
+            <div>
+              <span class="audit-num">04</span>
+              <h3 class="audit-title">Competitor Analysis</h3>
             </div>
-          </div>
-
-          <!-- Step 04 -->
-          <div class="protocol-card" data-step="4">
-            <div class="protocol-card-header">
-              <span class="protocol-step-num">04</span>
-              <span class="protocol-timeline">STEP 04</span>
-            </div>
-            <h3 class="protocol-heading">Competitor Analysis</h3>
-            <ul class="protocol-list">
-              <li><span class="protocol-dot"></span>Brand vs. Peers Positioning</li>
-              <li><span class="protocol-dot"></span>Competitor Ad &amp; Hook Study</li>
-              <li><span class="protocol-dot"></span>Market Share &amp; Offer Gaps</li>
+            <ul class="audit-list">
+              <li>Brand vs. Peers Positioning</li>
+              <li>Competitor Ad &amp; Hook Study</li>
+              <li>Market Share &amp; Offer Gaps</li>
             </ul>
           </div>
 
-          <!-- Connector 4 -> 5 -->
-          <div class="protocol-connector" data-connector="4" aria-hidden="true">
-            <div class="connector-track">
-              <svg class="connector-arrow" width="24" height="20" viewBox="0 0 28 24" fill="none">
-                <path class="arrow-stem" d="M3 12H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path class="arrow-tip" d="M15 6L21 12L15 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+          <div class="audit-col">
+            <div>
+              <span class="audit-num">05</span>
+              <h3 class="audit-title">Industry Trends</h3>
             </div>
-          </div>
-
-          <!-- Step 05 -->
-          <div class="protocol-card" data-step="5">
-            <div class="protocol-card-header">
-              <span class="protocol-step-num">05</span>
-              <span class="protocol-timeline">STEP 05</span>
-            </div>
-            <h3 class="protocol-heading">Industry Trends</h3>
-            <ul class="protocol-list">
-              <li><span class="protocol-dot"></span>Category Data &amp; Benchmarks</li>
-              <li><span class="protocol-dot"></span>Upcoming Consumer Trends</li>
-              <li><span class="protocol-dot"></span>Growth Opportunity Mapping</li>
+            <ul class="audit-list">
+              <li>Category Data &amp; Benchmarks</li>
+              <li>Upcoming Consumer Trends</li>
+              <li>Growth Opportunity Mapping</li>
             </ul>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==================== 5B. WEEKLY OPERATING CADENCE ==================== -->
-    <section class="cadence-editorial-section" id="cadence">
-      <div class="container-editorial">
-        
-        <div class="section-title-row">
-          <div class="title-col-left" data-reveal>
-            <div class="technical-meta-tag">[ PROTOCOL // SPRINT ENGINE ]</div>
-            <h2 class="editorial-heading">Weekly Operating Cadence</h2>
-            <p class="title-col-right" data-typewriter>
-              Predictable execution beats sporadic brilliance. How your account moves from Monday creative sprint to Friday liquidity deployment, week after week.
-            </p>
           </div>
         </div>
-
-        <div class="cadence-timeline-grid" data-reveal>
-          
-          <div class="cadence-day-card">
-            <div class="day-header">
-              <span class="day-badge">MON // 10:00 IST</span>
-              <span class="day-code">SPRINT_01</span>
-            </div>
-            <h4 class="day-title">Creative Angle &amp; Hook Dispatch</h4>
-            <p class="day-desc">Performance analysts and creative strategists review preceding week's cohort numbers and dispatch 4-6 new script angles for client approval.</p>
-            <div class="day-deliverable">
-              <span class="deliverable-tag">DELIVERABLE:</span>
-              <span>Hook Scripts &amp; Storyboard Matrix</span>
-            </div>
-          </div>
-
-          <div class="cadence-day-card">
-            <div class="day-header">
-              <span class="day-badge">TUE // 14:00 IST</span>
-              <span class="day-code">ASSET_INGEST</span>
-            </div>
-            <h4 class="day-title">Asset Ingestion &amp; Variant Build</h4>
-            <p class="day-desc">Editors and motion designers assemble dynamic variations across aspect ratios (9:16, 1:1, 4:5), overlay visual pattern-interrupts, and encode UTM tracking.</p>
-            <div class="day-deliverable">
-              <span class="deliverable-tag">DELIVERABLE:</span>
-              <span>8-12 Production-Ready Ad Assets</span>
-            </div>
-          </div>
-
-          <div class="cadence-day-card">
-            <div class="day-header">
-              <span class="day-badge">WED // 11:00 IST</span>
-              <span class="day-code">MEDIA_INJECT</span>
-            </div>
-            <h4 class="day-title">Media Injection &amp; Catalog Launch</h4>
-            <p class="day-desc">Structured campaign push across Meta Advantage+, Google Performance Max, and marketplace ads with strict bidding rules and bid-cap safety nets.</p>
-            <div class="day-deliverable">
-              <span class="deliverable-tag">DELIVERABLE:</span>
-              <span>Live Campaign Deployment</span>
-            </div>
-          </div>
-
-          <div class="cadence-day-card">
-            <div class="day-header">
-              <span class="day-badge">THU // 18:00 IST</span>
-              <span class="day-code">DATA_TRIAGE</span>
-            </div>
-            <h4 class="day-title">Hook Rate Triage &amp; Spend Filter</h4>
-            <p class="day-desc">Auditing 3-second hook rates and hold rates. Creatives failing the 25% threshold are cut immediately, protecting your daily ad capital from leakage.</p>
-            <div class="day-deliverable">
-              <span class="deliverable-tag">DELIVERABLE:</span>
-              <span>Wasted Spend Truncation</span>
-            </div>
-          </div>
-
-          <div class="cadence-day-card">
-            <div class="day-header">
-              <span class="day-badge">FRI // 16:00 IST</span>
-              <span class="day-code">SCALE_SURGE</span>
-            </div>
-            <h4 class="day-title">Liquidity Re-Allocation &amp; Weekend Scale</h4>
-            <p class="day-desc">Surging capital into top-performing creative variations ahead of peak consumer weekend shopping hours. Real-time live dashboard sync.</p>
-            <div class="day-deliverable">
-              <span class="deliverable-tag">DELIVERABLE:</span>
-              <span>Weekend Scale Readiness &amp; P&amp;L Report</span>
-            </div>
-          </div>
-
-        </div>
-
       </div>
     </section>
 
     <!-- ==================== 6. THE ARRIBA STANDARD ==================== -->
-    <section class="standard-editorial-section" id="standard">
-      <div class="container-editorial">
-        
-        <div class="manifesto-split" data-reveal>
-          <div class="manifesto-text-block">
-            <h2 class="editorial-heading standard-heading">Why Us: The Arriba Standard</h2>
-            <p class="manifesto-quote">
-              "Most agencies trap brands in 12-month lock-in contracts, pass accounts to junior trainees, and report vanity impressions. We built Arriba Labs to be the opposite."
-            </p>
-          </div>
+    <section class="section-block" id="standard">
+      <div class="wrap">
+        <div class="section-kicker mono" data-reveal>
+          <span>05</span>
+          <span>/</span>
+          <span>Why Us: The Arriba Standard</span>
         </div>
 
-        <!-- Anti-Agency Non-Negotiable Rules -->
-        <div class="anti-agency-grid" data-reveal>
-          <div class="anti-rule-card">
-            <div class="anti-rule-header">
-              <span class="anti-rule-num">RULE 01</span>
-              <span class="anti-rule-tag">METRIC PURITY</span>
-            </div>
-            <h3 class="anti-rule-title">No Vanity Reporting</h3>
-            <p class="anti-rule-desc">We never celebrate impressions, video views, or platform-inflated ROAS. If ad spend does not reflect as cash in your bank account, it was a wasted test.</p>
+        <blockquote class="manifesto-quote-large" data-reveal>
+          "Most agencies trap brands in 12-month lock-in contracts, pass accounts to junior trainees, and report vanity impressions. We built Arriba Labs to be the opposite."
+        </blockquote>
+
+        <div class="contrast-ledger" data-reveal>
+          <div class="contrast-row contrast-row--head">
+            <span>Criteria</span>
+            <span>Traditional Retainer Agency</span>
+            <span>The Arriba Engine</span>
           </div>
 
-          <div class="anti-rule-card">
-            <div class="anti-rule-header">
-              <span class="anti-rule-num">RULE 02</span>
-              <span class="anti-rule-tag">DIRECT INTERFACE</span>
-            </div>
-            <h3 class="anti-rule-title">Zero Junior Account Managers</h3>
-            <p class="anti-rule-desc">You will never be pitched by founders and then handed over to fresh trainees. Brands communicate directly with senior growth directors who have personally deployed &#8377;10Cr+.</p>
+          <div class="contrast-row">
+            <span class="contrast-criteria">Contracts</span>
+            <span class="contrast-legacy">Lock you into rigid 6 to 12-month legal lock-ins</span>
+            <span class="contrast-arriba">Zero lock-in contracts. You stay purely because we perform.</span>
           </div>
 
-          <div class="anti-rule-card">
-            <div class="anti-rule-header">
-              <span class="anti-rule-num">RULE 03</span>
-              <span class="anti-rule-tag">UNIT ECONOMICS</span>
-            </div>
-            <h3 class="anti-rule-title">No Scaling Leaky Buckets</h3>
-            <p class="anti-rule-desc">We audit repeat cohort retention and contribution margin before scaling spend. If your product doesn't retain customers profitably, we refuse to burn capital accelerating it.</p>
+          <div class="contrast-row">
+            <span class="contrast-criteria">Team Seniority</span>
+            <span class="contrast-legacy">Pitch by founders, then handed off to junior trainees</span>
+            <span class="contrast-arriba">Executed strictly by senior growth directors with 8+ years experience.</span>
           </div>
 
-          <div class="anti-rule-card">
-            <div class="anti-rule-header">
-              <span class="anti-rule-num">RULE 04</span>
-              <span class="anti-rule-tag">FULL TRANSPARENCY</span>
-            </div>
-            <h3 class="anti-rule-title">100% Asset &amp; Data Ownership</h3>
-            <p class="anti-rule-desc">You retain full ownership of every ad account, pixel, custom script, attribution model, and raw editable creative asset. Zero hostage retainers. Zero lock-in.</p>
+          <div class="contrast-row">
+            <span class="contrast-criteria">Success Metric</span>
+            <span class="contrast-legacy">Vanity impressions, clicks, and inflated platform ROAS</span>
+            <span class="contrast-arriba">Judged strictly on blended CAC, cash flow, and bankable profit.</span>
+          </div>
+
+          <div class="contrast-row">
+            <span class="contrast-criteria">Alignment</span>
+            <span class="contrast-legacy">Fixed monthly retainers regardless of brand performance</span>
+            <span class="contrast-arriba">We profit only when your top-line revenue scales profitably.</span>
           </div>
         </div>
-
-        <!-- Desktop Comparison Table (Visible on Desktop / Tablets > 860px) -->
-        <div class="comparison-table comp-table-desktop" data-reveal>
-          
-          <div class="comp-row comp-header-row">
-            <div class="comp-col-label">CRITERIA</div>
-            <div class="comp-col-legacy">TRADITIONAL RETAINER AGENCY</div>
-            <div class="comp-col-arriba">THE ARRIBA ENGINE</div>
-          </div>
-
-          <div class="comp-row">
-            <div class="comp-col-label">Contracts</div>
-            <div class="comp-col-legacy">Lock you into rigid 6 to 12-month legal lock-ins</div>
-            <div class="comp-col-arriba">Zero lock-in contracts. You stay purely because we perform.</div>
-          </div>
-
-          <div class="comp-row">
-            <div class="comp-col-label">Team Seniority</div>
-            <div class="comp-col-legacy">Pitch by founders, then handed off to junior trainees</div>
-            <div class="comp-col-arriba">Executed strictly by senior growth directors with 8+ years experience.</div>
-          </div>
-
-          <div class="comp-row">
-            <div class="comp-col-label">Success Metric</div>
-            <div class="comp-col-legacy">Vanity impressions, clicks, and inflated platform ROAS</div>
-            <div class="comp-col-arriba">Judged strictly on blended CAC, cash flow, and bankable profit.</div>
-          </div>
-
-          <div class="comp-row">
-            <div class="comp-col-label">Alignment</div>
-            <div class="comp-col-legacy">Fixed monthly retainers regardless of brand performance</div>
-            <div class="comp-col-arriba">We profit only when your top-line revenue scales profitably.</div>
-          </div>
-
-        </div>
-
-        <!-- Mobile 2-Card Comparison (Visible on Mobile <= 860px) -->
-        <div class="comparison-mobile-cards" data-reveal>
-          <!-- Card 1: Traditional Agency -->
-          <div class="comp-mobile-card comp-card-legacy">
-            <div class="comp-card-header">
-              <span class="comp-card-badge">LEGACY MODEL</span>
-              <h3 class="comp-card-title">Traditional Agency</h3>
-            </div>
-            <ul class="comp-card-list">
-              <li>
-                <span class="comp-item-label">Contracts</span>
-                <span class="comp-item-text">Lock you into rigid 6 to 12-month legal lock-ins</span>
-              </li>
-              <li>
-                <span class="comp-item-label">Team Seniority</span>
-                <span class="comp-item-text">Pitch by founders, then handed off to junior trainees</span>
-              </li>
-              <li>
-                <span class="comp-item-label">Success Metric</span>
-                <span class="comp-item-text">Vanity impressions, clicks, and inflated platform ROAS</span>
-              </li>
-              <li>
-                <span class="comp-item-label">Alignment</span>
-                <span class="comp-item-text">Fixed monthly retainers regardless of brand performance</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Card 2: The Arriba Engine -->
-          <div class="comp-mobile-card comp-card-arriba">
-            <div class="comp-card-header">
-              <span class="comp-card-badge">THE STANDARD</span>
-              <h3 class="comp-card-title">The Arriba Engine</h3>
-            </div>
-            <ul class="comp-card-list">
-              <li>
-                <span class="comp-item-label">Contracts</span>
-                <span class="comp-item-text">Zero lock-in contracts. You stay purely because we perform.</span>
-              </li>
-              <li>
-                <span class="comp-item-label">Team Seniority</span>
-                <span class="comp-item-text">Executed strictly by senior growth directors with 8+ years experience.</span>
-              </li>
-              <li>
-                <span class="comp-item-label">Success Metric</span>
-                <span class="comp-item-text">Judged strictly on blended CAC, cash flow, and bankable profit.</span>
-              </li>
-              <li>
-                <span class="comp-item-label">Alignment</span>
-                <span class="comp-item-text">We profit only when your top-line revenue scales profitably.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
       </div>
     </section>
 
-    <!-- ==================== 6B. PARTNERSHIPS ==================== -->
-    <section class="partnerships-editorial-section" id="partnerships">
-      <div class="container-editorial">
+    <!-- ==================== 7. PARTNER NETWORK & VOICES OF LEADERSHIP ==================== -->
+    <section class="section-block" id="partnerships">
+      <div class="wrap">
+        <div class="section-header-asym" data-reveal>
+          <div>
+            <div class="section-kicker mono">
+              <span>06</span>
+              <span>/</span>
+              <span>Ecosystem &amp; Endorsements</span>
+            </div>
+            <h2 class="section-title">Partners &amp; <span class="serif-italic">leadership voices.</span></h2>
+          </div>
+          <p class="section-intro">
+            Strategic alliances across media platforms, creative networks, and India's ambitious consumer brand founders.
+          </p>
+        </div>
 
-        <div class="section-title-row" data-reveal>
-          <div class="title-col-left">
-            <h2 class="editorial-heading">Partnerships</h2>
+        <!-- 4x2 Architectural Hairline Partner Grid -->
+        <div class="partners-grid" data-reveal>
+          <div class="partner-cell">
+            <img src="logos/partners/meta.svg" alt="Meta" class="partner-img" data-partner="meta" loading="lazy">
+          </div>
+          <div class="partner-cell">
+            <img src="logos/partners/mc-saatchi.svg" alt="M&amp;C Saatchi Group" class="partner-img" loading="lazy">
+          </div>
+          <div class="partner-cell">
+            <img src="logos/partners/lemma.png" alt="Lemma" class="partner-img" loading="lazy">
+          </div>
+          <div class="partner-cell">
+            <img src="logos/partners/krafting-networks.svg" alt="Krafting Networks" class="partner-img" data-partner="krafting" loading="lazy">
+          </div>
+          <div class="partner-cell">
+            <img src="logos/partners/the-wise-idiot.png" alt="The Wise Idiot" class="partner-img" loading="lazy">
+          </div>
+          <div class="partner-cell">
+            <img src="logos/partners/3bf.svg" alt="3BF - 3 Brothers &amp; Fils" class="partner-img" data-partner="3bf" loading="lazy">
+          </div>
+          <div class="partner-cell">
+            <img src="logos/partners/ps-and-co.svg" alt="ps &amp; co" class="partner-img" loading="lazy">
+          </div>
+          <div class="partner-cell">
+            <img src="logos/partners/flying-pencil.svg" alt="Flying Pencil" class="partner-img" loading="lazy">
           </div>
         </div>
 
-        <div class="partnerships-logo-grid" data-reveal>
-          <div class="partner-logo-card">
-            <img src="logos/partners/meta.svg" alt="Meta" class="partner-grid-img partner--meta" loading="lazy">
-          </div>
-          <div class="partner-logo-card">
-            <img src="logos/partners/mc-saatchi.svg" alt="M&amp;C Saatchi Group" class="partner-grid-img partner--mcsaatchi" loading="lazy">
-          </div>
-          <div class="partner-logo-card">
-            <img src="logos/partners/lemma.png" alt="Lemma" class="partner-grid-img partner--lemma" loading="lazy">
-          </div>
-          <div class="partner-logo-card">
-            <img src="logos/partners/krafting-networks.svg" alt="Krafting Networks" class="partner-grid-img partner--krafting" loading="lazy">
-          </div>
-          <div class="partner-logo-card">
-            <img src="logos/partners/the-wise-idiot.png" alt="The Wise Idiot" class="partner-grid-img partner--wiseidiot" loading="lazy">
-          </div>
-          <div class="partner-logo-card">
-            <img src="logos/partners/3bf.svg" alt="3BF - 3 Brothers &amp; Fils" class="partner-grid-img partner--3bf" loading="lazy">
-          </div>
-          <div class="partner-logo-card">
-            <img src="logos/partners/ps-and-co.svg" alt="ps &amp; co" class="partner-grid-img partner--psco" loading="lazy">
-          </div>
-          <div class="partner-logo-card">
-            <img src="logos/partners/flying-pencil.svg" alt="Flying Pencil" class="partner-grid-img partner--flyingpencil" loading="lazy">
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==================== 7. VOICES OF FOUNDERS ==================== -->
-    <section class="testimonials-editorial-section" id="testimonials">
-      <div class="container-editorial">
-        
-        <div class="section-title-row">
-          <div class="title-col-left">
-            <h2 class="editorial-heading">Voices of Leadership</h2>
-          </div>
-
-        </div>
-
-        <div class="testimonials-editorial-grid">
-          
-          <div class="testimonial-editorial-item" data-reveal>
-            <p class="test-body">
+        <!-- 3-Column Editorial Quote Spread -->
+        <div class="voices-grid" id="testimonials" data-reveal>
+          <article class="voice-col">
+            <p class="voice-quote">
               "Arriba Labs took our D2C revenue from ₹12L/month to over ₹70L/month while actually increasing our gross profit margin. Their creative velocity on Meta and quick commerce strategy on Blinkit gave us category leadership."
             </p>
-            <div class="test-meta">
-              <span class="test-name">Direct-to-Consumer Founder</span>
-              <span class="test-title">Premium Lifestyle & Footwear Brand</span>
+            <div class="voice-author">
+              <span class="voice-role">Direct-to-Consumer Founder</span>
+              <span class="voice-brand">Premium Lifestyle &amp; Footwear Brand</span>
             </div>
-          </div>
+          </article>
 
-          <div class="testimonial-editorial-item" data-reveal>
-            <p class="test-body">
+          <article class="voice-col">
+            <p class="voice-quote">
               "The real-time live dashboard and transparent blended CAC numbers gave our board total confidence to scale budgets. They operate like equity partners in our business, not an outsourced agency."
             </p>
-            <div class="test-meta">
-              <span class="test-name">E-Commerce Brand Director</span>
-              <span class="test-title">Luxury Apparel & Couture Brand</span>
+            <div class="voice-author">
+              <span class="voice-role">E-Commerce Brand Director</span>
+              <span class="voice-brand">Luxury Apparel &amp; Couture Brand</span>
             </div>
-          </div>
+          </article>
 
-          <div class="testimonial-editorial-item" data-reveal>
-            <p class="test-body">
+          <article class="voice-col">
+            <p class="voice-quote">
               "Their Amazon and Google Search execution cut our wasted ad spend by 35% in the first 30 days. They are deeply technical, relentless on details, and their creative tests convert remarkably well."
             </p>
-            <div class="test-meta">
-              <span class="test-name">Head of Performance Marketing</span>
-              <span class="test-title">Consumer Packaged Goods Brand</span>
+            <div class="voice-author">
+              <span class="voice-role">Head of Performance Marketing</span>
+              <span class="voice-brand">Consumer Packaged Goods Brand</span>
             </div>
-          </div>
-
+          </article>
         </div>
-
       </div>
     </section>
 
     <!-- ==================== 8. CONSULTATION DISPATCH ==================== -->
-    <section class="contact-editorial-section" id="contact">
-      <div class="container-editorial">
-        
-        <div class="contact-split">
-          
-          <div class="contact-info-col" data-reveal>
-            <h2 class="contact-title">Let's audit your accounts and build your scaling roadmap.</h2>
-            <p class="contact-text">
-              Book a confidential detailed growth consultation with our senior strategy directors. We will dissect your current ad spend, uncover profit leaks, and outline your 90-day scaling roadmap.
-            </p>
+    <section class="section-block" id="contact">
+      <div class="wrap contact-layout">
+        <div data-reveal>
+          <div class="section-kicker mono">
+            <span>07</span>
+            <span>/</span>
+            <span>Consultation Dispatch</span>
+          </div>
+          <h2 class="contact-headline">
+            Let's audit your accounts and build your <span class="serif-italic">scaling roadmap.</span>
+          </h2>
+          <p class="contact-lead">
+            Book a confidential detailed growth consultation with our senior strategy directors. We will dissect your current ad spend, uncover profit leaks, and outline your 90-day scaling roadmap.
+          </p>
 
-            <div class="audit-commitments">
-              <div class="commit-item">
-                <span class="commit-num">01</span>
-                <div>
-                  <strong>Complete Account Tear-Down:</strong>
-                  <span>Actionable audit of your Meta, Google, and marketplace accounts with zero fluff.</span>
-                </div>
-              </div>
-              <div class="commit-item">
-                <span class="commit-num">02</span>
-                <div>
-                  <strong>Senior Attention Guaranteed:</strong>
-                  <span>Conducted strictly by senior growth directors, never junior sales representatives.</span>
-                </div>
-              </div>
-              <div class="commit-item">
-                <span class="commit-num">03</span>
-                <div>
-                  <strong>Zero Obligation:</strong>
-                  <span>If we are not a clear fit, you keep the comprehensive audit playbook free.</span>
-                </div>
+          <div class="commit-list">
+            <div class="commit-row">
+              <span class="commit-num">01</span>
+              <div>
+                <strong>Complete Account Tear-Down</strong>
+                <span>Actionable audit of your Meta, Google, and marketplace accounts with zero fluff.</span>
               </div>
             </div>
-
-            <div class="contact-wa-box">
-              <span class="wa-kicker">Prefer instant WhatsApp messaging?</span>
-              <a href="https://wa.me/917666300895?text=Hi%20Arriba%20Labs,%20I'd%20like%20to%20discuss%20scaling%20our%20e-commerce%20brand." class="btn btn-wa-pill magnetic-target" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-                <span>Chat on WhatsApp: +91 7666300895</span>
-              </a>
+            <div class="commit-row">
+              <span class="commit-num">02</span>
+              <div>
+                <strong>Senior Attention Guaranteed</strong>
+                <span>Conducted strictly by senior growth directors, never junior sales representatives.</span>
+              </div>
+            </div>
+            <div class="commit-row">
+              <span class="commit-num">03</span>
+              <div>
+                <strong>Zero Obligation</strong>
+                <span>If we are not a clear fit, you keep the comprehensive audit playbook free.</span>
+              </div>
             </div>
           </div>
 
-          <div class="contact-form-col" data-reveal>
-            <form class="editorial-form" id="strategy-form" action="https://formsubmit.co/manas.pawar@arribalabs.com" method="POST" novalidate>
-              <input type="hidden" name="_subject" value="New Growth Consultation Request - Arriba Labs">
-              <input type="hidden" name="_template" value="table">
-              <input type="hidden" name="_captcha" value="false">
-              <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-              <div class="form-grid-2">
-                <div class="input-wrap">
-                  <label for="full-name" class="input-label">Full Name *</label>
-                  <input type="text" id="full-name" name="fullName" class="field-input" placeholder="Vikram Malhotra" required>
-                  <span class="error-msg" id="name-error">Please enter your name</span>
-                </div>
-
-                <div class="input-wrap">
-                  <label for="work-email" class="input-label">Work Email *</label>
-                  <input type="email" id="work-email" name="workEmail" class="field-input" placeholder="vikram@brand.com" required>
-                  <span class="error-msg" id="email-error">Please enter a valid work email</span>
-                </div>
-              </div>
-
-              <div class="form-grid-2">
-                <div class="input-wrap">
-                  <label for="brand-name" class="input-label">Brand Website / Store URL *</label>
-                  <input type="url" id="brand-name" name="brandUrl" class="field-input" placeholder="https://yourbrand.com" required>
-                  <span class="error-msg" id="url-error">Please enter your store URL</span>
-                </div>
-
-                <div class="input-wrap">
-                  <label for="phone-number" class="input-label">Phone / WhatsApp</label>
-                  <input type="tel" id="phone-number" name="phone" class="field-input" placeholder="+91 98765 43210">
-                </div>
-              </div>
-
-              <div class="input-wrap">
-                <label for="ad-spend-select" class="input-label">Monthly Ad Spend *</label>
-                <input type="text" id="ad-spend-select" name="adSpend" class="field-input" placeholder="Enter your current monthly spend (e.g., ₹5 Lakhs / month)" required>
-                <span class="error-msg" id="spend-error">Please enter your current monthly spend</span>
-              </div>
-
-              <div class="input-wrap">
-                <label for="growth-goal" class="input-label">Primary Challenge or Growth Milestone</label>
-                <textarea id="growth-goal" name="goal" class="field-textarea" rows="3" placeholder="Tell us about current bottlenecks, channels you want to unlock, or revenue targets..."></textarea>
-              </div>
-
-              <button type="submit" class="btn btn-submit-editorial magnetic-target" id="submit-btn">
-                <span>Confirm Strategy Session</span>
-                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" class="arrow-svg">
-                  <path d="M3 8h10M9 4l4 4-4 4"/>
-                </svg>
-              </button>
-
-              <div class="editorial-success-box" id="form-success" role="alert" aria-live="polite">
-                <span class="success-check">✓</span>
-                <h4>Session Confirmed</h4>
-                <p>Our senior growth director will review your brand details and reach out within 2 hours with audit preparation notes.</p>
-              </div>
-
-            </form>
-          </div>
-
+          <a href="https://wa.me/917666300895?text=Hi%20Arriba%20Labs,%20I'd%20like%20to%20discuss%20scaling%20our%20e-commerce%20brand." class="btn-arch btn-arch--ghost" target="_blank" rel="noopener noreferrer">
+            <span>Chat on WhatsApp: +91 7666300895</span>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M4 12L12 4M12 4H6M12 4V10"/>
+            </svg>
+          </a>
         </div>
 
+        <div data-reveal>
+          <form class="arch-form" id="strategy-form" action="https://formsubmit.co/manas.pawar@arribalabs.com" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="New Growth Consultation Request - Arriba Labs">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <div class="form-row-2">
+              <div class="field-group">
+                <label for="full-name" class="field-label">Full Name *</label>
+                <input type="text" id="full-name" name="fullName" class="field-control" placeholder="Vikram Malhotra" required>
+                <span class="error-msg" id="name-error">Please enter your name</span>
+              </div>
+
+              <div class="field-group">
+                <label for="work-email" class="field-label">Work Email *</label>
+                <input type="email" id="work-email" name="workEmail" class="field-control" placeholder="vikram@brand.com" required>
+                <span class="error-msg" id="email-error">Please enter a valid work email</span>
+              </div>
+            </div>
+
+            <div class="form-row-2">
+              <div class="field-group">
+                <label for="brand-name" class="field-label">Brand Website / Store URL *</label>
+                <input type="url" id="brand-name" name="brandUrl" class="field-control" placeholder="https://yourbrand.com" required>
+                <span class="error-msg" id="url-error">Please enter your store URL</span>
+              </div>
+
+              <div class="field-group">
+                <label for="phone-number" class="field-label">Phone / WhatsApp</label>
+                <input type="tel" id="phone-number" name="phone" class="field-control" placeholder="+91 98765 43210">
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="ad-spend-select" class="field-label">Monthly Ad Spend *</label>
+              <input type="text" id="ad-spend-select" name="adSpend" class="field-control" placeholder="e.g., ₹5 Lakhs / month" required>
+              <span class="error-msg" id="spend-error">Please enter your current monthly spend</span>
+            </div>
+
+            <div class="field-group">
+              <label for="growth-goal" class="field-label">Primary Challenge or Growth Milestone</label>
+              <textarea id="growth-goal" name="goal" class="field-control" rows="3" placeholder="Tell us about current bottlenecks, channels you want to unlock, or revenue targets..."></textarea>
+            </div>
+
+            <div>
+              <button type="submit" class="btn-arch" id="submit-btn">
+                <span>Confirm Strategy Session</span>
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M4 12L12 4M12 4H6M12 4V10"/>
+                </svg>
+              </button>
+            </div>
+
+            <div class="form-success-panel" id="form-success" role="alert" aria-live="polite">
+              <h4>Session Confirmed</h4>
+              <p>Our senior growth director will review your brand details and reach out within 2 hours with audit preparation notes.</p>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
 
   </main>
 
   <!-- ==================== FOOTER ==================== -->
-  <footer class="editorial-footer">
-    <div class="container-editorial">
-      
-      <div class="footer-primary-grid">
-        <div class="footer-brand-side">
-          <img src="images/arriba-logo-gradient.png" alt="Arriba Labs" class="footer-logo" width="150" height="45">
-          <p class="footer-desc">
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top-grid">
+        <div>
+          <img src="images/arriba-logo-gradient.png" alt="Arriba Labs" class="footer-brand-logo" width="150" height="45">
+          <p class="footer-about">
             Creative performance marketing and growth engineering for ambitious direct-to-consumer and retail brands.
           </p>
-          <div class="footer-location-strip">
-            
-            <span>Pune, India &middot; Live IST</span>
-          </div>
-
-          <!-- Social Links -->
+          <div class="footer-live-clock" id="ist-clock">Pune, India &middot; Live IST</div>
           <div class="footer-socials">
-            <a href="https://www.instagram.com/arribalabs" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Arriba Labs on Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="social-icon">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                <circle cx="12" cy="12" r="4"/>
-                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
-              </svg>
-            </a>
-            <a href="https://www.facebook.com/arribalabs" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Arriba Labs on Facebook">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="social-icon">
-                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-              </svg>
-            </a>
-            <a href="https://x.com/arribalabs" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Arriba Labs on X">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="social-icon">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
-            <a href="https://www.linkedin.com/company/arribalabs" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Arriba Labs on LinkedIn">
-              <svg viewBox="0 0 24 24" fill="currentColor" class="social-icon">
-                <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
-                <circle cx="4" cy="4" r="2"/>
-              </svg>
-            </a>
+            <a href="https://www.instagram.com/arribalabs" target="_blank" rel="noopener noreferrer" class="footer-social-link">IG</a>
+            <a href="https://www.facebook.com/arribalabs" target="_blank" rel="noopener noreferrer" class="footer-social-link">FB</a>
+            <a href="https://x.com/arribalabs" target="_blank" rel="noopener noreferrer" class="footer-social-link">X</a>
+            <a href="https://www.linkedin.com/company/arribalabs" target="_blank" rel="noopener noreferrer" class="footer-social-link">LI</a>
           </div>
-
         </div>
 
-        <div class="footer-nav-col">
-          <span class="footer-col-header">SERVICES</span>
-          <ul class="footer-list">
+        <div>
+          <span class="footer-col-title">Services</span>
+          <ul class="footer-links">
             <li><a href="#services">Performance Marketing</a></li>
-            <li><a href="#services">Creative Studio & UGC</a></li>
-            <li><a href="#services">Amazon & Quick Commerce</a></li>
+            <li><a href="#services">Creative Studio &amp; UGC</a></li>
+            <li><a href="#services">Amazon &amp; Quick Commerce</a></li>
             <li><a href="#services">Growth Architecture</a></li>
           </ul>
         </div>
 
-        <div class="footer-nav-col">
-          <span class="footer-col-header">NAVIGATION</span>
-          <ul class="footer-list">
+        <div>
+          <span class="footer-col-title">Navigation</span>
+          <ul class="footer-links">
+            <li><a href="#clients">Partnerships</a></li>
             <li><a href="#services">Capabilities</a></li>
             <li><a href="#results">Case Ledger</a></li>
-            <li><a href="#approach">Protocol</a></li>
+            <li><a href="#approach">Audit Protocol</a></li>
             <li><a href="#contact">Consultation</a></li>
           </ul>
         </div>
 
-        <div class="footer-nav-col">
-          <span class="footer-col-header">LOCATION</span>
-          <div class="footer-addr">
-            <p><strong>Pune, India:</strong> Baner, Pune 411045</p>
-            <p><strong>Inquiries:</strong> <a href="mailto:info@arribalabs.com">info@arribalabs.com</a></p>
-            <p><strong>Mon - Fri:</strong> 9:30 AM - 7:00 PM IST</p>
-          </div>
+        <div class="footer-address">
+          <span class="footer-col-title">Location</span>
+          <p><strong>Pune, India:</strong> Baner, Pune 411045</p>
+          <p><strong>Inquiries:</strong> <a href="mailto:info@arribalabs.com">info@arribalabs.com</a></p>
+          <p><strong>Hours:</strong> Mon - Fri, 9:30 AM - 7:00 PM IST</p>
         </div>
       </div>
 
-      <div class="footer-baseline">
-        <span class="copyright-line">&copy; 2018 Arriba Labs. All Rights Reserved</span>
-        <div class="footer-legal">
-          <a>Privacy Policy</a>
+      <div class="footer-monolith-wordmark" aria-hidden="true">ARRIBA</div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2018-2026 Arriba Labs. All Rights Reserved.</span>
+        <div class="footer-legal-links">
+          <a href="#contact">Privacy Policy</a>
           <span>/</span>
-          <a>Terms of Engagement</a>
+          <a href="#contact">Terms of Engagement</a>
         </div>
       </div>
-
     </div>
   </footer>
 
-  <!-- ==================== FLOATING WHATSAPP CTA ==================== -->
-  <div class="floating-wa-anchor">
-    <a href="https://wa.me/917666300895?text=Hi%20Arriba%20Labs,%20I'd%20like%20to%20discuss%20scaling%20our%20e-commerce%20brand." 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       class="floating-wa-pill"
-       aria-label="Direct WhatsApp message with Arriba Labs growth team">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-      </svg>
-      <span class="wa-text">Quick Chat</span>
-    </a>
-  </div>
+  <!-- Floating WhatsApp Architectural Anchor -->
+  <a href="https://wa.me/917666300895?text=Hi%20Arriba%20Labs,%20I'd%20like%20to%20discuss%20scaling%20our%20e-commerce%20brand."
+     target="_blank"
+     rel="noopener noreferrer"
+     class="wa-float"
+     aria-label="Direct WhatsApp message with Arriba Labs growth team">
+    <span>WhatsApp ↗</span>
+  </a>
 
-  <!-- ==================== COOKIE / PRIVACY BANNER ==================== -->
-  <div class="cookie-banner" id="cookie-banner" role="region" aria-label="Cookie and Privacy Preferences" aria-hidden="true">
-    <div class="cookie-inner">
-      <div class="cookie-text-col">
-        <span class="cookie-badge">PRIVACY ARCHITECTURE</span>
-        <p class="cookie-desc">
-          We use essential cookies and performance analytics to optimize your experience in accordance with our <a href="#" class="cookie-privacy-link" onclick="event.preventDefault();">Privacy Policy</a>.
-        </p>
-      </div>
-      <div class="cookie-actions-col">
-        <button type="button" class="btn btn-ghost cookie-btn" id="cookie-essential-btn">
-          <span>Essential Only</span>
-        </button>
-        <button type="button" class="btn btn-primary cookie-btn" id="cookie-accept-btn">
-          <span>Accept All</span>
-        </button>
-      </div>
+  <!-- Minimal Architectural Cookie Notice -->
+  <div class="cookie-bar" id="cookie-banner" role="region" aria-label="Cookie Preferences">
+    <span class="mono">Privacy Architecture</span>
+    <p>We use essential cookies and performance analytics to optimize your experience.</p>
+    <div class="cookie-bar-actions">
+      <button type="button" class="btn-arch btn-arch--ghost btn-arch--sm" id="cookie-essential-btn">Essential Only</button>
+      <button type="button" class="btn-arch btn-arch--sm" id="cookie-accept-btn">Accept All</button>
     </div>
   </div>
 
