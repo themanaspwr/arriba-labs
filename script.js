@@ -215,6 +215,289 @@
     }
   }
 
+  /* --------------------------------------------------------------------------
+     8. HERO BAUHAUS KINETIC GEOMETRIC TILE MOSAIC
+        Modular 4x4 Swiss geometric sculpture (triangles, circles, semicircles,
+        quarter-arcs, and fine hatched fills) that choreographs, holds, folds,
+        and re-assembles into new Arriba-palette formations beside the hero.
+     -------------------------------------------------------------------------- */
+  const bauhausSvg = document.getElementById('hero-bauhaus-svg');
+  const bauhausStage = document.getElementById('hero-bauhaus-stage');
+
+  if (bauhausSvg && bauhausStage) {
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const CELL = 100;
+    const reduceMotionHero =
+      window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const FILLS = {
+      white: '#ffffff',
+      cobalt: '#527bc9',
+      violet: '#6a4593',
+      plum: '#753a5d',
+      vermilion: '#c8372d',
+      'hatch-v-cobalt': 'url(#bh-hatch-v-cobalt)',
+      'hatch-v-plum': 'url(#bh-hatch-v-plum)',
+      'hatch-h-violet': 'url(#bh-hatch-h-violet)',
+      'hatch-d-cobalt': 'url(#bh-hatch-d-cobalt)'
+    };
+
+    function createPatterns() {
+      const defs = document.createElementNS(SVG_NS, 'defs');
+
+      const specs = [
+        { id: 'bh-hatch-v-cobalt', w: 6, h: 6, rot: 0, bg: 'rgba(82,123,201,0.14)', stroke: '#527bc9', sw: 2 },
+        { id: 'bh-hatch-v-plum', w: 6, h: 6, rot: 0, bg: 'rgba(117,58,93,0.14)', stroke: '#753a5d', sw: 2 },
+        { id: 'bh-hatch-h-violet', w: 6, h: 6, rot: 90, bg: 'rgba(106,69,147,0.14)', stroke: '#6a4593', sw: 2 },
+        { id: 'bh-hatch-d-cobalt', w: 7, h: 7, rot: 45, bg: 'rgba(82,123,201,0.16)', stroke: '#4d6dc2', sw: 2 }
+      ];
+
+      specs.forEach((p) => {
+        const pat = document.createElementNS(SVG_NS, 'pattern');
+        pat.setAttribute('id', p.id);
+        pat.setAttribute('width', String(p.w));
+        pat.setAttribute('height', String(p.h));
+        pat.setAttribute('patternUnits', 'userSpaceOnUse');
+        if (p.rot) pat.setAttribute('patternTransform', `rotate(${p.rot})`);
+
+        const bg = document.createElementNS(SVG_NS, 'rect');
+        bg.setAttribute('width', String(p.w));
+        bg.setAttribute('height', String(p.h));
+        bg.setAttribute('fill', p.bg);
+        pat.appendChild(bg);
+
+        const line = document.createElementNS(SVG_NS, 'line');
+        line.setAttribute('x1', '0');
+        line.setAttribute('y1', '0');
+        line.setAttribute('x2', '0');
+        line.setAttribute('y2', String(p.h));
+        line.setAttribute('stroke', p.stroke);
+        line.setAttribute('stroke-width', String(p.sw));
+        pat.appendChild(line);
+
+        defs.appendChild(pat);
+      });
+
+      return defs;
+    }
+
+    function buildShapeEl(tile) {
+      const x = tile.c * CELL;
+      const y = tile.r * CELL;
+      const s = CELL;
+      const fill = FILLS[tile.fill] || tile.fill;
+      let el;
+
+      switch (tile.shape) {
+        case 'square':
+          el = document.createElementNS(SVG_NS, 'rect');
+          el.setAttribute('x', x);
+          el.setAttribute('y', y);
+          el.setAttribute('width', s);
+          el.setAttribute('height', s);
+          break;
+        case 'circle':
+          el = document.createElementNS(SVG_NS, 'circle');
+          el.setAttribute('cx', x + s / 2);
+          el.setAttribute('cy', y + s / 2);
+          el.setAttribute('r', s * 0.48);
+          break;
+        case 'tri-tl':
+          el = document.createElementNS(SVG_NS, 'polygon');
+          el.setAttribute('points', `${x},${y} ${x + s},${y} ${x},${y + s}`);
+          break;
+        case 'tri-tr':
+          el = document.createElementNS(SVG_NS, 'polygon');
+          el.setAttribute('points', `${x},${y} ${x + s},${y} ${x + s},${y + s}`);
+          break;
+        case 'tri-bl':
+          el = document.createElementNS(SVG_NS, 'polygon');
+          el.setAttribute('points', `${x},${y} ${x},${y + s} ${x + s},${y + s}`);
+          break;
+        case 'tri-br':
+          el = document.createElementNS(SVG_NS, 'polygon');
+          el.setAttribute('points', `${x + s},${y} ${x + s},${y + s} ${x},${y + s}`);
+          break;
+        case 'arc-tl':
+          el = document.createElementNS(SVG_NS, 'path');
+          el.setAttribute('d', `M ${x} ${y} L ${x + s} ${y} A ${s} ${s} 0 0 1 ${x} ${y + s} Z`);
+          break;
+        case 'arc-tr':
+          el = document.createElementNS(SVG_NS, 'path');
+          el.setAttribute('d', `M ${x + s} ${y} L ${x + s} ${y + s} A ${s} ${s} 0 0 1 ${x} ${y} Z`);
+          break;
+        case 'arc-bl':
+          el = document.createElementNS(SVG_NS, 'path');
+          el.setAttribute('d', `M ${x} ${y + s} L ${x} ${y} A ${s} ${s} 0 0 1 ${x + s} ${y + s} Z`);
+          break;
+        case 'arc-br':
+          el = document.createElementNS(SVG_NS, 'path');
+          el.setAttribute('d', `M ${x + s} ${y + s} L ${x} ${y + s} A ${s} ${s} 0 0 1 ${x + s} ${y} Z`);
+          break;
+        case 'semi-top':
+          el = document.createElementNS(SVG_NS, 'path');
+          el.setAttribute('d', `M ${x} ${y + s} A ${s / 2} ${s / 2} 0 0 1 ${x + s} ${y + s} Z`);
+          break;
+        case 'semi-bottom':
+          el = document.createElementNS(SVG_NS, 'path');
+          el.setAttribute('d', `M ${x} ${y} A ${s / 2} ${s / 2} 0 0 0 ${x + s} ${y} Z`);
+          break;
+        case 'semi-left':
+          el = document.createElementNS(SVG_NS, 'path');
+          el.setAttribute('d', `M ${x + s} ${y} A ${s / 2} ${s / 2} 0 0 0 ${x + s} ${y + s} Z`);
+          break;
+        case 'semi-right':
+          el = document.createElementNS(SVG_NS, 'path');
+          el.setAttribute('d', `M ${x} ${y} A ${s / 2} ${s / 2} 0 0 1 ${x} ${y + s} Z`);
+          break;
+        default:
+          el = document.createElementNS(SVG_NS, 'rect');
+          el.setAttribute('x', x);
+          el.setAttribute('y', y);
+          el.setAttribute('width', s);
+          el.setAttribute('height', s);
+      }
+
+      el.setAttribute('fill', fill);
+      el.setAttribute('class', 'bauhaus-tile');
+      return el;
+    }
+
+    // 3 Curated Bauhaus / Swiss Geometric Formations (mirrors reference video silhouette & rhythm)
+    const FORMATIONS = [
+      // Formation 0: Diagonal Bauhaus Cascade
+      [
+        { c: 0, r: 0, shape: 'square', fill: 'hatch-v-plum', enter: 'translate(-26px, 0) scale(0.76)' },
+        { c: 1, r: 0, shape: 'tri-bl', fill: 'hatch-v-plum', enter: 'translate(0, -24px) scale(0.72)' },
+        { c: 1, r: 1, shape: 'square', fill: 'white', enter: 'scale(0.55) rotate(-18deg)' },
+        { c: 2, r: 1, shape: 'circle', fill: 'hatch-v-cobalt', enter: 'translate(24px, -14px) scale(0.5)' },
+        { c: 1, r: 2, shape: 'tri-tr', fill: 'cobalt', enter: 'translate(-20px, 16px) scale(0.7)' },
+        { c: 2, r: 2, shape: 'tri-tl', fill: 'violet', enter: 'translate(18px, -16px) scale(0.7)' },
+        { c: 3, r: 2, shape: 'tri-br', fill: 'plum', enter: 'translate(26px, 0) scale(0.72)' },
+        { c: 1, r: 3, shape: 'arc-tr', fill: 'hatch-h-violet', enter: 'translate(0, 26px) rotate(45deg) scale(0.65)' },
+        { c: 2, r: 3, shape: 'semi-top', fill: 'white', enter: 'translate(0, 24px) scale(0.65)' },
+        { c: 3, r: 3, shape: 'tri-bl', fill: 'hatch-d-cobalt', enter: 'translate(22px, 22px) scale(0.72)' },
+        { c: 0, r: 2, shape: 'arc-br', fill: 'vermilion', enter: 'translate(-22px, 16px) scale(0.55)' }
+      ],
+      // Formation 1: Ascending Arriba Peak
+      [
+        { c: 1, r: 0, shape: 'tri-br', fill: 'plum', enter: 'translate(-18px, -22px) scale(0.7)' },
+        { c: 2, r: 0, shape: 'tri-bl', fill: 'cobalt', enter: 'translate(18px, -22px) scale(0.7)' },
+        { c: 0, r: 1, shape: 'arc-br', fill: 'hatch-v-cobalt', enter: 'translate(-24px, 0) scale(0.7)' },
+        { c: 1, r: 1, shape: 'square', fill: 'white', enter: 'scale(0.58) rotate(14deg)' },
+        { c: 2, r: 1, shape: 'square', fill: 'hatch-h-violet', enter: 'translate(22px, 0) scale(0.74)' },
+        { c: 3, r: 1, shape: 'circle', fill: 'vermilion', enter: 'translate(24px, -12px) scale(0.45)' },
+        { c: 0, r: 2, shape: 'tri-br', fill: 'violet', enter: 'translate(-24px, 18px) scale(0.7)' },
+        { c: 1, r: 2, shape: 'circle', fill: 'hatch-v-plum', enter: 'scale(0.5)' },
+        { c: 2, r: 2, shape: 'tri-tl', fill: 'cobalt', enter: 'translate(16px, 16px) scale(0.7)' },
+        { c: 3, r: 2, shape: 'semi-left', fill: 'white', enter: 'translate(26px, 0) scale(0.68)' },
+        { c: 1, r: 3, shape: 'semi-top', fill: 'hatch-d-cobalt', enter: 'translate(0, 24px) scale(0.68)' },
+        { c: 2, r: 3, shape: 'tri-bl', fill: 'plum', enter: 'translate(18px, 24px) scale(0.7)' }
+      ],
+      // Formation 2: Swiss Editorial Pinwheel
+      [
+        { c: 1, r: 0, shape: 'circle', fill: 'hatch-v-cobalt', enter: 'translate(0, -26px) scale(0.5)' },
+        { c: 2, r: 0, shape: 'arc-bl', fill: 'white', enter: 'translate(20px, -20px) rotate(-35deg) scale(0.65)' },
+        { c: 3, r: 0, shape: 'tri-bl', fill: 'vermilion', enter: 'translate(24px, -16px) scale(0.65)' },
+        { c: 0, r: 1, shape: 'tri-tr', fill: 'plum', enter: 'translate(-26px, 0) scale(0.72)' },
+        { c: 1, r: 1, shape: 'arc-br', fill: 'violet', enter: 'scale(0.6) rotate(-45deg)' },
+        { c: 2, r: 1, shape: 'square', fill: 'hatch-v-plum', enter: 'translate(18px, 0) scale(0.74)' },
+        { c: 0, r: 2, shape: 'semi-right', fill: 'white', enter: 'translate(-26px, 10px) scale(0.68)' },
+        { c: 1, r: 2, shape: 'square', fill: 'cobalt', enter: 'scale(0.58) rotate(16deg)' },
+        { c: 2, r: 2, shape: 'arc-tl', fill: 'hatch-d-cobalt', enter: 'translate(20px, 16px) scale(0.68)' },
+        { c: 3, r: 2, shape: 'tri-tl', fill: 'hatch-h-violet', enter: 'translate(24px, 0) scale(0.72)' },
+        { c: 1, r: 3, shape: 'tri-tr', fill: 'hatch-v-plum', enter: 'translate(-12px, 24px) scale(0.7)' },
+        { c: 2, r: 3, shape: 'circle', fill: 'plum', enter: 'translate(0, 26px) scale(0.5)' }
+      ]
+    ];
+
+    bauhausSvg.innerHTML = '';
+    bauhausSvg.appendChild(createPatterns());
+    const layer = document.createElementNS(SVG_NS, 'g');
+    bauhausSvg.appendChild(layer);
+
+    let formationIdx = 0;
+    let bhTimers = [];
+    let bhVisible = true;
+
+    function clearBhTimers() {
+      bhTimers.forEach((id) => clearTimeout(id));
+      bhTimers = [];
+    }
+
+    function playFormation(idx) {
+      clearBhTimers();
+      layer.innerHTML = '';
+
+      const tiles = FORMATIONS[idx % FORMATIONS.length];
+      const els = tiles.map((t) => {
+        const el = buildShapeEl(t);
+        if (reduceMotionHero) {
+          el.classList.add('is-in');
+        } else {
+          el.style.transform = t.enter || 'scale(0.65)';
+        }
+        layer.appendChild(el);
+        return { el, enter: t.enter || 'scale(0.65)' };
+      });
+
+      if (reduceMotionHero) return;
+
+      // Cascade tiles smoothly into place
+      els.forEach((item, i) => {
+        const tid = setTimeout(() => {
+          item.el.classList.add('is-in');
+        }, 60 + i * 62);
+        bhTimers.push(tid);
+      });
+
+      // Hold the completed composition, then fold out & morph into next formation
+      const enterDoneMs = 60 + els.length * 62 + 680;
+      const holdMs = 2400;
+
+      const tExit = setTimeout(() => {
+        if (!bhVisible) return;
+        els.forEach((item, i) => {
+          const tid = setTimeout(() => {
+            item.el.classList.remove('is-in');
+            item.el.classList.add('is-out');
+            item.el.style.transform = item.enter;
+          }, i * 42);
+          bhTimers.push(tid);
+        });
+
+        const nextDelay = els.length * 42 + 520;
+        const tNext = setTimeout(() => {
+          if (!bhVisible) return;
+          formationIdx = (formationIdx + 1) % FORMATIONS.length;
+          playFormation(formationIdx);
+        }, nextDelay);
+        bhTimers.push(tNext);
+      }, enterDoneMs + holdMs);
+
+      bhTimers.push(tExit);
+    }
+
+    playFormation(0);
+
+    if ('IntersectionObserver' in window && !reduceMotionHero) {
+      const heroSec = bauhausStage.closest('.cover-band') || bauhausStage;
+      const bhObserver = new IntersectionObserver(
+        (entries) => {
+          const wasVisible = bhVisible;
+          bhVisible = entries[0].isIntersecting;
+          if (bhVisible && !wasVisible) {
+            playFormation(formationIdx);
+          } else if (!bhVisible) {
+            clearBhTimers();
+          }
+        },
+        { threshold: 0.1 }
+      );
+      bhObserver.observe(heroSec);
+    }
+  }
+
   // 9. 6-Column Independent Lucky-Draw Roller Animation for Client Logos (No Machine / No Lever)
   const reelGrid = document.getElementById('client-reel-grid');
   if (reelGrid && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
