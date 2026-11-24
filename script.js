@@ -392,28 +392,41 @@
         : `rgba(34, 98, 64, ${0.22 * alpha})`;
       ctx.stroke();
 
-      // Center $ seal following the middle curved segment's position & tilt
-      const midTop = topPts[segs / 2];
-      const midBot = botPts[segs / 2];
+      // Center $ seal mapped via exact 2D affine surface tangent matrix so it NEVER pokes off the paper
+      const mid = segs / 2;
+      const midTop = topPts[mid];
+      const midBot = botPts[mid];
       const cx = (midTop.x + midBot.x) * 0.5;
       const cy = (midTop.y + midBot.y) * 0.5;
-      const dx = topPts[segs / 2 + 1].x - topPts[segs / 2 - 1].x;
-      const dy = topPts[segs / 2 + 1].y - topPts[segs / 2 - 1].y;
-      const segAngle = Math.atan2(dy, dx);
-      const scaleX = Math.max(0.2, Math.hypot(dx, dy) / (b.w * 0.2));
 
-      ctx.save();
-      ctx.translate(cx, cy);
-      ctx.rotate(segAngle);
-      ctx.scale(Math.min(1, scaleX), 1);
-      ctx.fillStyle = isDark
-        ? `rgba(162, 232, 188, ${0.42 * alpha})`
-        : `rgba(30, 92, 58, ${0.48 * alpha})`;
-      ctx.font = `700 ${Math.round(b.h * 0.48)}px "Instrument Serif", Georgia, serif`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('$', 0, 1);
-      ctx.restore();
+      // Tangent U along bill length (normalized to local bill coordinates)
+      const leftC_x = (topPts[mid - 1].x + botPts[mid - 1].x) * 0.5;
+      const leftC_y = (topPts[mid - 1].y + botPts[mid - 1].y) * 0.5;
+      const rightC_x = (topPts[mid + 1].x + botPts[mid + 1].x) * 0.5;
+      const rightC_y = (topPts[mid + 1].y + botPts[mid + 1].y) * 0.5;
+      const spanU = (b.w * 2) / segs;
+      const ux = (rightC_x - leftC_x) / spanU;
+      const uy = (rightC_y - leftC_y) / spanU;
+
+      // Tangent V along bill height (normalized to local bill height)
+      const vx = (midBot.x - midTop.x) / b.h;
+      const vy = (midBot.y - midTop.y) / b.h;
+
+      // Surface foreshortening check: hide smoothly when paper is nearly edge-on
+      const faceArea = Math.abs(ux * vy - uy * vx);
+      if (faceArea > 0.14) {
+        const sealAlpha = Math.min(1, (faceArea - 0.14) / 0.25) * alpha;
+        ctx.save();
+        ctx.transform(ux, uy, vx, vy, cx, cy);
+        ctx.fillStyle = isDark
+          ? `rgba(162, 232, 188, ${0.44 * sealAlpha})`
+          : `rgba(30, 92, 58, ${0.50 * sealAlpha})`;
+        ctx.font = `700 ${Math.round(b.h * 0.52)}px "Instrument Serif", Georgia, serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('$', 0, 1);
+        ctx.restore();
+      }
 
       ctx.restore();
     }
